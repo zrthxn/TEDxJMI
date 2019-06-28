@@ -5,6 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "cd website && react-scripts start",
+    "build": "cd website && react-scripts build",
     "start": "node server.js"
   },
   "repository": {
