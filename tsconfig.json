@@ -1,0 +1,10 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "rootDir": ".",
+    "baseUrl": ".",
+    "paths": {
+      "@tedxjmi/utils": ["libs/utils/index.ts"]
+    }
+  }
+}
