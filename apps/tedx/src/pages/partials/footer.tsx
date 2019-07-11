@@ -1,11 +1,5 @@
 import React, { Component } from "react";
-import "../../assets/css/bootstrap.min.css";
-import "../../assets/css/color_red.css";
-import "../../assets/css/flickity.min.css";
-import "../../assets/css/font-awesome.min.css";
-import "../../assets/css/magnific-popup.css";
-import "../../assets/css/main.css";
-import "../../assets/css/style.css";
+
 
 class Footer extends Component {
   componentDidMount() {
@@ -117,11 +111,11 @@ class Footer extends Component {
                       <script src="https://snapwidget.com/js/snapwidget.js" />
                       <div style={{ height: 500, overflowY: "auto" }}>
                         <iframe
+                          title = "iframe-1"
                           src="https://snapwidget.com/embed/428495"
                           className="snapwidget-widget"
-                          allowTransparency={true}
                           frameBorder={0}
-                          style={{ border: "none", width: "100%" }}
+                          style={{ background: 'transparent', border: "none", width: "100%" }}
                         />
                       </div>
                     </div>
@@ -164,7 +158,7 @@ class Footer extends Component {
                 className="col-sm-4 xs-margin-8 xs-no-margin-bottom xs-no-margin-rl text-center"
               >
                 <a
-                  href="/res/insider_guide.pdf"
+                  href="../../assets/insider_guide.pdf"
                   className="btn btn-outline-base-color sm-btn-medium btn-large no-margin-rl"
                 >
                   <span>
@@ -217,7 +211,7 @@ class Footer extends Component {
             <div className="row">
               <div className="col-sm-4">
                 <div className="footer-logo xs-text-center">
-                  <img src="../res/images/logos/light.png" alt="" />
+                  <img src="../assets/images/logos/light.png" alt="" />
                 </div>
 
                 <p className="disclaimer xs-text-center">
@@ -254,32 +248,6 @@ class Footer extends Component {
         <a href="#page-top" className="page-scroll scroll-to-top">
           <i className="fa fa-angle-up" />
         </a>
-
-        <script src="../res/js/jquery.min.js" />
-
-        <script src="../res/js/bootstrap.min.js" />
-
-        <script src="../res/js/pace.min.js" />
-        <script src="../res/js/debouncer.min.js" />
-        <script src="../res/js/jquery.easing.min.js" />
-        <script src="../res/js/jquery.inview.min.js" />
-        <script src="../res/js/jquery.matchHeight.js" />
-        <script src="../res/js/isotope.pkgd.min.js" />
-        <script src="../res/js/imagesloaded.pkgd.min.js" />
-        <script src="../res/js/flickity.pkgd.min.js" />
-        <script src="../res/js/jquery.magnific-popup.min.js" />
-        <script src="../res/js/jquery.validate.min.js" />
-
-        <script src="../res/js/jquery.flexslider.min.js" />
-
-        <script src="../res/js/TweenMax.min.js" />
-        <script src="../res/js/ScrollMagic.min.js" />
-        <script src="../res/js/animation.gsap.min.js" />
-
-        <script src="../res/js/main.js" />
-
-        <script src="../res/js/jquery.countdown.min.js" />
-        <script src="../res/js/countdown.js" />
       </div>
     );
   }

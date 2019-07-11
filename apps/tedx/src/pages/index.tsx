@@ -1,11 +1,4 @@
 import React, { Component } from "react";
-import "../assets/css/bootstrap.min.css";
-import "../assets/css/color_red.css";
-import "../assets/css/flickity.min.css";
-import "../assets/css/font-awesome.min.css";
-import "../assets/css/magnific-popup.css";
-import "../assets/css/main.css";
-import "../assets/css/style.css";
 
 class Index extends Component {
   render() {
@@ -197,6 +190,7 @@ class Index extends Component {
                   <a
                     href="https://goo.gl/maps/4Y14DhZe4Fu"
                     target="_blank"
+                    rel="noopener noreferrer"
                     className="btn btn-outline-white sm-btn-medium btn-large margin-4-5 no-margin-bottom no-margin-rl"
                   >
                     View location on map
