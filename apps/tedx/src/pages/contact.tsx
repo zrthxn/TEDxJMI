@@ -1,11 +1,4 @@
 import React, { Component } from "react";
-import "../assets/css/bootstrap.min.css";
-import "../assets/css/color_red.css";
-import "../assets/css/flickity.min.css";
-import "../assets/css/font-awesome.min.css";
-import "../assets/css/magnific-popup.css";
-import "../assets/css/main.css";
-import "../assets/css/style.css";
 
 // Need to check netlify and form
 class Contact extends Component {
@@ -108,6 +101,7 @@ class Contact extends Component {
                 <div className="row text-center">
                   <div className="margin-8 no-margin-bottom no-margin-rl map">
                     <iframe
+                      title ="iframe-2"
                       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3504.2906312479427!2d77.28254455362033!3d28.56103426474026!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xfb09de6f2e8596e7!2sJamia+Millia+Islamia!5e0!3m2!1sen!2sin!4v1497486772213"
                       frameBorder={0}
                       allowFullScreen
