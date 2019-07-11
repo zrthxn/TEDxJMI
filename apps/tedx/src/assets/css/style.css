@@ -161,13 +161,13 @@
   height: 192px;
 }
 #intro .features-box:nth-child(1) .bg-cover {
-  background-image: url("../images/intro-1.jpg");
+  /* background-image: url("../images/intro-1.jpg"); */
 }
 #intro .features-box:nth-child(2) .bg-cover {
-  background-image: url("../images/intro-2.jpg");
+  /* background-image: url("../images/intro-2.jpg"); */
 }
 #intro .features-box:nth-child(3) .bg-cover {
-  background-image: url("../images/intro-3.jpg");
+  /* background-image: url("../images/intro-3.jpg"); */
 }
 
 
@@ -297,7 +297,7 @@
 */
 
 #milestones {
-  background-image: url("../images/bg-milestones.jpg");
+  /* background-image: url("../images/bg-milestones.jpg"); */
 }
 
 
@@ -459,7 +459,7 @@
 */
 
 #register {
-  background-image: url("../images/bg-register.jpg");
+  /* background-image: url("../images/bg-register.jpg"); */
 }
 #register .form-wrapper {
   background: rgba(0, 0, 0, 0.8);
