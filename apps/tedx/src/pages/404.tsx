@@ -1,11 +1,5 @@
 import React, { Component } from "react";
-import "../assets/css/bootstrap.min.css";
-import "../assets/css/color_red.css";
-import "../assets/css/flickity.min.css";
-import "../assets/css/font-awesome.min.css";
-import "../assets/css/magnific-popup.css";
-import "../assets/css/main.css";
-import "../assets/css/style.css";
+
 
 class NotFound extends Component {
   render() {

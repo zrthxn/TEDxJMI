@@ -1,0 +1,74 @@
+.title-underline-base-color {
+ border-color:#e62b1e
+}
+.title-underline-thick-base-color {
+ border-color:#e62b1e
+}
+.title-sideline-base-color:before {
+ background-color:#e62b1e
+}
+.title-strikethrough-base-color:before {
+ background-color:#e62b1e
+}
+.text-base-color {
+ color:#e62b1e!important
+}
+.text-hover-base-color:focus,
+.text-hover-base-color:hover {
+ color:#e62b1e!important
+}
+.bg-base-color {
+ background-color:#e62b1e!important
+}
+.bg-hover-base-color:hover {
+ background-color:#e62b1e!important
+}
+.border-base-color {
+ border-color:#e62b1e!important
+}
+.btn.btn-base-color {
+ background-color:#e62b1e
+}
+.btn.btn-base-color.btn-hover-transparent:hover {
+ border-color:#e62b1e;
+ color:#e62b1e
+}
+.btn.btn-outline-base-color {
+ border-color:#e62b1e;
+ color:#e62b1e
+}
+.btn.btn-outline-base-color:focus,
+.btn.btn-outline-base-color:hover {
+ background-color:#e62b1e
+}
+.btn.btn-outline-base-color.btn-hover-transparent:focus,
+.btn.btn-outline-base-color.btn-hover-transparent:hover {
+ color:#e62b1e
+}
+.pace .pace-progress {
+ background-color:#e62b1e
+}
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a:focus,
+.nav-tabs>li.active>a:hover {
+ background-color:#e62b1e!important
+}
+.nav.nav-pills.nav-stacked>li.active>a,
+.nav.nav-pills.nav-stacked>li.active>a:focus,
+.nav.nav-pills.nav-stacked>li.active>a:hover {
+ background-color:#e62b1e;
+ color:#fff
+}
+.panel-group .panel.active .panel-heading {
+ background-color:#e62b1e
+}
+.countdown .clock-item {
+ background-color:#e62b1e
+}
+.pricing ul>li.check-mark:before {
+ background-color:#e62b1e
+}
+.timeline-item.highlight:before {
+ background-color:#e62b1e;
+ border:#e62b1e
+}
