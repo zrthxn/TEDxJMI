@@ -1,11 +1,4 @@
 import React, { Component } from "react";
-import "./res/css/bootstrap.min.css";
-import "./res/css/color_red.css";
-import "./res/css/flickity.min.css";
-import "./res/css/font-awesome.min.css";
-import "./res/css/magnific-popup.css";
-import "./res/css/main.css";
-import "./res/css/style.css";
 
 class Team extends Component {
   render() {
@@ -39,7 +32,7 @@ class Team extends Component {
               <div className="overflow-hidden position-relative width-100">
                 <div className="position-relative">
                   <div className="img-wrapper">
-                    <img src="./res/images/team/nabeel.jpg" alt="" />
+                    <img src="../assets/images/team/nabeel.jpg" alt="" />
                   </div>
                 </div>
 
@@ -57,7 +50,7 @@ class Team extends Component {
               <div className="overflow-hidden position-relative width-100">
                 <div className="position-relative">
                   <div className="img-wrapper">
-                    <img src="./res/images/team/sohaib.jpg" alt="" />
+                    <img src="../assets/images/team/sohaib.jpg" alt="" />
                   </div>
                 </div>
 
@@ -75,7 +68,7 @@ class Team extends Component {
               <div className="overflow-hidden position-relative width-100">
                 <div className="position-relative">
                   <div className="img-wrapper">
-                    <img src="./res/images/team/muneeba.jpg" alt="" />
+                    <img src="../assets/images/team/muneeba.jpg" alt="" />
                   </div>
                 </div>
 
@@ -93,7 +86,7 @@ class Team extends Component {
               <div className="overflow-hidden position-relative width-100">
                 <div className="position-relative">
                   <div className="img-wrapper">
-                    <img src="./res/images/team/adeebul.jpg" alt="" />
+                    <img src="../assets/images/team/adeebul.jpg" alt="" />
                   </div>
                 </div>
 
@@ -111,7 +104,7 @@ class Team extends Component {
               <div className="overflow-hidden position-relative width-100">
                 <div className="position-relative">
                   <div className="img-wrapper">
-                    <img src="./res/images/team/areesha.jpg" alt="" />
+                    <img src="../assets/images/team/areesha.jpg" alt="" />
                   </div>
                 </div>
 
@@ -129,7 +122,7 @@ class Team extends Component {
               <div className="overflow-hidden position-relative width-100">
                 <div className="position-relative">
                   <div className="img-wrapper">
-                    <img src="./res/images/team/najeeb.jpg" alt="" />
+                    <img src="../assets/images/team/najeeb.jpg" alt="" />
                   </div>
                 </div>
                 <div className="bg-gray-light no-padding-rl padding-6 position-relative text-center">
@@ -146,7 +139,7 @@ class Team extends Component {
               <div className="overflow-hidden position-relative width-100">
                 <div className="position-relative">
                   <div className="img-wrapper">
-                    <img src="./res/images/team/ghulam.jpg" alt="" />
+                    <img src="../assets/images/team/ghulam.jpg" alt="" />
                   </div>
                 </div>
 
@@ -164,7 +157,7 @@ class Team extends Component {
               <div className="overflow-hidden position-relative width-100">
                 <div className="position-relative">
                   <div className="img-wrapper">
-                    <img src="./res/images/team/shaiq.jpg" alt="" />
+                    <img src="../assets/images/team/shaiq.jpg" alt="" />
                   </div>
                 </div>
 
@@ -182,7 +175,7 @@ class Team extends Component {
               <div className="overflow-hidden position-relative width-100">
                 <div className="position-relative">
                   <div className="img-wrapper">
-                    <img src="./res/images/team/kaynat.jpg" alt="" />
+                    <img src="../assets/images/team/kaynat.jpg" alt="" />
                   </div>
                 </div>
 
@@ -216,7 +209,7 @@ class Team extends Component {
               <div className="overflow-hidden position-relative width-100">
                 <div className="position-relative">
                   <div className="img-wrapper">
-                    <img src="./res/images/team/yasir_umar.jpg" alt="" />
+                    <img src="../assets/images/team/yasir_umar.jpg" alt="" />
                   </div>
                 </div>
 
@@ -234,7 +227,7 @@ class Team extends Component {
               <div className="overflow-hidden position-relative width-100">
                 <div className="position-relative">
                   <div className="img-wrapper">
-                    <img src="./res/images/team/salman.jpg" alt="" />
+                    <img src="../assets/images/team/salman.jpg" alt="" />
                   </div>
                 </div>
 
@@ -252,7 +245,7 @@ class Team extends Component {
               <div className="overflow-hidden position-relative width-100">
                 <div className="position-relative">
                   <div className="img-wrapper">
-                    <img src="./res/images/team/amirah.jpg" alt="" />
+                    <img src="../assets/images/team/amirah.jpg" alt="" />
                   </div>
                 </div>
 
@@ -270,7 +263,7 @@ class Team extends Component {
               <div className="overflow-hidden position-relative width-100">
                 <div className="position-relative">
                   <div className="img-wrapper">
-                    <img src="./res/images/team/mrinal.jpg" alt="" />
+                    <img src="../assets/images/team/mrinal.jpg" alt="" />
                   </div>
                 </div>
 
@@ -305,7 +298,7 @@ class Team extends Component {
               <div className="overflow-hidden position-relative width-100">
                 <div className="position-relative">
                   <div className="img-wrapper">
-                    <img src="./res/images/team/aaliya.jpg" alt="" />
+                    <img src="../assets/images/team/aaliya.jpg" alt="" />
                   </div>
                 </div>
 
@@ -323,7 +316,7 @@ class Team extends Component {
               <div className="overflow-hidden position-relative width-100">
                 <div className="position-relative">
                   <div className="img-wrapper">
-                    <img src="./res/images/team/hiba2.jpg" alt="" />
+                    <img src="../assets/images/team/hiba2.jpg" alt="" />
                   </div>
                 </div>
 
@@ -341,7 +334,7 @@ class Team extends Component {
               <div className="overflow-hidden position-relative width-100">
                 <div className="position-relative">
                   <div className="img-wrapper">
-                    <img src="./res/images/team/aman.jpg" alt="" />
+                    <img src="../assets/images/team/aman.jpg" alt="" />
                   </div>
                 </div>
 
@@ -359,7 +352,7 @@ class Team extends Component {
               <div className="overflow-hidden position-relative width-100">
                 <div className="position-relative">
                   <div className="img-wrapper">
-                    <img src="./res/images/team/tariq.jpg" alt="" />
+                    <img src="../assets/images/team/tariq.jpg" alt="" />
                   </div>
                 </div>
 
@@ -377,7 +370,7 @@ class Team extends Component {
               <div className="overflow-hidden position-relative width-100">
                 <div className="position-relative">
                   <div className="img-wrapper">
-                    <img src="./res/images/team/aisha.jpg" alt="" />
+                    <img src="../assets/images/team/aisha.jpg" alt="" />
                   </div>
                 </div>
 
@@ -395,7 +388,7 @@ class Team extends Component {
               <div className="overflow-hidden position-relative width-100">
                 <div className="position-relative">
                   <div className="img-wrapper">
-                    <img src="./res/images/team/noman.jpg" alt="" />
+                    <img src="../assets/images/team/noman.jpg" alt="" />
                   </div>
                 </div>
 
@@ -413,7 +406,7 @@ class Team extends Component {
               <div className="overflow-hidden position-relative width-100">
                 <div className="position-relative">
                   <div className="img-wrapper">
-                    <img src="./res/images/team/talha.jpg" alt="" />
+                    <img src="../assets/images/team/talha.jpg" alt="" />
                   </div>
                 </div>
 
@@ -431,7 +424,7 @@ class Team extends Component {
               <div className="overflow-hidden position-relative width-100">
                 <div className="position-relative">
                   <div className="img-wrapper">
-                    <img src="./res/images/team/ritika.jpg" alt="" />
+                    <img src="../assets/images/team/ritika.jpg" alt="" />
                   </div>
                 </div>
 
@@ -449,7 +442,7 @@ class Team extends Component {
               <div className="overflow-hidden position-relative width-100">
                 <div className="position-relative">
                   <div className="img-wrapper">
-                    <img src="./res/images/team/faheel.jpg" alt="" />
+                    <img src="../assets/images/team/faheel.jpg" alt="" />
                   </div>
                 </div>
 
@@ -485,25 +478,7 @@ class Team extends Component {
               <div className="overflow-hidden position-relative width-100">
                 <div className="position-relative">
                   <div className="img-wrapper">
-                    <img src="./res/images/team/yasir_mir.jpg" alt="" />
-                  </div>
-                </div>
-
-                <div className="bg-gray-light no-padding-rl padding-6 position-relative text-center">
-                  <span className="display-block font-family-alt font-weight-700 letter-spacing-2 text-gray-dark-2 text-small text-uppercase">
-                    Yasir
-                    <br />
-                    Mir
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div className="member-box col-xs-6 col-sm-4 col-md-3">
-              <div className="overflow-hidden position-relative width-100">
-                <div className="position-relative">
-                  <div className="img-wrapper">
-                    <img src="./res/images/team/abu_hamza.jpg" alt="" />
+                    <img src="../assets/images/team/abu_hamza.jpg" alt="" />
                   </div>
                 </div>
 
@@ -521,7 +496,7 @@ class Team extends Component {
               <div className="overflow-hidden position-relative width-100">
                 <div className="position-relative">
                   <div className="img-wrapper">
-                    <img src="./res/images/team/fiza.jpg" alt="" />
+                    <img src="../assets/images/team/fiza.jpg" alt="" />
                   </div>
                 </div>
 
@@ -554,7 +529,7 @@ class Team extends Component {
               <div className="overflow-hidden position-relative width-100">
                 <div className="position-relative">
                   <div className="img-wrapper">
-                    <img src="./res/images/team/akash.jpg" alt="" />
+                    <img src="../assets/images/team/akash.jpg" alt="" />
                   </div>
                 </div>
 
@@ -572,7 +547,7 @@ class Team extends Component {
               <div className="overflow-hidden position-relative width-100">
                 <div className="position-relative">
                   <div className="img-wrapper">
-                    <img src="./res/images/team/jasir.jpg" alt="" />
+                    <img src="../assets/images/team/jasir.jpg" alt="" />
                   </div>
                 </div>
 
@@ -590,7 +565,7 @@ class Team extends Component {
               <div className="overflow-hidden position-relative width-100">
                 <div className="position-relative">
                   <div className="img-wrapper">
-                    <img src="./res/images/team/fizza.jpg" alt="" />
+                    <img src="../assets/images/team/fizza.jpg" alt="" />
                   </div>
                 </div>
 
@@ -608,7 +583,7 @@ class Team extends Component {
               <div className="overflow-hidden position-relative width-100">
                 <div className="position-relative">
                   <div className="img-wrapper">
-                    <img src="./res/images/team/arsalan.png" alt="" />
+                    <img src="../assets/images/team/arsalan.png" alt="" />
                   </div>
                 </div>
 
@@ -626,7 +601,7 @@ class Team extends Component {
               <div className="overflow-hidden position-relative width-100">
                 <div className="position-relative">
                   <div className="img-wrapper">
-                    <img src="./res/images/team/neelaksh.jpg" alt="" />
+                    <img src="../assets/images/team/neelaksh.jpg" alt="" />
                   </div>
                 </div>
 
@@ -644,7 +619,7 @@ class Team extends Component {
               <div className="overflow-hidden position-relative width-100">
                 <div className="position-relative">
                   <div className="img-wrapper">
-                    <img src="./res/images/team/naman.jpg" alt="" />
+                    <img src="../assets/images/team/naman.jpg" alt="" />
                   </div>
                 </div>
 
@@ -662,7 +637,7 @@ class Team extends Component {
               <div className="overflow-hidden position-relative width-100">
                 <div className="position-relative">
                   <div className="img-wrapper">
-                    <img src="./res/images/team/gitesh.jpg" alt="" />
+                    <img src="../assets/images/team/gitesh.jpg" alt="" />
                   </div>
                 </div>
 
@@ -680,7 +655,7 @@ class Team extends Component {
               <div className="overflow-hidden position-relative width-100">
                 <div className="position-relative">
                   <div className="img-wrapper">
-                    <img src="./res/images/team/sarthak.jpg" alt="" />
+                    <img src="../assets/images/team/sarthak.jpg" alt="" />
                   </div>
                 </div>
 
@@ -698,7 +673,7 @@ class Team extends Component {
               <div className="overflow-hidden position-relative width-100">
                 <div className="position-relative">
                   <div className="img-wrapper">
-                    <img src="./res/images/team/rehan.jpg" alt="" />
+                    <img src="../assets/images/team/rehan.jpg" alt="" />
                   </div>
                 </div>
 

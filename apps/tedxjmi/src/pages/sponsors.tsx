@@ -1,12 +1,4 @@
 import React, { Component } from "react";
-import "./res/css/bootstrap.min.css";
-import "./res/css/color_red.css";
-import "./res/css/flickity.min.css";
-import "./res/css/font-awesome.min.css";
-import "./res/css/magnific-popup.css";
-import "./res/css/main.css";
-import "./res/css/style.css";
-
 class Sponsors extends Component {
   render() {
     return (
@@ -27,7 +19,7 @@ class Sponsors extends Component {
                   <div className="border border-gray-light border-round box-shadow-yes position-relative">
                     <div className="display-table height-100 no-padding-rl padding-7 width-100">
                       <div className="display-table-cell no-padding-tb padding-8 text-center">
-                        <img src="./res/images/sponsors/thc.png" alt="THC" />
+                        <img src="../assets//images/sponsors/thc.png" alt="THC" />
                       </div>
                     </div>
                   </div>
@@ -45,7 +37,7 @@ class Sponsors extends Component {
                       <div className="display-table-cell no-padding-tb padding-8">
                         <div className="text-center">
                           <img
-                            src="./res/images/sponsors/jamia_cooperative.jpg"
+                            src="../assets//images/sponsors/jamia_cooperative.jpg"
                             alt="Jamia Cooperative Bank"
                           />
                         </div>
@@ -60,7 +52,7 @@ class Sponsors extends Component {
                       <div className="display-table-cell no-padding-tb padding-8">
                         <div className="text-center">
                           <img
-                            src="./res/images/sponsors/al-bake.png"
+                            src="../assets//images/sponsors/al-bake.png"
                             alt="Al-Bake"
                           />
                         </div>
@@ -85,7 +77,7 @@ class Sponsors extends Component {
                       <div className="display-table-cell no-padding-tb padding-8">
                         <div className="text-center">
                           <img
-                            src="./res/images/sponsors/rupa_aleph.jpg"
+                            src="../assets//images/sponsors/rupa_aleph.jpg"
                             alt="Rupa and Aleph"
                           />
                         </div>
@@ -110,7 +102,7 @@ class Sponsors extends Component {
                       <div className="display-table-cell no-padding-tb padding-8">
                         <div className="text-center">
                           <img
-                            src="./res/images/sponsors/croma_pictures.png"
+                            src="../assets//images/sponsors/croma_pictures.png"
                             alt="Croma Pictures"
                           />
                         </div>
@@ -135,9 +127,10 @@ class Sponsors extends Component {
                           href="http://jmi.ac.in/aboutjamia/centres/innovationentr-epreneurship/introduction"
                           className="display-block text-center"
                           target="_blank"
+                          rel="noopener noreferrer"
                         >
                           <img
-                            src="./res/images/sponsors/cie-jmi.jpg"
+                            src="../assets//images/sponsors/cie-jmi.jpg"
                             alt="CIE, JMI"
                           />
                         </a>
