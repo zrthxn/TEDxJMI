@@ -1,11 +1,4 @@
 import React, { Component } from "react";
-import "./res/css/bootstrap.min.css";
-import "./res/css/color_red.css";
-import "./res/css/flickity.min.css";
-import "./res/css/font-awesome.min.css";
-import "./res/css/magnific-popup.css";
-import "./res/css/main.css";
-import "./res/css/style.css";
 
 // Netlify form
 class Alumni extends Component {
@@ -28,7 +21,7 @@ class Alumni extends Component {
                   to our alumni who we believe are committed to the power of
                   ideas to support our TEDx event. Individuals like you are our
                   university's lasting legacy and strongest voice. As a
-                  successful role model, you represent what we aspire to become:
+                  successful role model, you reent what we aspire to become:
                   professional, efficient and charitable, making a positive
                   impact on the community. We, at JMI, are finding new ways to
                   build an engagement and we feel, for you to join our event is
