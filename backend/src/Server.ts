@@ -1,5 +1,5 @@
-const express = require('express')
-const { text } = require('./util/text')
+import express from 'express'
+import { text } from './utils'
 
 const app = express()
 const port = 3000

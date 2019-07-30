@@ -1,0 +1,65 @@
+.textbox-container {
+  padding: 1em 0;
+  width: 100%;
+  max-width: 18em;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+.textbox {
+  font-family: 'Montserrat', sans-serif;
+
+  padding: 1em;
+  width: 100%;
+  
+  border: 2px solid #1c1c1c40;
+  transition: all 0.5s ease;
+}
+.textbox::placeholder {
+  opacity: 0.75;
+}
+.textbox:focus, .textbox:active {
+  outline: none;
+  transition: all 0.5s ease;
+  border: 2px solid #1c1c1c80;
+}
+
+.validation {
+  position: absolute;
+  height: 1em;
+  width: 1em;
+  
+  right: 1em;
+  top: 1em;
+
+  margin: auto;
+  overflow: hidden;
+  color: #fff;
+}
+
+.validation .true {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: #15ff00;
+}
+.validation .false {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: #ff0000;  
+}
+
+.val-error-text {
+  font-size: 0.75em;
+  margin: 0.5em 0;
+  color: #ff0000;
+}
