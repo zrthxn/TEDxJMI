@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
-    "start": "tsc && node dist/backend/Server.js"
+    "build": "rm -rf build && tsc && cd build/src && mv * ../ && cd .. && rm -rf src",
+    "start": "npm run build && node build/Server.js"
   },
   "repository": {
     "type": "git",

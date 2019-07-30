@@ -1,0 +1,10 @@
+.paper {
+  margin: 1em;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+
+  background-color: #fff;
+  border: 1px solid #1c1c1c38;
+  box-shadow: 0 2px 5px #1c1c1c80;
+}
