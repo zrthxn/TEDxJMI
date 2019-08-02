@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import './Textbox.css'
 
 export interface TextboxProps {
+  id?: string,
   onChange: Function,
   placeholder?: string,
   validation?: Function,
@@ -20,7 +21,7 @@ export class Textbox extends Component<TextboxProps> {
     return (
       <div className="textbox-container">
         <div className="input-container">
-          <input className="textbox" type="text" placeholder={this.props.placeholder}
+          <input id={this.props.id} className="textbox" type="text" placeholder={this.props.placeholder}
             onChange={(event)=>{
               this.props.onChange(event)
               

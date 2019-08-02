@@ -5,30 +5,116 @@ body {
   font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #333333;
+  background: #333333;
 
   color: #fff;
+  text-align: center;
 }
 
-a {
-  text-decoration: none;
-  color: #fff;
-  transition: all 0.5s ease;
+/* TYPOGRAPHY */
+h1 {
+  font-size: 4em;
+  margin: 1rem 0;
 }
-a:hover {
-  opacity: 0.75;
-  transition: all 0.5s ease;
+h2 {
+  font-size: 3em;
+  margin: 1rem 0;
 }
-
-.tedxjmi {
+h3 {
   font-size: 2em;
-  font-weight: 600;
+  margin: 1rem 0;
+}
+h4 {
+  font-size: 1em;
+}
+h5 {
+  font-size: 1em;
+}
+h6 {
+  font-size: 1em;
+}
+
+.bold {
+
+}
+
+.link {
+  font-size: 0.75em;
+  text-decoration: none;
   color: #ff0000;
 }
-.tedxjmi .alpha {
 
+/* TRANSITIONS */
+article {
+  animation: fadeIn 0.25s ease forwards;
 }
-.tedxjmi .beta {
-  font-weight: 400;
-  color: #fff;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.spinner {
+  position: absolute;
+  border: 2px solid #ffffff6f; /* Light grey */
+  border-top: 2px solid #fff; /* White */
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% { 
+    transform: rotate(0deg); 
+  }
+  100% { 
+    transform: rotate(360deg); 
+  }
+}
+
+.rotary {
+  margin: auto auto;
+  width: 100%;
+  height: 100%;
+  position: relative;
+} .rotary:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  right: 0;
+  left: 0;
+  z-index: -1;
+  background-color: #ff0000;
+  animation: rotor 1000ms ease infinite;
+}
+@keyframes rotor {
+  0%{
+      width: 100%;
+      right: 0;
+      left: 0;
+  }
+  49%{
+      width: 0;
+      right: 0;
+      left: 100%;
+  }
+  50%{        
+      width: 0;
+      left: 0;
+      right: 100%;
+  }
+  99%{
+      width: 100%;
+      left: 0;
+      right: 0;
+  }
+  100% {
+      width: 100%;
+      right: 0;
+      left: 0;
+  }
 }

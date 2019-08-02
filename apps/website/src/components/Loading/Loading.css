@@ -1,0 +1,39 @@
+.loading-page {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+
+  background-color: #fff;
+  z-index: 10;
+  opacity: 1;
+  color: #000;
+
+  animation: fadeIn 0.25s ease forwards;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.loading {
+  margin: 4em 5em;
+  width: fit-content;
+  position: relative;
+}
+.loading p {
+  margin: 0 1em;
+}
+
+.spin-container {
+  position: absolute;
+  top: 0;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+}

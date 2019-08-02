@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 
+import '../App.css'
+
 export class Team extends Component {
   render() {
     return (
-      <div>
-        
-      </div>
+      <article>
+        <h2>Team</h2>
+      </article>
     )
   }
 }

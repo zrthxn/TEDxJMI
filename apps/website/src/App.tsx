@@ -8,29 +8,53 @@ import Speakers from './pages/Speakers'
 import Team from './pages/Team'
 import Contact from './pages/Contact'
 import Register from './pages/Register'
+import Dashboard from './pages/Dashboard'
+
+import Loading from './components/Loading/Loading'
+import Header from './components/Partials/Header/Header'
+import Footer from './components/Partials/Footer/Footer'
+
+import AppContextProvider from './AppContextProvider'
+import { AppContext } from './AppContext'
 
 export class App extends Component {
   render() {
     return (
-      <div>
-        <Router>
-          <Link to={'/'}>Home</Link>
-          <Link to={'/team'}>Team</Link>
-          <Link to={'/speakers'}>Speakers</Link>
-          <Link to={'/contact'}>Contact</Link>
-          <Link to={'/register'}>Register</Link>
+      <AppContextProvider>
+        <article>
+          <Router>
+            <Header/>
 
-          <Switch>
-            <Route exact path="/" component={Home}/>
-            <Route path="/team" component={Team}/>
-            <Route path="/speakers" component={Speakers}/>
-            <Route path="/contact" component={Contact}/>
-            <Route path="/register" component={Register}/>
+            <AppContext.Consumer>
+              {
+                appContext => (
+                  <div>
+                    {
+                      appContext.state.ongoingAppTransition ? <Loading/> : null
+                    }
+                  </div>
+                )
+              }
+            </AppContext.Consumer>
+
+            <section>
+              <Switch>
+                <Route exact path="/" component={Home}/>
+                <Route path="/team" component={Team}/>
+                <Route path="/speakers" component={Speakers}/>
+                <Route path="/contact" component={Contact}/>
+                <Route path="/register" component={Register}/>
+                
+                <Route path="/dashboard" component={Dashboard}/>
+                
+                <Route component={Home}/>
+              </Switch>
+            </section>
             
-            <Route component={Home}/>
-          </Switch>
-        </Router>
-      </div>
+            <Footer/>
+          </Router>
+        </article>
+      </AppContextProvider>      
     )
   }
 }
