@@ -2,32 +2,26 @@
   padding: 1em 0;
   width: 100%;
   max-width: 8em;
+  margin: auto;
 
   position: relative;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .button {
   font-family: 'Montserrat', sans-serif;
-
   padding: 1em;
   width: 100%;
-
   border: none;
   transition: all 0.5s ease;
-  box-shadow: 2px 2px 5px #1c1c1c40;
+  box-shadow: 0 0 5px #1c1c1c40;
+  position: relative;
 }
-
 .button:focus, .button:active {
   outline: none;
 }
-.button:hover {
-  transition: all 0.5s ease;
-  transform: scale(1.05)
-}
-
 .button:active {
   transform: scale(0.95);
-  /* opacity:  */
 }

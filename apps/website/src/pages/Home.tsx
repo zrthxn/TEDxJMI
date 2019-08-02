@@ -1,14 +1,19 @@
 import React, { Component } from 'react'
 
+import '../App.css'
+import './styles/Home.css'
+
+import { Title } from '../components/Partials/Title/Title'
+
 export class Home extends Component {
   render() {
     return (
-      <div>
-        <div className="tedxjmi">
-          <span className="alpha">TEDx</span>
-          <span className="beta">JMI</span>
+      <article>
+        <div className="title">
+          <Title/>
         </div>
-      </div>
+        
+      </article>
     )
   }
 }

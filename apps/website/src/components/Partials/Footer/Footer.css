@@ -1,0 +1,11 @@
+footer {
+  padding: 4em;
+  text-align: center;
+  background: linear-gradient(transparent, #00000080);
+
+  font-size: 0.75em;
+
+  /* position: absolute;
+  bottom: 0;
+  width: 90%; */
+}

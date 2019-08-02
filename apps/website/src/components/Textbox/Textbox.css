@@ -2,6 +2,7 @@
   padding: 1em 0;
   width: 100%;
   max-width: 18em;
+  margin: auto;
 
   position: relative;
   display: flex;
@@ -18,8 +19,7 @@
   font-family: 'Montserrat', sans-serif;
 
   padding: 1em;
-  width: 100%;
-  
+  width: 100%;  
   border: 2px solid #1c1c1c40;
   transition: all 0.5s ease;
 }
@@ -36,7 +36,6 @@
   position: absolute;
   height: 1em;
   width: 1em;
-  
   right: 1em;
   top: 1em;
 
@@ -59,6 +58,7 @@
 }
 
 .val-error-text {
+  text-align: left;
   font-size: 0.75em;
   margin: 0.5em 0;
   color: #ff0000;

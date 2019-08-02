@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 
+import '../../App.css'
 import './Button.css'
 
 export interface ButtonProps {
+  id?: string,
   onClick: Function,
   style?: 'primary' | 'secondary' | 'default'
 }
@@ -45,18 +47,24 @@ function createStyle(style:string|undefined) {
 }
 
 export class Button extends Component<ButtonProps> {
+  state = {
+    
+  }
+
   render() {
     return (
       <div className="button-container">
-        <button className="button"
+        <button id={this.props.id} className="button"
           style={createStyle(this.props.style)}
           onClick={()=>{
             this.props.onClick()
           }}
         >
-          {
-            this.props.children
-          }
+          <div className="button-label">
+            {
+              this.props.children
+            }
+          </div>
         </button>
       </div>
     )
