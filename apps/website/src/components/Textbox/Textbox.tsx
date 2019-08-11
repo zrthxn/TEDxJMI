@@ -4,7 +4,9 @@ import './Textbox.css'
 
 export interface TextboxProps {
   id?: string,
-  onChange: Function,
+  type?: 'text' | 'number' | 'tel' | 'password' | 'email' | string,
+  onChange?: Function,
+  value?: Function,
   placeholder?: string,
   validation?: Function,
   onValidate?: Function,
@@ -21,9 +23,14 @@ export class Textbox extends Component<TextboxProps> {
     return (
       <div className="textbox-container">
         <div className="input-container">
-          <input id={this.props.id} className="textbox" type="text" placeholder={this.props.placeholder}
+          <input id={this.props.id} className="textbox" type={ this.props.type!==null ? this.props.type : 'text' } 
+            placeholder={this.props.placeholder}
             onChange={(event)=>{
-              this.props.onChange(event)
+              if(this.props.onChange!==undefined)
+                this.props.onChange(event)
+              
+              if(this.props.value!==undefined)
+                this.props.value(event.target.value)
               
               var validationResult:boolean
               if(this.props.validation!==undefined)
@@ -92,6 +99,27 @@ export class Textbox extends Component<TextboxProps> {
             <span></span>
           )
         }
+      </div>
+    )
+  }
+}
+
+export class Textarea extends Component<TextboxProps> {
+  render() {
+    return (
+      <div className="textbox-container">
+        <div className="input-container">
+          <textarea rows={8} id={this.props.id} className="textbox"
+            placeholder={this.props.placeholder}
+            onChange={(event)=>{
+              if(this.props.onChange!==undefined)
+                this.props.onChange(event)
+              
+              if(this.props.value!==undefined)
+                this.props.value(event.target.value)
+            }}
+          />
+        </div>
       </div>
     )
   }

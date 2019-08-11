@@ -5,7 +5,7 @@ import './Title.css'
 export function Title() {
   return (
     <div className="tedxjmi">
-      <span className="alpha">TEDx</span>
+      <span className="alpha"><b>TEDx</b></span>
       <span className="beta">JMI</span>
     </div>
   )

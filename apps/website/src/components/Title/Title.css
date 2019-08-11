@@ -5,10 +5,10 @@
   font-size: 1em;
 }
 .tedxjmi .alpha {
-  font-weight: 900;
+  font-weight: 900 !important;
   margin-right: 0.125em;
 }
 .tedxjmi .beta {
-  font-weight: 400;
+  font-weight: 400 !important;
   color: #fff;
 }
