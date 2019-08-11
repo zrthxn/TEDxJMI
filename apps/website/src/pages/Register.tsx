@@ -9,20 +9,22 @@ import { Textbox } from '../components/Textbox/Textbox'
 import { Button } from '../components/Button/Button'
 
 import { AppContext } from '../AppContext'
-import { handleChangeById as inputHandler } from '../libs/util/inputHandler'
+import { handleChangeById as inputHandler, emailValidation } from '../libs/util/inputHandler'
 
 export class Register extends Component {
   state = {
     showLogin: false,
     data: {
-      name: null,
-      email: null,
-      phone: null
+      regName: null,
+      regEmail: null,
+      regPhone: null,
+      loginEmail: null,
+      loginPw: null
     },
     requiredFulfilled: false,
     fieldsValidated: false,
     required: [
-      'name', 'email', 'phone'
+      'regName', 'regEmail', 'regPhone'
     ],
     itratableMembers: []
   }
@@ -36,36 +38,19 @@ export class Register extends Component {
 
   render() {
     return (
-      <article
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignContent: 'center'
-        }}
-      >
+      <article style={{ display: 'flex', flexDirection: 'column', alignContent: 'center' }}>
         <h2>Register</h2>
 
-        <section
-          style={{
-            width: '24em',
-            margin: 'auto'
-          }}
-        >
+        <section style={{ width: '25em' }}>          
           <Paper>
             {
               this.state.showLogin ? (
-                <div
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignContent: 'center'
-                  }}
-                >
-                  <Textbox id="email" placeholder="Email"
+                <div style={{ display: 'flex', flexDirection: 'column', alignContent: 'center' }}>
+                  <Textbox id="loginEmail" placeholder="Email"
                     onChange={this.handleChangeById}
                     validationErrorHelptext="Not a valid email address"
-                    validation={(e:any)=>{
-                      return true
+                    validation={(event:any)=>{
+                      return emailValidation(event.target.value)
                     }}
                     onValidate={()=>{
                       this.setState({
@@ -74,19 +59,22 @@ export class Register extends Component {
                     }}
                   />
 
+                  <Textbox id="loginPw" placeholder="Passcode"
+                    type="password"
+                    onChange={this.handleChangeById}
+                  />
+
                   <AppContext.Consumer>
                     {
                       appContext => (
-                        <div
-                          style={{
-                            display: 'flex',
-                            flexDirection: 'row'
-                          }}
-                        >
+                        <div style={{ display: 'flex', flexDirection: 'row', maxWidth: '24em' }}>
                           <Button style="secondary"
                             onClick={()=>{
                               this.setState({
-                                showLogin: false
+                                showLogin: false,
+                                required: [
+                                  'regName', 'regEmail', 'regPhone'
+                                ]
                               })
                             }}
                           >
@@ -109,16 +97,10 @@ export class Register extends Component {
                   </AppContext.Consumer>
                 </div>
               ) : (
-                <div
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignContent: 'center'
-                  }}
-                >
-                  <Textbox id="name" placeholder="Name" onChange={this.handleChangeById}/>
+                <div style={{ display: 'flex', flexDirection: 'column', alignContent: 'center' }}>
+                  <Textbox id="regName" placeholder="Name" onChange={this.handleChangeById}/>
                   
-                  <Textbox id="email" placeholder="Email"
+                  <Textbox id="regEmail" placeholder="Email"
                     onChange={this.handleChangeById}
                     validationErrorHelptext="Not a valid email address"
                     validation={(e:any)=>{
@@ -131,21 +113,19 @@ export class Register extends Component {
                     }}
                   />
 
-                  <Textbox id="phone" placeholder="Phone" onChange={this.handleChangeById}/>
+                  <Textbox id="regPhone" placeholder="Phone" onChange={this.handleChangeById}/>
 
                   <AppContext.Consumer>
                     {
                       appContext => (
-                        <div
-                          style={{
-                            display: 'flex',
-                            flexDirection: 'row'
-                          }}
-                        >
+                        <div style={{ display: 'flex', flexDirection: 'row', maxWidth: '24em' }}>
                           <Button style="secondary"
                             onClick={()=>{
                               this.setState({
-                                showLogin: true
+                                showLogin: true,
+                                required: [
+                                  'loginEmail', 'loginPw'
+                                ]
                               })
                             }}
                           >
@@ -160,7 +140,7 @@ export class Register extends Component {
                                   history.push('/dashboard')
                                 }}
                               >
-                                Register
+                                Start
                               </Button>
                             )
                           }}/>

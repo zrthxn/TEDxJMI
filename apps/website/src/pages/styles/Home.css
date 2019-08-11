@@ -1,3 +1,15 @@
 .title {
   font-size: 5em;
 }
+
+.hero {
+  padding: 4em;
+}
+
+.home-about {
+  background-color: #ff0000;
+}
+
+.home-venue {
+  padding: 4em;
+}

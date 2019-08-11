@@ -3,6 +3,7 @@
 body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: #333333;
@@ -14,7 +15,7 @@ body {
 /* TYPOGRAPHY */
 h1 {
   font-size: 4em;
-  margin: 1rem 0;
+  margin: 1.5rem 0;
 }
 h2 {
   font-size: 3em;
@@ -22,7 +23,7 @@ h2 {
 }
 h3 {
   font-size: 2em;
-  margin: 1rem 0;
+  margin: 0.75rem 0;
 }
 h4 {
   font-size: 1em;
@@ -34,17 +35,10 @@ h6 {
   font-size: 1em;
 }
 
-.bold {
-
+p {
+  text-align: left;
 }
 
-.link {
-  font-size: 0.75em;
-  text-decoration: none;
-  color: #ff0000;
-}
-
-/* TRANSITIONS */
 article {
   animation: fadeIn 0.25s ease forwards;
 }
@@ -56,6 +50,21 @@ article {
     opacity: 1;
   }
 }
+
+section {
+  margin: auto;
+  padding: 2em;
+  max-width: 800px;
+  text-align: left;
+}
+
+.link {
+  font-size: 1em;
+  text-decoration: none;
+  color: #ff0000;
+}
+
+/* --------------------------------------- */
 
 .spinner {
   position: absolute;
@@ -117,4 +126,190 @@ article {
       right: 0;
       left: 0;
   }
+}
+
+/* ============================================================================= */
+
+header {
+  z-index: 50;
+}
+header .container {
+  padding: 1em;
+  margin: auto auto;
+  height: fit-content;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.hamburger {
+  display: block;
+  margin: auto 0 auto auto;
+  height: 100%;
+  padding: 1em;
+  padding-right: 0.5em; 
+  justify-self: center;
+  align-self: flex-end;
+  z-index: 11000;
+}
+.hamburger span,
+.hamburger span::before,
+.hamburger span::after {
+  display: block;
+  position: relative;
+  background: #fff;
+  height: 2px;
+  width: 25px;
+  transition: all 0.25s ease;
+}
+.hamburger span::before,
+.hamburger span::after {
+  content: '';
+  position: absolute;
+}
+.hamburger span::before {
+  bottom: 7px;
+}
+.hamburger span::after {
+  top: 7px;
+}
+
+#sidebar-toggle:checked ~ .hamburger {
+  position: fixed;
+  top: 1.6em;
+  right: 1em;
+}
+#sidebar-toggle:checked ~ .hamburger span::before {
+  bottom: 0;
+  transform: rotate(-45deg);
+} #sidebar-toggle:checked ~ .hamburger span {
+  background: transparent;
+} #sidebar-toggle:checked ~ .hamburger span::after {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+/* LOGO ----------------------------- */
+header .logo {
+  font-size: 1.5em;
+  margin: 0.5em 0.25em;
+}
+
+/* SIDEBAR MENU --------------------- */
+.sidebar {
+  position: fixed;
+  height: 100vh;
+  width: 0;
+  top: 0;
+  right: 0;
+  opacity: 0;
+  z-index: 10000;
+  max-width: 300px;
+  background: linear-gradient(#ff0000, #aa0000);
+  transition: all 0.25s ease;
+} #sidebar-toggle:checked ~ .sidebar {
+  opacity: 1;
+  width: 60%;
+}
+
+/* SIDEBAR SHADOW */
+.sidebar-shadow {
+  position: fixed;
+  display: none;
+  opacity: 0;
+  animation: show 0.25s ease reverse;
+  width: 100vw;
+  height: 100vh;
+  margin: -1em;
+  z-index: 9000;
+} #sidebar-toggle:checked ~ .sidebar-shadow {
+  display: block;
+  opacity: 0.6;
+  background-color: #000;
+  animation: show 0.5s ease;
+} @keyframes show {
+  from { opacity: 0 } to { opacity: 0.6 }
+}
+
+/* NAVIGATION */
+header .sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  margin: 8em 10em;
+  width: 50%;
+  height: fit-content;
+  justify-self: center;
+  align-self: flex-end;
+  text-align: left;
+  transition: all 0.5s ease;
+} header .sidebar-nav a {
+  color: #fff;
+  margin: 1em;
+
+  font-weight: 400;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+#sidebar-toggle:checked ~ .sidebar li {
+  display: block;
+  opacity: 1;
+} #sidebar-toggle:checked ~ .sidebar .sidebar-nav {
+  margin: 8em 2em;
+}
+
+/* DESKTOP MENU --------------------- */
+
+.desktop-nav {
+  display: none;
+}
+@media (min-width: 800px) {
+  header .container {
+    flex-direction: column;
+  }
+  header .sidebar {
+    display: none;
+    right: -60%;
+  } #sidebar-toggle:checked ~ .sidebar {
+    display: none;
+  } 
+  header .sidebar-nav {
+    display: none;
+  } 
+  header .hamburger {
+    display: none;
+  }
+
+  header .logo {
+    font-size: 3em;
+    margin: 2rem;
+  }
+
+  header .desktop-nav {
+    display: block;
+    margin: auto auto;
+    display: inline-block;
+    font-weight: 400;
+  } header .desktop-nav a {
+    color: #707070;
+    margin: 2em;
+  
+    font-weight: 400;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.5s ease;
+  } header .desktop-nav a:hover {
+    color: #fff;
+    transition: all 0.5s ease;
+  }
+}
+
+/* ============================================================================= */
+
+footer {
+  padding: 4em;
+  text-align: center;
+  /* background: linear-gradient(transparent, #00000080); */
+  font-size: 0.75em;
 }
