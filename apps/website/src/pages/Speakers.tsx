@@ -14,8 +14,8 @@ export class Speakers extends Component {
           <CardContainer>
             <Card size="small">
               <div className="tba">
-                To be announced
-                <br/><br/><br/><br/>
+                <div className="sub">To be announced</div>
+                <br/><br/><br/><br/><br/><br/>
                 <div className="tedxjmi">
                 <span className="alpha"><b>TEDx</b></span>
                 <span className="beta">JMI</span>
@@ -24,8 +24,8 @@ export class Speakers extends Component {
               </Card>
               <Card size="small">
               <div className="tba">
-                To be announced
-                <br/><br/><br/><br/>
+                <div className="sub">To be announced</div>
+                <br/><br/><br/><br/><br/><br/>
                 <div className="tedxjmi">
                 <span className="alpha"><b>TEDx</b></span>
                 <span className="beta">JMI</span>
@@ -34,8 +34,8 @@ export class Speakers extends Component {
               </Card>
               <Card size="small">
               <div className="tba">
-                To be announced
-                <br/><br/><br/><br/>
+                <div className="sub">To be announced</div>
+                <br/><br/><br/><br/><br/><br/>
                 <div className="tedxjmi">
                 <span className="alpha"><b>TEDx</b></span>
                 <span className="beta">JMI</span>
@@ -44,8 +44,8 @@ export class Speakers extends Component {
               </Card>
               <Card size="small">
               <div className="tba">
-                To be announced
-                <br/><br/><br/><br/>
+                <div className="sub">To be announced</div>
+                <br/><br/><br/><br/><br/><br/>
                 <div className="tedxjmi">
                 <span className="alpha"><b>TEDx</b></span>
                 <span className="beta">JMI</span>
@@ -54,8 +54,8 @@ export class Speakers extends Component {
               </Card>
               <Card size="small">
               <div className="tba">
-                To be announced
-                <br/><br/><br/><br/>
+                <div className="sub">To be announced</div>
+                <br/><br/><br/><br/><br/><br/>
                 <div className="tedxjmi">
                 <span className="alpha"><b>TEDx</b></span>
                 <span className="beta">JMI</span>
@@ -64,8 +64,8 @@ export class Speakers extends Component {
               </Card>
               <Card size="small">
               <div className="tba">
-                To be announced
-                <br/><br/><br/><br/>
+                <div className="sub">To be announced</div>
+                <br/><br/><br/><br/><br/><br/>
                 <div className="tedxjmi">
                 <span className="alpha"><b>TEDx</b></span>
                 <span className="beta">JMI</span>
@@ -74,8 +74,8 @@ export class Speakers extends Component {
               </Card>
               <Card size="small">
               <div className="tba">
-                To be announced
-                <br/><br/><br/><br/>
+                <div className="sub">To be announced</div>
+                <br/><br/><br/><br/><br/><br/>
                 <div className="tedxjmi">
                 <span className="alpha"><b>TEDx</b></span>
                 <span className="beta">JMI</span>
@@ -84,8 +84,8 @@ export class Speakers extends Component {
               </Card>
               <Card size="small">
               <div className="tba">
-                To be announced
-                <br/><br/><br/><br/>
+                <div className="sub">To be announced</div>
+                <br/><br/><br/><br/><br/><br/>
                 <div className="tedxjmi">
                 <span className="alpha"><b>TEDx</b></span>
                 <span className="beta">JMI</span>
@@ -99,27 +99,35 @@ export class Speakers extends Component {
           <CardContainer>
             <Card size="small">
               <img alt="speaker" src="/res/speakers/KavitaBahl.jpg"/>
+              <div className="sub">Kavita Bahl</div>
             </Card>
             <Card size="small">
               <img alt="speaker" src="/res/speakers/NandanSaxena.jpg"/>
+              <div className="sub">Nandan Saxena</div>
             </Card>
             <Card size="small">
               <img alt="speaker" src="/res/speakers/RajeshSGokhale.jpg"/>
+              <div className="sub">Rajesh S Gokhale</div>
             </Card>
             <Card size="small">
               <img alt="speaker" src="/res/speakers/RamakrishnaRamaSwamy.jpg"/>
+              <div className="sub">Ramakrishna RamaSwamy</div>
             </Card>
             <Card size="small">
               <img alt="speaker" src="/res/speakers/SadafHussain.jpg"/>
+              <div className="sub">Sadaf Hussain</div>
             </Card>
             <Card size="small">
               <img alt="speaker" src="/res/speakers/SaeedNaqvi.jpg"/>
+              <div className="sub">Saeed Naqvi</div>
             </Card>
             <Card size="small">
               <img alt="speaker" src="/res/speakers/TanmayaJain.jpg"/>
+              <div className="sub">Tanmaya Jain</div>
             </Card>
             <Card size="small">
               <img alt="speaker" src="/res/speakers/VivekSharma.jpg"/>
+              <div className="sub">Vivek Sharma</div>
             </Card>
           </CardContainer>
         </section>
