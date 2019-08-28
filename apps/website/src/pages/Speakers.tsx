@@ -12,13 +12,43 @@ export class Speakers extends Component {
         
         <section>
           <CardContainer>
-            <Card size="small">
+            <Card size="large">
               <div style={{ padding: '1em' }}>
                 Heelo
               </div>
             </Card>
 
-            <Card size="small">
+            <Card size="large">
+              <div style={{ padding: '1em' }}>
+                Heelo
+              </div>
+            </Card>
+
+            <Card size="large">
+              <div style={{ padding: '1em' }}>
+                Heelo
+              </div>
+            </Card>
+
+            <Card size="large">
+              <div style={{ padding: '1em' }}>
+                Heelo
+              </div>
+            </Card>
+
+            <Card size="large">
+              <div style={{ padding: '1em' }}>
+                Heelo
+              </div>
+            </Card>
+
+            <Card size="large">
+              <div style={{ padding: '1em' }}>
+                Heelo
+              </div>
+            </Card>
+
+            <Card size="large">
               <div style={{ padding: '1em' }}>
                 Heelo
               </div>
