@@ -1,37 +1,48 @@
 import React, { Component } from 'react'
-
+import { Link } from 'react-router-dom'
 import '../App.css'
 import './styles/Home.css'
 
 import { Title } from '../components/Title/Title'
+import Button from '../components/Button/Button';
 
 export class Home extends Component {
   render() {
     return (
       <div>
         <article className="hero">
-          <div>
-            <h1>Coming Soon</h1>
-            {/* <h2>10<sup>th</sup> November</h2> */}
+          <div className="content">
+            <h1>Breaking Shackles</h1>
+            <h3>10<sup>th</sup> November</h3>
           </div>  
         </article>
         
-        {/* <article className="home-about">
-          <section >
-            <h3>ABOUT</h3>
+        <article className="about">
+          <section className="content">
+            <h2>The TED<sup>x</sup> Conference</h2>
 
             <p>
               TEDxJMI brings together a collection of doers, thinkers, innovators, explorers, visionaries, teachers and learners 
-              We seek to illuminate, inspire, change perceptions, incite action and foster new connections. <br/>
+              We seek to illuminate, inspire, change perceptions, incite action and foster new connections. <br/><br/>
+
               We are focused on proffering a TED stage to speakers of varied backgrounds and experiences for inspirational 
-              and intellectual acceleration.
+              and intellectual acceleration. <br/><br/>
+
+              In the spirit of ideas worth spreading, TEDx is a program for local, self-organized events that bring people 
+              together to share a TED-like experience. At a TEDx event, TEDTalks video and live speakers combine to spark deep 
+              discussion and connection.
             </p>
           </section>  
         </article>
 
-        <article className="home-venue">
+        <article className="venue">
           <h3>Jamia Millia Islamia, New Delhi</h3>
-        </article> */}
+          <Link to={'#'} onClick={()=>{
+            window.open('https://goo.gl/maps/4Y14DhZe4Fu')
+          }}>
+            Where is This?
+          </Link>
+        </article>
       </div>
     )
   }
