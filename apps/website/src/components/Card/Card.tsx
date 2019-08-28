@@ -14,13 +14,13 @@ export class Card extends Component<CardProps> {
   styles = {
     sizes: {
       small: {
-        width: '9em', height: '15em'
+        width: '10em', height: '15em'
       },
       medium: {
-        width: '12em', height: '20em'
+        width: '15em', height: '20em'
       },
       large: {
-        width: '15em', height: '25em'
+        width: '18em', height: '25em'
       }
     }
   }

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap:100,200,300,400,500,600,700,800,900");
 
 body {
   margin: 0;
@@ -15,27 +15,22 @@ body {
 /* TYPOGRAPHY */
 h1 {
   font-size: 4em;
-  margin: 1.5rem 0;
+  margin: 2.5rem 0;
 }
 h2 {
   font-size: 3em;
-  margin: 1rem 0;
+  font-weight: 400;
+  margin: 1.5rem 0;
 }
 h3 {
   font-size: 2em;
-  margin: 0.75rem 0;
-}
-h4 {
-  font-size: 1em;
-}
-h5 {
-  font-size: 1em;
-}
-h6 {
-  font-size: 1em;
+  font-weight: 400;
+  margin: 1rem 0;
 }
 
 p {
+  font-size: 1.125em;
+  font-weight: 200;
   text-align: left;
 }
 
@@ -54,11 +49,11 @@ article {
 section {
   margin: auto;
   padding: 2em;
-  max-width: 800px;
+  max-width: 1000px;
   text-align: left;
 }
 
-.link {
+a {
   font-size: 1em;
   text-decoration: none;
   color: #ff0000;
@@ -308,7 +303,7 @@ header .sidebar-nav {
 /* ============================================================================= */
 
 footer {
-  padding: 4em;
+  padding: 8em;
   text-align: center;
   /* background: linear-gradient(transparent, #00000080); */
   font-size: 0.75em;
