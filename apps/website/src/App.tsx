@@ -88,6 +88,7 @@ export class App extends Component {
               <Route path="/team" component={Team}/>
               <Route path="/speakers" component={Speakers}/>
               <Route path="/contact" component={Contact}/>
+              <Route path="/donate" component={Contact}/>
               <Route path="/register" component={Register}/>
               <Route path="/terms" component={Terms}/>
               
@@ -97,7 +98,11 @@ export class App extends Component {
             </Switch>
             
             <footer>
-              TEDxJMI 2019 Official Website <br/>
+              <div>
+                <h3>Social Links</h3>
+              </div>
+
+              <b>TEDxJMI 2019 Official Website</b> <br/>
               Operating under license from TED<sup>&trade;</sup>
               <br/><br/>
               <Link to={'/terms'}>Terms and Conditions</Link>

@@ -4,13 +4,13 @@ import '../App.css'
 import './styles/Home.css'
 
 import { Title } from '../components/Title/Title'
-import Button from '../components/Button/Button';
+import { Button } from '../components/Button/Button';
 
 export class Home extends Component {
   render() {
     return (
       <div>
-        <article className="hero">
+        <article id="particles" className="hero">
           <div className="content">
             <h1>Breaking Shackles</h1>
             <h3>10<sup>th</sup> November</h3>

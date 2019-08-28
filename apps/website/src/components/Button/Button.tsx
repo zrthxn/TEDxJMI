@@ -1,12 +1,17 @@
-import React, { Component } from 'react'
+import React, { Component, ReactElement, CSSProperties } from 'react'
 
 import '../../App.css'
 import './Button.css'
 
 export interface ButtonProps {
   id?: string,
+  children?: string | ReactElement<HTMLElement>,
+  style?: CSSProperties,
   onClick: Function,
-  style?: 'primary' | 'secondary' | 'default'
+  color?: 'primary' | 'secondary' | 'default',
+  variant?: 'solid' | 'outlined',
+  size?: 'small' | 'medium' | 'large',
+  margins?: 'small' | 'medium' | 'large'
 }
 
 const buttonStyles = {
@@ -25,50 +30,59 @@ const buttonStyles = {
     border: '2px solid #ff0000',
     color: '#ff0000'
   },
-}
 
-function createStyle(style:string|undefined) {
-  if(style!==undefined) 
-    switch(style) {
-      case 'primary':
-        return buttonStyles.primary
-      
-      case 'secondary':
-        return buttonStyles.secondary
-            
-      case 'default':
-        return buttonStyles.default
+  solid: {},
+  outlined: {},
 
-      default:
-        return {}
-    }
-  else
-    return {}
-}
-
-export class Button extends Component<ButtonProps> {
-  state = {
-    
+  small: {
+    width: '8em',
+    margin: '1rem auto',
+    padding: '1rem'
+  },
+  medium: {
+    width: '15em',
+    margin: '1.5rem auto',
+    padding: '1.25rem'
+  },
+  large: {
+    width: '100%',
+    margin: '2rem auto',
+    padding: '1.5rem'
   }
+}
 
-  render() {
-    return (
-      <div className="button-container">
-        <button id={this.props.id} className="button"
-          style={createStyle(this.props.style)}
-          onClick={()=>{
-            this.props.onClick()
-          }}
-        >
-          <div className="button-label">
-            {
-              this.props.children
-            }
-          </div>
-        </button>
+function createStyle(props:ButtonProps) {
+  let button = { }
+  let { color, variant, size, margins } = props
+
+  if(color!==undefined) 
+    button = { ...button, ...buttonStyles[color] }
+
+  if(variant!==undefined) 
+    button = { ...button, ...buttonStyles[variant] }
+
+  if(size!==undefined) 
+    button = { ...button, ...buttonStyles[size] }
+
+  button = { ...button, ...props.style }
+  return button
+}
+
+export function Button(props:ButtonProps) {
+  return (
+    <button id={props.id} className="button"
+      style={createStyle(props)}
+      onClick={()=>{
+        props.onClick()
+      }}
+    >
+      <div className="button-label">
+        {
+          props.children
+        }
       </div>
-    )
-  }
+    </button>
+  )
 }
 
 export default Button

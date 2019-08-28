@@ -80,7 +80,7 @@ export class Contact extends Component {
                 <AppContext.Consumer>
                   {
                     appContext => (
-                      <Button style="primary" onClick={()=>{
+                      <Button color="primary" size="medium" onClick={()=>{
                         appContext.actions.startAppTransition()
                         this.sendMessage(this.state.data, appContext.actions.endAppTransition)
                       }}>SEND</Button>
