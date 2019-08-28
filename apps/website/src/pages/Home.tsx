@@ -11,12 +11,12 @@ export class Home extends Component {
       <div>
         <article className="hero">
           <div>
-            <h1>Breaking Shackles</h1>
-            <h2>10<sup>th</sup> November</h2>
+            <h1>Coming Soon</h1>
+            {/* <h2>10<sup>th</sup> November</h2> */}
           </div>  
         </article>
         
-        <article className="home-about">
+        {/* <article className="home-about">
           <section >
             <h3>ABOUT</h3>
 
@@ -31,7 +31,7 @@ export class Home extends Component {
 
         <article className="home-venue">
           <h3>Jamia Millia Islamia, New Delhi</h3>
-        </article>
+        </article> */}
       </div>
     )
   }

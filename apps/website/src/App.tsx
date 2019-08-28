@@ -17,6 +17,22 @@ import AppContextProvider from './AppContextProvider'
 import { AppContext } from './AppContext'
 
 export class App extends Component {
+  state = {
+    sidebar: {
+      isOpen: false
+    }
+  }
+
+  toggleSidebar = () => {
+    this.setState(()=>{
+      let { sidebar } = this.state
+      sidebar.isOpen = !sidebar.isOpen
+      return {
+        sidebar
+      }
+    })
+  }
+
   render() {
     return (
       <AppContextProvider>
@@ -29,16 +45,16 @@ export class App extends Component {
                 <Title/>
               </div>
               
-              <input type="checkbox" ref="sidebarToggle" id="sidebar-toggle" hidden/>
-              <label htmlFor="sidebar-toggle" className="hamburger"><span></span></label>
+              <input type="checkbox" checked={this.state.sidebar.isOpen} id="sidebar-toggle" hidden/>
+              <label htmlFor="sidebar-toggle" className="hamburger" onClick={this.toggleSidebar}><span></span></label>
               
               <div className="sidebar">
                 <nav className="sidebar-nav">
-                  <Link to={'/'}>About</Link>
-                  <Link to={'/speakers'}>Speakers</Link>
-                  <Link to={'/team'}>Team</Link>
-                  <Link to={'/contact'}>Contact</Link>
-                  <Link to={'/register'}>Register</Link>
+                  <Link onClick={this.toggleSidebar} to={'/'}>About</Link>
+                  <Link onClick={this.toggleSidebar} to={'/speakers'}>Speakers</Link>
+                  <Link onClick={this.toggleSidebar} to={'/team'}>Team</Link>
+                  <Link onClick={this.toggleSidebar} to={'/contact'}>Contact</Link>
+                  <Link onClick={this.toggleSidebar} to={'/register'}>Register</Link>
                 </nav>
               </div>
 
@@ -68,12 +84,12 @@ export class App extends Component {
 
             <Switch>
               <Route exact path="/" component={Home}/>
-              <Route path="/team" component={Team}/>
+              {/* <Route path="/team" component={Team}/>
               <Route path="/speakers" component={Speakers}/>
               <Route path="/contact" component={Contact}/>
               <Route path="/register" component={Register}/>
               
-              <Route path="/dashboard" component={Dashboard}/>
+              <Route path="/dashboard" component={Dashboard}/> */}
               
               <Route component={Home}/>
             </Switch>
