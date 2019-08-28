@@ -55,6 +55,7 @@ section {
 
 a {
   font-size: 1em;
+  font-weight: 600;
   text-decoration: none;
   color: #ff0000;
 }
