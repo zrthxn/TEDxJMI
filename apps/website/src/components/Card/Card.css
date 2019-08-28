@@ -1,8 +1,8 @@
 .card {
-  max-width: 250px;
-  width: 12em;
+  max-width: 300px;
+  width: 15em;
   height: 20em;
-  margin: 1em auto;
+  margin: 2em auto;
 
   display: flex;
   flex-direction: column;

@@ -23,6 +23,12 @@ export class Team extends Component {
                 Heelo
               </div>
             </Card>
+
+            <Card size="small">
+              <div style={{ padding: '1em' }}>
+                Heelo
+              </div>
+            </Card>
           </CardContainer>
         </section>
       </article>

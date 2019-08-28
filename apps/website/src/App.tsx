@@ -6,6 +6,7 @@ import './App.css'
 import Home from './pages/Home'
 import Speakers from './pages/Speakers'
 import Team from './pages/Team'
+import Terms from './pages/Terms'
 import Contact from './pages/Contact'
 import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
@@ -45,7 +46,7 @@ export class App extends Component {
                 <Title/>
               </div>
               
-              <input type="checkbox" checked={this.state.sidebar.isOpen} id="sidebar-toggle" hidden/>
+              <input type="checkbox" checked={this.state.sidebar.isOpen} id="sidebar-toggle" hidden readOnly/>
               <label htmlFor="sidebar-toggle" className="hamburger" onClick={this.toggleSidebar}><span></span></label>
               
               <div className="sidebar">
@@ -84,19 +85,22 @@ export class App extends Component {
 
             <Switch>
               <Route exact path="/" component={Home}/>
-              {/* <Route path="/team" component={Team}/>
+              <Route path="/team" component={Team}/>
               <Route path="/speakers" component={Speakers}/>
               <Route path="/contact" component={Contact}/>
               <Route path="/register" component={Register}/>
+              <Route path="/terms" component={Terms}/>
               
-              <Route path="/dashboard" component={Dashboard}/> */}
+              <Route path="/dashboard" component={Dashboard}/>
               
               <Route component={Home}/>
             </Switch>
             
             <footer>
               TEDxJMI 2019 Official Website <br/>
-              Operating under license from TED
+              Operating under license from TED<sup>&trade;</sup>
+              <br/><br/>
+              <Link to={'/terms'}>Terms and Conditions</Link>
             </footer>
           </Router>
         </article>
