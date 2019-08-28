@@ -83,8 +83,8 @@ export class App extends Component {
             </AppContext.Consumer>
 
             <Switch>
-              <Route exact path="/" component={Home}/>
-              {/* <Route path="/team" component={Team}/>
+              {/*<Route exact path="/" component={Home}/>
+               <Route path="/team" component={Team}/>
               <Route path="/speakers" component={Speakers}/>
               <Route path="/contact" component={Contact}/>
               <Route path="/register" component={Register}/>
