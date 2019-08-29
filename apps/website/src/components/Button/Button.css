@@ -1,19 +1,11 @@
-.button-container {
-  padding: 1em 0;
-  width: 100%;
-  max-width: 8em;
-  margin: auto;
-
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
 .button {
-  font-family: 'Montserrat', sans-serif;
+  width: 8em;
+  margin: auto;
   padding: 1em;
-  width: 100%;
+  max-width: 400px;
+
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.125em;
   border: none;
   transition: all 0.5s ease;
   box-shadow: 0 0 5px #1c1c1c40;

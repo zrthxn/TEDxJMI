@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Link } from 'react-router-dom'
 
 import '../App.css'
 import './styles/Register.css'
@@ -38,10 +38,23 @@ export class Register extends Component {
 
   render() {
     return (
-      <article style={{ display: 'flex', flexDirection: 'column', alignContent: 'center' }}>
+      <article className="register">
         <h2>Register</h2>
+        
+        <section>
+          <h3>Registrations Open</h3>
 
-        <section style={{ width: '25em' }}>          
+          <p>
+            If you're a student currently studying at JMI, you can register by filling out the form provided at the link below.
+            The last date of registration for JMI students is October 05.
+          </p>
+
+          <Button onClick={()=>{}} size="medium" color="primary">Register</Button>
+          <br/>
+          Already Registered? <Link to="#" onClick={()=>{}}>Login</Link>
+        </section>
+
+        {/* <section style={{ width: '25em' }}>          
           <Paper>
             {
               this.state.showLogin ? (
@@ -68,7 +81,7 @@ export class Register extends Component {
                     {
                       appContext => (
                         <div style={{ display: 'flex', flexDirection: 'row', maxWidth: '24em' }}>
-                          <Button style="secondary"
+                          <Button color="secondary"
                             onClick={()=>{
                               this.setState({
                                 showLogin: false,
@@ -81,7 +94,7 @@ export class Register extends Component {
                             Register
                           </Button>
 
-                          <Button style="primary"
+                          <Button color="primary"
                             onClick={()=>{
                               appContext.actions.startAppTransition()
                               setTimeout(()=>{
@@ -119,7 +132,7 @@ export class Register extends Component {
                     {
                       appContext => (
                         <div style={{ display: 'flex', flexDirection: 'row', maxWidth: '24em' }}>
-                          <Button style="secondary"
+                          <Button color="secondary"
                             onClick={()=>{
                               this.setState({
                                 showLogin: true,
@@ -134,7 +147,7 @@ export class Register extends Component {
 
                           <Route render={({history})=>{
                             return (
-                              <Button style="primary" 
+                              <Button color="primary" 
                                 onClick={()=>{
                                   appContext.actions.startAppTransition()
                                   history.push('/dashboard')
@@ -152,7 +165,7 @@ export class Register extends Component {
               )
             }
           </Paper>
-        </section>
+        </section> */}
       </article>
     )
   }
