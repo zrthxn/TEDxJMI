@@ -1,0 +1,11 @@
+{
+    "firebaseClientAPIKey": "AIzaSyAd17pI-aG3Mx8x_HXNz4lQ7VWRWnSgy4E",
+    "firebaseServerAPIKey": "AIzaSyDvu4G7Z62WqJfb-aMwQa2YGOCGSTUnxtk",
+    "firebase": {
+        "authDomain": "xtacy-org.firebaseapp.com",
+        "databaseURL": "https://xtacy-org.firebaseio.com",
+        "projectId": "xtacy-org",
+        "storageBucket": "xtacy-org.appspot.com",
+        "messagingSenderId": "625260114530"
+    }
+}
