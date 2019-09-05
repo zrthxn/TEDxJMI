@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import './Card.css'
 
-export interface CardProps {
+interface CardProps {
   size?: 'small' | 'medium' | 'large'
 }
+
 export class Card extends Component<CardProps> {
   state = {
     style: {

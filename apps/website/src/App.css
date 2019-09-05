@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap:100,200,300,400,500,600,700,800,900");
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
@@ -11,31 +15,34 @@ body {
   color: #fff;
   text-align: center;
 }
+::selection {
+  background-color: #aa0000;
+}
 
 /* TYPOGRAPHY */
 h1 {
-  font-size: 4em;
+  font-size: 3em;
   margin: 2.5rem 0;
 }
 h2 {
-  font-size: 3em;
+  font-size: 2em;
   font-weight: 400;
   margin: 1.5rem 0;
 }
 h3 {
-  font-size: 2em;
+  font-size: 1.5em;
   font-weight: 400;
   margin: 1rem 0;
 }
 
 p {
-  font-size: 1.125em;
-  font-weight: 200;
+  font-size: 1em;
+  font-weight: 400;
   text-align: left;
 }
 
 article {
-  animation: fadeIn 0.25s ease forwards;
+  animation: fadeIn 1s ease forwards !important;
 }
 @keyframes fadeIn {
   from {
@@ -51,6 +58,9 @@ section {
   padding: 2em;
   max-width: 1000px;
   text-align: left;
+}
+section[class~="center"] {
+  text-align: center;
 }
 
 a {

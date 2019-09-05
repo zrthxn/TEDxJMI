@@ -7,7 +7,7 @@ import Button from '../components/Button/Button'
 import { Textbox, Textarea } from '../components/Textbox/Textbox'
 import { handleChangeById as inputHandler, emailValidation } from '../libs/util/inputHandler'
 import { AppContext } from '../AppContext';
-
+import { Link } from 'react-router-dom'
 
 export class Contact extends Component {
   state = {
@@ -22,7 +22,7 @@ export class Contact extends Component {
     required: [
       'name', 'email', 'message'
     ],
-    itratableMembers: []
+    iterableMembers: []
   }
 
   handleChangeById = (event:any) => {
@@ -32,62 +32,83 @@ export class Contact extends Component {
     ))
   }
 
-  sendMessage = (data:object, callback:Function) => {
-    this.setState(()=>{
-      setTimeout(callback, 3000)
-      return {
-        showConfirmation: true
-      }
-    })
+  sendMessage = async () => {
+    /**
+     * @todo
+     * Axios request to the server to send
+     * an email and to add to mailing list
+     * and to assign someone to get back to 
+     * this.
+     */
   }
 
   render() {
     return (
       <article>
-        <h2>Contact</h2>
+        <h1>Contact</h1>
 
         {
           this.state.showConfirmation ? (
-            <section>
+            <section className="center">
               <h3>Thank You</h3>
-              <p>
-                Your message has been sent and we will get back to you.
+              <p style={{ textAlign: 'center' }}>
+                Your message has been sent <br/> and we will get back to you very soon!
               </p>
-            </section>            
+
+              <Link to="#"
+                onClick={()=>{
+                  this.setState({
+                    showConfirmation: false
+                  })
+                }}
+              >
+                Alright! Go Back
+              </Link>
+            </section>
           ) : (
             <section className="contact-form">
               <Paper>
                 <div className="head">
-                  <h3>Send a Message</h3>
-                  <p>And we will get back to you!</p>
+                  <h3><b>Send a Message</b></h3>
+                  <p>Leave your queries and questions here and we will get back to you!</p>
                 </div>
 
-                <Textbox id="name" placeholder="Name"
-                  onChange={this.handleChangeById}
-                />
+                <Textbox id="name" placeholder="Name" onChange={this.handleChangeById}/>
 
-                <Textbox id="email" placeholder="Email"
-                  onChange={this.handleChangeById}
+                <Textbox id="email" placeholder="Email" onChange={this.handleChangeById}
+                  validationErrorHelptext="Not a valid email address"
                   validation={(event:any)=>{
                     return emailValidation(event.target.value)
                   }}
-                  validationErrorHelptext="Not a valid email address"
                 />
 
-                <Textarea id="message" placeholder="Message"
-                  onChange={this.handleChangeById} 
-                />
+                <Textarea id="message" placeholder="Message" onChange={this.handleChangeById}/>
+
                 <AppContext.Consumer>
                   {
                     appContext => (
-                      <Button color="primary" size="medium" onClick={()=>{
-                        appContext.actions.startAppTransition()
-                        this.sendMessage(this.state.data, appContext.actions.endAppTransition)
-                      }}>SEND</Button>
+                      <Button color="primary" size="medium" 
+                        onClick={()=>{
+                          appContext.actions.startAppTransition()
+                          this.sendMessage().then(()=>{
+                            setTimeout(()=>{
+                              appContext.actions.endAppTransition()
+                              this.setState({
+                                showConfirmation: true
+                              })
+                            }, 1000)
+                          })
+                        }}
+                      >
+                        Send
+                      </Button>
                     )
                   }
                 </AppContext.Consumer>
                 
+                <p style={{ fontSize: '0.75em', textAlign: 'center' }}>
+                  By sending this message you <br/> agree to the <Link to="/terms">Terms and Conditions</Link>
+                </p>
               </Paper>
             </section>
           )
