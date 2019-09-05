@@ -8,7 +8,7 @@ export class Team extends Component {
   render() {
     return (
       <article>
-        <h2>Team</h2>
+        <h1>Team</h1>
 
         <section>
           <CardContainer>

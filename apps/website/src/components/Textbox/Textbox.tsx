@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 
 import './Textbox.css'
 
-export interface TextboxProps {
+interface TextboxProps {
   id?: string,
+  className?: string,
   type?: 'text' | 'number' | 'tel' | 'password' | 'email' | string,
   onChange?: Function,
   value?: Function,
@@ -11,8 +12,9 @@ export interface TextboxProps {
   validation?: Function,
   onValidate?: Function,
   validationErrorHelptext?: string,
-  hideCheckWhenValidatedTrue?: boolean
+  hideCheckOnValidatedTrue?: boolean
 }
+
 export class Textbox extends Component<TextboxProps> {
   state = {
     needsValidation: false,
@@ -23,7 +25,8 @@ export class Textbox extends Component<TextboxProps> {
     return (
       <div className="textbox-container">
         <div className="input-container">
-          <input id={this.props.id} className="textbox" type={ this.props.type!==null ? this.props.type : 'text' } 
+          <input id={this.props.id} className={(this.props.className!==undefined ? `textbox ${this.props.className}` : "textbox")} 
+            type={ this.props.type!==null ? this.props.type : 'text' } 
             placeholder={this.props.placeholder}
             onChange={(event)=>{
               if(this.props.onChange!==undefined)
@@ -64,8 +67,8 @@ export class Textbox extends Component<TextboxProps> {
               <span className="validation">
                 {
                   this.state.isValidated ? (
-                    this.props.hideCheckWhenValidatedTrue!==undefined ? (
-                      this.props.hideCheckWhenValidatedTrue ? (
+                    this.props.hideCheckOnValidatedTrue!==undefined ? (
+                      this.props.hideCheckOnValidatedTrue ? (
                         <span></span>
                       ) : (
                         <span className="true"></span>
@@ -109,7 +112,7 @@ export class Textarea extends Component<TextboxProps> {
     return (
       <div className="textbox-container">
         <div className="input-container">
-          <textarea rows={8} id={this.props.id} className="textbox"
+          <textarea rows={6} id={this.props.id} className="textbox"
             placeholder={this.props.placeholder}
             onChange={(event)=>{
               if(this.props.onChange!==undefined)

@@ -2,41 +2,45 @@
   max-width: 300px;
   width: 15em;
   height: 20em;
+
   margin: 2em auto;
   display: flex;
   flex-direction: column;
-  color: #000;
 }
-.card .card-content img{
-  width : 100%;
-  height: 90%;
-  object-fit: fill;
-  display : block;
-  overflow: hidden;
-  margin : auto auto;
-  border : 1px solid #fff;
 
+.card .card-content {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
 }
-.card-content .tba{
-  border: 1px solid #fff;
+
+.card .card-content img {
+  height: 100%;
+  object-fit: fill;
+
+  margin : auto auto;
+  z-index: 10;
 }
-.card-content .sub{
-  height : 2em;
+
+.card-content .sub {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
   text-align: center;
-  color: #fff;
-  display: block;
-  margin : 0.1em auto;
+  background: linear-gradient(transparent, #1c1c1cf0);
+  padding: 1em;
+  z-index: 20;
 }
-.tedxjmi {
+
+.card-content .sup {
+  position: absolute;
+  top: 0;
+  width: 100%;
+
   text-align: center;
-  color: #ff0000;
-  font-size: 1em;
-}
-.tedxjmi .alpha {
-  font-weight: 900 !important;
-  margin-right: 0.125em;
-}
-.tedxjmi .beta {
-  font-weight: 400 !important;
-  color: #fff;
+  background: linear-gradient(#1c1c1cf0, transparent);
+  padding: 1em;
+  z-index: 20;
 }

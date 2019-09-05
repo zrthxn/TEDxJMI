@@ -1,5 +1,5 @@
 export function handleChangeById(event:any, state:any) {
-  const { itratableMembers } = state
+  const { iterableMembers } = state
   let payload = null, truth = true, _data = state.data
 
   switch (event.target.type) {
@@ -18,7 +18,7 @@ export function handleChangeById(event:any, state:any) {
   }
 
   if(event.target.id.includes('/')) {
-    if(event.target.id.split('/')[0].includes('#') && itratableMembers.length!==0) {
+    if(event.target.id.split('/')[0].includes('#') && iterableMembers.length!==0) {
       let parentKey = event.target.id.split('/')[0].split('#')[0]
       let index = parseInt(event.target.id.split('/')[0].split('#')[1], 10)
       let childKey = event.target.id.split('/')[1]
@@ -44,8 +44,8 @@ export function handleChangeById(event:any, state:any) {
           parentKey = parentKey.split('#')[0]
           let requiredIndex = parseInt(parentKey.split('#')[1], 10)
 
-          if(itratableMembers.length!==0)
-            for(let itratedKey of itratableMembers)
+          if(iterableMembers.length!==0)
+            for(let itratedKey of iterableMembers)
               if(itratedKey===parentKey)
                 for(let [memberIndex, iteratedMember] of state.data[itratedKey].entries())
                   if(memberIndex===requiredIndex)

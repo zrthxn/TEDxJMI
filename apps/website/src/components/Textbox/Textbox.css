@@ -1,7 +1,7 @@
 .textbox-container {
   padding: 1em 0;
   width: 100%;
-  max-width: 18em;
+  max-width: 24em;
   margin: auto;
 
   position: relative;
@@ -62,4 +62,11 @@
   font-size: 0.75em;
   margin: 0.5em 0;
   color: #ff0000;
+}
+
+/* Textbox Styles ============================ */
+.textbox[class~="dark"] {
+  color: #fff;
+  background: #1c1c1c;
+  opacity: 0.75;
 }
