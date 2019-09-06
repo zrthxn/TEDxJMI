@@ -1,5 +1,5 @@
 import express from 'express'
-// import Firestore from '../utils/Database'
+import Firestore from '../utils/Database'
 require('dotenv').config()
 
 export const RegisterRouter = express.Router()
@@ -7,39 +7,37 @@ export const RegisterRouter = express.Router()
 RegisterRouter.post('/user', (req, res)=>{
   const { userdata } = req.body
 
-  // Firestore.collection('Users').where('email', '==', userdata.email)
-  //   .get().then((searchResults)=>{
-      // for (const user of searchResults) {
-        /**
-         * @todo
-         * If email exists, don't allow
-         * 1. Add user data to Firestore
-         * 2. Add email to mailing list
-         * 3. Send welcome email 
-         */
-      // }
-      // Firestore.collection('Users').add({
-      //   name: userdata.name,
-      //   email: userdata.email
-      // }).then((doc)=>{
-      //   res.send({
-      //     _id: doc.id,
-      //     name: userdata.name,
-      //     email: userdata.email
-      //   })
-      // })
+  Firestore.collection('Users').where('email', '==', userdata.email)
+    .get()
+    .then((searchResults)=>{
+      if(searchResults.docs.length!==0) 
+        throw Error("User Already Exists")
 
-      // Firestore.collection('Mailing List').add({
-      //   name: userdata.name,
-      //   email: userdata.email
-      // })
-    // })
+      const User = {
+        name: userdata.name,
+        email: userdata.email,
+        createdOn: Date()
+      }
 
-  res.send({
-    _id: '1234567890',
-    name: userdata.name,
-    email: userdata.email
-  })
+      Firestore.collection('Mailing List').add(User)
+      
+      Firestore.collection('Users').add(User)
+        .then((doc)=>{
+          res.send({
+            _id: doc.id,
+            ...User
+          })
+        })
+    })
+    .catch(()=>{
+      res.sendStatus(403)
+    })
+
+  // res.send({
+  //   _id: '1234567890',
+  //   name: userdata.name,
+  //   email: userdata.email
+  // })
 })
 
 RegisterRouter.post('/ticket', (req, res)=>{

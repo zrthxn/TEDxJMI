@@ -9,26 +9,8 @@ export class Team extends Component {
       <article>
         <h1>Team</h1>
 
-        <section>
-          <CardContainer>
-            <Card size="small">
-              <div style={{ padding: '1em' }}>
-                Heelo
-              </div>
-            </Card>
-
-            <Card size="small">
-              <div style={{ padding: '1em' }}>
-                Heelo
-              </div>
-            </Card>
-
-            <Card size="small">
-              <div style={{ padding: '1em' }}>
-                Heelo
-              </div>
-            </Card>
-          </CardContainer>
+        <section className="center">
+          <h2>Coming Soon</h2>
         </section>
       </article>
     )

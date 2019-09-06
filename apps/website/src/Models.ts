@@ -1,5 +1,4 @@
 export interface UserModel {
-  _id: string
   name: string
   email: string
   phone?: string
@@ -10,8 +9,7 @@ export interface UserModel {
 }
 
 export interface TicketModel {
-  _id: string
-  userId: string
+  userEmail: string
   createdOn: string
   couponCode?: string
   verified: boolean

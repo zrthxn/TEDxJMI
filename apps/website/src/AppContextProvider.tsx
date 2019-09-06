@@ -50,13 +50,13 @@ export default class AppContextProvider extends Component {
     })
   }
 
-  setUser = (user:UserModel) => {
+  setUser = (user:UserModel|any) => {
     this.setState({
       user
     })
   }
 
-  setTicket = (ticket:TicketModel) => {
+  setTicket = (ticket:TicketModel|any) => {
     this.setState({
       ticket
     })

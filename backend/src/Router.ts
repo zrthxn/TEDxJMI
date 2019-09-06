@@ -16,8 +16,8 @@ import { PaymentsRouter } from './routes/Payments'
 
 router.use((req, res, next)=>{
   // CSRF
-  console.log(req.headers['X-Access-Key'])
-  console.log(req.headers['X-Access-Token'])
+  // console.log(req.headers['X-Access-Key'])
+  // console.log(req.headers['X-Access-Token'])
   // res.sendStatus(200)
   next()
 })

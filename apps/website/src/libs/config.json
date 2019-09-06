@@ -4,11 +4,12 @@
 		"backend": "http://localhost:3600"
 	},
 	"firebase": {
-		"apiKey": "AIzaSyAd17pI-aG3Mx8x_HXNz4lQ7VWRWnSgy4E",
-		"authDomain": "xtacy-org.firebaseapp.com",
-		"databaseURL": "https://xtacy-org.firebaseio.com",
-		"projectId": "xtacy-org",
-		"storageBucket": "xtacy-org.appspot.com",
-		"messagingSenderId": "625260114530"
+		"apiKey": "AIzaSyDD3HTp68D0JY-7iD9jvFCJV9jsiJXtrjM",
+    "authDomain": "tedxjmiwebsite.firebaseapp.com",
+    "databaseURL": "https://tedxjmiwebsite.firebaseio.com",
+    "projectId": "tedxjmiwebsite",
+    "storageBucket": "",
+    "messagingSenderId": "26885015640",
+    "appId": "1:26885015640:web:4d94488f82b2a320b1e22d"
 	}
 }

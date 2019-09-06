@@ -23,17 +23,22 @@ export class Register extends Component {
   state = {
     showLogin: false,
     loggedIn: false,
+    intent: 'register',
     user: {
       _id: String(),
       name: String(),
       email: String(),
+      phone: String(),
       createdOn: String()
     },
+    ticket: {
+      _id: String()
+    },
     data: {
-      regName: undefined,
-      regEmail: undefined,
-      loginEmail: undefined,
-      loginPw: undefined
+      regName: null,
+      regEmail: null,
+      loginEmail: null,
+      loginPw: null
     },
     requiredFulfilled: false,
     fieldsValidated: false,
@@ -51,20 +56,25 @@ export class Register extends Component {
   }
 
   register = async () => {
-    let user = await this.registrationService.registerUser({
-      name: this.state.data.regName,
-      email: this.state.data.regEmail
-    })
-    
-    this.setState({
-      user: {
-        _id: user.data._id,
-        name: user.data.name,
-        email: user.data.email,
-        createdOn: user.data.createdOn
+    if(this.state.requiredFulfilled) {
+      try {
+        let user = await this.registrationService.registerUser({
+          name: this.state.data.regName,
+          email: this.state.data.regEmail
+        })
+  
+        this.setState({
+          loggedIn: true,
+          user: user.data
+        })
+        return
+      } catch (error) {
+        alert(error)
+        return
       }
-    })
-    return
+    }
+    else
+      return Promise.reject()
   }
 
   login = async () => {
@@ -77,21 +87,62 @@ export class Register extends Component {
      * After login, return user to AppContext
      */
 
-    // this.context.actions.setUser(user.data)
-    this.context.actions.endAppTransition()
-    return
+    if(this.state.requiredFulfilled) {
+      try {
+        let userQuery = await Firestore.collection('Users').where('email', '==', this.state.data.loginEmail).get()
+        let user = userQuery.docs[0].data()
+
+        let ticketQuery = await Firestore.collection('Tickets')
+          .where('userEmail', '==', this.state.data.loginEmail)
+          .where('passcode', '==', this.state.data.loginPw)
+          .limit(1)
+          .get()
+        let ticket = ticketQuery.docs[0].data()
+
+        this.context.actions.setUser(user)
+        this.context.actions.setTicket(ticket)
+        
+        this.setState({
+          loggedIn: true
+        })
+        return
+      } catch (error) {
+        alert(error)
+        return 
+      }      
+    }
+    else
+      return Promise.reject()
   }
 
   render() {
     if(this.state.loggedIn)
       return (
-        <AppContext.Consumer>
+        <article>
           {
-            ({ state }) => (
-              <Dashboard intent="register" user={this.state.user} />
+            this.state.intent==="register" ? (
+              <AppContext.Consumer>
+                {
+                  ({ state }) => (
+                    <Dashboard intent="register" user={this.state.user} />
+                  )
+                }
+              </AppContext.Consumer>
+            ) : (
+              this.state.intent==="login" ? (
+                <AppContext.Consumer>
+                  {
+                    ({ state }) => (
+                      <Dashboard intent="login" user={state.user} ticket={state.ticket} />
+                    )
+                  }
+                </AppContext.Consumer>
+              ) : (
+                <div></div>
+              )
             )
           }
-        </AppContext.Consumer>
+        </article>
       )
     else
       return (
@@ -101,9 +152,9 @@ export class Register extends Component {
           <section>
             <h3>Registrations Open</h3>
 
-            <p>
-              If you're a student currently studying at JMI, you can register by filling out the form provided at the link below.
-              The last date of registration for JMI students is October 05.
+            <p style={{ textAlign: 'center' }}>
+              Fill in the following form to register for TEDxJMI 2019.
+              Please read the terms and conditions carefully before registering.
             </p>
 
             <section>
@@ -130,20 +181,19 @@ export class Register extends Component {
                       {
                         appContext => (
                           <div style={{ display: 'flex', flexDirection: 'row', maxWidth: '24em', margin: '2em auto' }}>
-                            <Route render={({ history })=>{
-                              return (
-                                <Button color="secondary"
-                                  onClick={() => {
-                                    appContext.actions.startAppTransition()
-                                    this.login().then(() => {
-                                      history.push('/dashboard')
-                                    })
-                                  }}
-                                >
-                                  Login
-                                </Button>
-                              )
-                            }}/>
+                            <Button color="secondary"
+                              onClick={() => {
+                                appContext.actions.startAppTransition()
+                                this.login().then(() => {
+                                  appContext.actions.endAppTransition()
+                                }).catch(()=>{
+                                  alert('Please fill in all fields')
+                                  appContext.actions.endAppTransition()
+                                })
+                              }}
+                            >
+                              Login
+                            </Button>
                           </div>
                         )
                       }
@@ -152,7 +202,11 @@ export class Register extends Component {
                     <div style={{ padding: "2em" }}>
                       Don't have an account? <Link to="#" onClick={() => {
                         this.setState({
-                          showLogin: false
+                          showLogin: false,
+                          intent: 'register',
+                          required: [
+                            'regName', 'regEmail'
+                          ]
                         })
                       }}>Register</Link>
                     </div>
@@ -180,11 +234,13 @@ export class Register extends Component {
                           <div style={{ display: 'flex', flexDirection: 'row', maxWidth: '24em', margin: '2em auto' }}>                                  
                             <Button color="primary"
                               onClick={() => {
-                                this.register().then(() => {
-                                  this.setState({
-                                    loggedIn: true
-                                  })
-                                })                                    
+                                appContext.actions.startAppTransition()
+                                this.register().then(()=>{
+                                  appContext.actions.endAppTransition()
+                                }).catch(()=>{
+                                  alert('Please fill in all fields')
+                                  appContext.actions.endAppTransition()
+                                })
                               }}
                             >
                               Start
@@ -197,7 +253,11 @@ export class Register extends Component {
                     <div style={{ padding: "2em" }}>
                       Already Registered? <Link to="#" onClick={() => {
                         this.setState({
-                          showLogin: true
+                          showLogin: true,
+                          intent: 'login',
+                          required: [
+                            'loginEmail', 'loginPw'
+                          ]
                         })
                       }}>Login</Link>
                     </div>
