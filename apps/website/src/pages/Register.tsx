@@ -1,17 +1,18 @@
 import React, { Component } from 'react'
 import { Route, Link } from 'react-router-dom'
-
 import '../App.css'
 import './styles/Register.css'
-
-import { Paper } from '../components/Paper/Paper'
-import { Textbox } from '../components/Textbox/Textbox'
-import { Button } from '../components/Button/Button'
 
 import { AppContext } from '../AppContext'
 import { handleChangeById as inputHandler, emailValidation } from '../libs/util/inputHandler'
 import { auth, database } from '../libs/util/database';
 import { timingSafeEqual } from 'crypto';
+
+import { Paper } from '../components/Paper/Paper'
+import { Textbox } from '../components/Textbox/Textbox'
+import { Button } from '../components/Button/Button'
+
+import Dashboard from './Dashboard'
 
 export class Register extends Component {
   static contextType = AppContext
@@ -19,13 +20,13 @@ export class Register extends Component {
 
   state = {
     showLogin: false,
+    loggedIn: true, //false,
     data: {
       regName: null,
       regEmail: null,
       loginEmail: null,
       loginPw: null
     },
-    loggedIn: false,
     requiredFulfilled: false,
     fieldsValidated: false,
     required: [
@@ -89,123 +90,134 @@ export class Register extends Component {
   }
 
   render() {
-    return (
-      <article className="register">
-        <h1>Register</h1>
-
-        <section>
-          <h3>Registrations Open</h3>
-
-          <p>
-            If you're a student currently studying at JMI, you can register by filling out the form provided at the link below.
-            The last date of registration for JMI students is October 05.
-          </p>
+    if(this.state.loggedIn)
+      return (
+        <AppContext.Consumer>
+          {
+            ({ state }) => (
+              <Dashboard intent="register"
+                userdata={state.userdata}
+              />
+            )
+          }
+        </AppContext.Consumer>
+      )
+    else
+      return (
+        <article className="register">
+          <h1>Register</h1>
 
           <section>
-            {
-              this.state.showLogin ? (
-                <div style={{ display: 'flex', flexDirection: 'column', alignContent: 'center' }}>
-                  <Textbox id="loginEmail" className="dark" placeholder="Email"
-                    onChange={this.handleChangeById}
-                    validationErrorHelptext="Not a valid email address"
-                    validation={(event: any) => {
-                      return emailValidation(event.target.value)
-                    }}
-                    onValidate={() => {
-                      this.setState({
-                        fieldsValidated: true
-                      })
-                    }}
-                  />
+            <h3>Registrations Open</h3>
 
-                  <Textbox id="loginPw" className="dark" placeholder="Passcode"
-                    type="password" onChange={this.handleChangeById}/>
+            <p>
+              If you're a student currently studying at JMI, you can register by filling out the form provided at the link below.
+              The last date of registration for JMI students is October 05.
+            </p>
 
-                  <AppContext.Consumer>
-                    {
-                      appContext => (
-                        <div style={{ display: 'flex', flexDirection: 'row', maxWidth: '24em', margin: '2em auto' }}>
-                          <Route render={({ history }) => {
-                            return (
-                              <Button color="secondary"
-                                onClick={() => {
-                                  appContext.actions.startAppTransition()
-                                  this.login().then(() => {
-                                    history.push('/dashboard')
+            <section>
+              {
+                this.state.showLogin ? (
+                  <div style={{ display: 'flex', flexDirection: 'column', alignContent: 'center' }}>
+                    <Textbox id="loginEmail" className="dark" placeholder="Email"
+                      onChange={this.handleChangeById}
+                      validationErrorHelptext="Not a valid email address"
+                      validation={(event: any) => {
+                        return emailValidation(event.target.value)
+                      }}
+                      onValidate={() => {
+                        this.setState({
+                          fieldsValidated: true
+                        })
+                      }}
+                    />
+
+                    <Textbox id="loginPw" className="dark" placeholder="Passcode"
+                      type="password" onChange={this.handleChangeById}/>
+
+                    <AppContext.Consumer>
+                      {
+                        appContext => (
+                          <div style={{ display: 'flex', flexDirection: 'row', maxWidth: '24em', margin: '2em auto' }}>
+                            <Route render={({ history })=>{
+                              return (
+                                <Button color="secondary"
+                                  onClick={() => {
+                                    appContext.actions.startAppTransition()
+                                    this.login().then(() => {
+                                      history.push('/dashboard')
+                                    })
+                                  }}
+                                >
+                                  Login
+                                </Button>
+                              )
+                            }}/>
+                          </div>
+                        )
+                      }
+                    </AppContext.Consumer>
+                    
+                    <div style={{ padding: "2em" }}>
+                      Don't have an account? <Link to="#" onClick={() => {
+                        this.setState({
+                          showLogin: false
+                        })
+                      }}>Register</Link>
+                    </div>
+                  </div>
+                ) : (
+                  <div style={{ display: 'flex', flexDirection: 'column', alignContent: 'center' }}>
+                    <Textbox id="regName" className="dark" placeholder="Name" onChange={this.handleChangeById} />
+
+                    <Textbox id="regEmail" className="dark" placeholder="Email"
+                      onChange={this.handleChangeById}
+                      validationErrorHelptext="Not a valid email address"
+                      validation={(e: any) => {
+                        return true
+                      }}
+                      onValidate={() => {
+                        this.setState({
+                          fieldsValidated: true
+                        })
+                      }}
+                    />
+
+                    <AppContext.Consumer>
+                      {
+                        appContext => (
+                          <div style={{ display: 'flex', flexDirection: 'row', maxWidth: '24em', margin: '2em auto' }}>                                  
+                            <Button color="primary"
+                              onClick={() => {
+                                appContext.actions.startAppTransition()
+                                this.register().then(() => {
+                                  this.setState({
+                                    loggedIn: true
                                   })
-                                }}
-                              >
-                                Login
-                              </Button>
-                            )
-                          }}/>
-                        </div>
-                      )
-                    }
-                  </AppContext.Consumer>
-                  
-                  <div style={{ padding: "2em" }}>
-                    Don't have an account? <Link to="#" onClick={() => {
-                      this.setState({
-                        showLogin: false
-                      })
-                    }}>Register</Link>
+                                })                                    
+                              }}
+                            >
+                              Start
+                            </Button>
+                          </div>
+                        )
+                      }
+                    </AppContext.Consumer>
+                    
+                    <div style={{ padding: "2em" }}>
+                      Already Registered? <Link to="#" onClick={() => {
+                        this.setState({
+                          showLogin: true
+                        })
+                      }}>Login</Link>
+                    </div>
                   </div>
-                </div>
-              ) : (
-                <div style={{ display: 'flex', flexDirection: 'column', alignContent: 'center' }}>
-                  <Textbox id="regName" className="dark" placeholder="Name" onChange={this.handleChangeById} />
-
-                  <Textbox id="regEmail" className="dark" placeholder="Email"
-                    onChange={this.handleChangeById}
-                    validationErrorHelptext="Not a valid email address"
-                    validation={(e: any) => {
-                      return true
-                    }}
-                    onValidate={() => {
-                      this.setState({
-                        fieldsValidated: true
-                      })
-                    }}
-                  />
-
-                  <AppContext.Consumer>
-                    {
-                      appContext => (
-                        <div style={{ display: 'flex', flexDirection: 'row', maxWidth: '24em', margin: '2em auto' }}>                                  
-                          <Route render={({ history }) => {
-                            return (
-                              <Button color="primary"
-                                onClick={() => {
-                                  appContext.actions.startAppTransition()
-                                  this.register().then(() => {
-                                    history.push('/dashboard')
-                                  })                                    
-                                }}
-                              >
-                                Start
-                              </Button>
-                            )
-                          }} />
-                        </div>
-                      )
-                    }
-                  </AppContext.Consumer>
-                  
-                  <div style={{ padding: "2em" }}>
-                    Already Registered? <Link to="#" onClick={() => {
-                      this.setState({
-                        showLogin: true
-                      })
-                    }}>Login</Link>
-                  </div>
-                </div>
-              )
-            }
+                )
+              }
+            </section>
           </section>
-        </section>
-      </article>
-    )
+        </article>
+      )
   }
 }
 export default Register

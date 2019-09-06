@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
-
 import './App.css'
 
 import Home from './pages/Home'
@@ -11,19 +10,26 @@ import Contact from './pages/Contact'
 import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
 
-import Loading from './components/Loading/Loading'
-import Title from './components/Title/Title'
+import { Loading } from './components/Loading/Loading'
+import { Title } from './components/Title/Title'
 
 import AppContextProvider from './AppContextProvider'
-import { AppContext } from './AppContext'
+import AppContext from './AppContext'
 
 export class App extends Component {
+  static contextType = AppContext
+  context!: React.ContextType<typeof AppContext>
+
   state = {
     sidebar: {
       isOpen: false
     }
   }
-
+  
+  componentDidMount() {
+    
+  }
+  
   toggleSidebar = () => {
     this.setState(()=>{
       let { sidebar } = this.state
@@ -92,7 +98,17 @@ export class App extends Component {
               <Route path="/register" component={Register}/>
               <Route path="/terms" component={Terms}/>
               
-              <Route path="/dashboard" component={Dashboard}/>
+              <Route path="/dashboard">
+                <AppContext.Consumer>
+                  {
+                    ({ state }) => (
+                      <Dashboard intent="login"
+                        userdata={state.userdata}
+                      />
+                    )
+                  }
+                </AppContext.Consumer>
+              </Route>
               
               <Route component={Home}/>
             </Switch>

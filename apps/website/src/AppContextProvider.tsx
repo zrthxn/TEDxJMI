@@ -3,7 +3,12 @@ import { AppContext } from './AppContext'
 
 export default class AppContextProvider extends Component {
   state = {
-    ongoingAppTransition: false
+    ongoingAppTransition: false,
+    userdata: {
+      _id: 'null',
+      name: 'Alisamar Husain',
+      email: 'zrthxn@gmail.com'
+    }
   }
 
   startAppTransition = () => {

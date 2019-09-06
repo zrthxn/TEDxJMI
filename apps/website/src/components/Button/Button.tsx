@@ -3,7 +3,7 @@ import React, { Component, ReactElement, CSSProperties } from 'react'
 import '../../App.css'
 import './Button.css'
 
-export interface ButtonProps {
+interface ButtonProps {
   id?: string,
   children?: string | ReactElement<HTMLElement>,
   style?: CSSProperties,

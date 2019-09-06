@@ -1,0 +1,13 @@
+.ticket {
+  padding: 1em;
+  background: #fff;
+  color: #000;
+  outline: none;
+
+  .ticket-body {
+    .title {
+      font-size: 1.75em;
+      font-weight: 200;
+    }
+  }
+}
