@@ -40,10 +40,10 @@ export const AppContext = React.createContext({
     endAppTransition: () => {
       
     },
-    loginUser: (user:UserModel) => {
+    setUser: (user:UserModel) => {
       
     },
-    registerTicket: (user:UserModel, ticket?:TicketModel) => {
+    setTicket: (ticket:TicketModel) => {
 
     }
   }

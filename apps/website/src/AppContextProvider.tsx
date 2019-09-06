@@ -50,16 +50,14 @@ export default class AppContextProvider extends Component {
     })
   }
 
-  loginUser = (user:UserModel, ticket?:TicketModel) => {
+  setUser = (user:UserModel) => {
     this.setState({
-      user,
-      ticket
+      user
     })
   }
 
-  registerTicket = (user:UserModel, ticket?:TicketModel) => {
+  setTicket = (ticket:TicketModel) => {
     this.setState({
-      user,
       ticket
     })
   }
@@ -74,8 +72,8 @@ export default class AppContextProvider extends Component {
                 actions: {
                   startAppTransition: this.startAppTransition,
                   endAppTransition: this.endAppTransition,
-                  loginUser: this.loginUser,
-                  registerTicket: this.registerTicket,
+                  setUser: this.setUser,
+                  setTicket: this.setTicket,
                   router: (path)=>{
                     history.push(path)
                   }

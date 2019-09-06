@@ -23,6 +23,12 @@ export class Register extends Component {
   state = {
     showLogin: false,
     loggedIn: false,
+    user: {
+      _id: String(),
+      name: String(),
+      email: String(),
+      createdOn: String()
+    },
     data: {
       regName: undefined,
       regEmail: undefined,
@@ -49,9 +55,15 @@ export class Register extends Component {
       name: this.state.data.regName,
       email: this.state.data.regEmail
     })
-    // Returned user _id, with name & email from backend
-    this.context.actions.loginUser(user.data)
-    this.context.actions.endAppTransition()
+    
+    this.setState({
+      user: {
+        _id: user.data._id,
+        name: user.data.name,
+        email: user.data.email,
+        createdOn: user.data.createdOn
+      }
+    })
     return
   }
 
@@ -76,7 +88,7 @@ export class Register extends Component {
         <AppContext.Consumer>
           {
             ({ state }) => (
-              <Dashboard intent="register" user={state.user} />
+              <Dashboard intent="register" user={this.state.user} />
             )
           }
         </AppContext.Consumer>
@@ -168,7 +180,6 @@ export class Register extends Component {
                           <div style={{ display: 'flex', flexDirection: 'row', maxWidth: '24em', margin: '2em auto' }}>                                  
                             <Button color="primary"
                               onClick={() => {
-                                appContext.actions.startAppTransition()
                                 this.register().then(() => {
                                   this.setState({
                                     loggedIn: true
