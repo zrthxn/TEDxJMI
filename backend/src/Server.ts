@@ -1,4 +1,5 @@
 import express from 'express'
+import path from 'path'
 import * as bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 import crypto from 'crypto'
@@ -27,6 +28,7 @@ server.use(bodyParser.urlencoded({ extended: true }))
 server.use(express.json())
 server.use(express.urlencoded({ extended: true }))
 
+server.use('/static', express.static(path.join( __dirname, '../../static' )))
 
 server.listen(PORT, (err) => {
   if (err) return console.error(err)
