@@ -1,5 +1,6 @@
 import express from 'express'
 // import Firestore from '../utils/Database'
+require('dotenv').config()
 
 export const RegisterRouter = express.Router()
 
