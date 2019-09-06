@@ -14,13 +14,7 @@ export function Checkbox(props:CheckboxProps) {
   return (
     <label className="checkbox">
       <p>{ props.label }</p>
-      <input type="checkbox" checked={checked}
-        // onClick={({ target })=>{
-        //   checked = target.checked
-        //   if(target.checked)
-        //     if(props.onChecked!==undefined)
-        //       props.onChecked()
-        // }} 
+      <input type="checkbox" defaultChecked={checked}
         onChange={({ target })=>{
           checked = target.checked
           if(target.checked)

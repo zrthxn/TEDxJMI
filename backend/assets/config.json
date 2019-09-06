@@ -1,0 +1,14 @@
+{
+  "PORT": 3600,
+	"clientAPIKey": "zrthxn",
+  "policy": {
+    "ALLOW_ORIGIN": "*",
+    "ALLOW_HEADERS": "Origin, X-Requested-With, Content-Type, Accept, X-Access-Key, X-Access-Token",
+    "ALLOW_METHODS": "*"
+  },
+  "security": {
+    "GENERATOR": "AsHxQPE",
+    "CSRF_SECRET": "AsHxQPEAsHxQPEAsHxQPEAsHxRPEAsHxEPE",
+    "API_SECRET": "XPQxHsAEQxGsAnPMQxHsAEfQxHsAEPQxHsA"
+  }
+}

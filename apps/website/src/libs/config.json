@@ -1,4 +1,8 @@
 {
+	"clientAPIKey": "zrthxn",
+	"endpoints": {
+		"backend": "http://localhost:3600"
+	},
 	"firebase": {
 		"apiKey": "AIzaSyAd17pI-aG3Mx8x_HXNz4lQ7VWRWnSgy4E",
 		"authDomain": "xtacy-org.firebaseapp.com",

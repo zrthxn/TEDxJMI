@@ -12,10 +12,10 @@ exports.launchPortal = (payment, userdata, callbacks) => {
     firstname: (userdata.name).split(' ')[0],
     email: userdata.email,
     phone: userdata.phone,
-    productinfo: userdata.productinfo,
+    productinfo: userdata.info,
     // udf1: 'Heelo',
-    surl : '/_payment/success',
-    furl: '/_payment/failure'
+    surl : '/_payments/verify',
+    furl: '/_payments/verify'
   },
   { 
     responseHandler: callbacks.responseHandler,
@@ -25,7 +25,7 @@ exports.launchPortal = (payment, userdata, callbacks) => {
 
 function generatePaymentHash(payment, userdata) {
   const hashSequence = `${payment.key}|${payment.txnid}|${payment.amount}|` + 
-    `${userdata.productinfo}|${(userdata.name).split(' ')[0]}|${userdata.email}|` + 
+    `${userdata.info}|${(userdata.name).split(' ')[0]}|${userdata.email}|` + 
     `||||||||||` + 
     // `udf1|udf2|udf3|udf4|udf5||||||` + 
     `${payment.salt}`

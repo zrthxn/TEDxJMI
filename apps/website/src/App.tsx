@@ -12,6 +12,8 @@ import Dashboard from './pages/Dashboard'
 
 import { Loading } from './components/Loading/Loading'
 import { Title } from './components/Title/Title'
+import Confirmation from './components/Payments/Confirmation'
+import Failure from './components/Payments/Failure'
 
 import AppContextProvider from './AppContextProvider'
 import AppContext from './AppContext'
@@ -42,9 +44,9 @@ export class App extends Component {
 
   render() {
     return (
-      <AppContextProvider>
+      <Router>
         <article>
-          <Router>
+          <AppContextProvider>
             
           <header>
             <div className="container">
@@ -65,7 +67,7 @@ export class App extends Component {
                 </nav>
               </div>
 
-              <div className="sidebar-shadow" id="sidebar-shadow"/>
+              <div className="sidebar-shadow" id="sidebar-shadow" onClick={this.toggleSidebar}/>
               
               <nav className="desktop-nav">
                 <Link to={'/'}>About</Link>
@@ -102,13 +104,14 @@ export class App extends Component {
                 <AppContext.Consumer>
                   {
                     ({ state }) => (
-                      <Dashboard intent="login"
-                        userdata={state.userdata}
-                      />
+                      <Dashboard intent="login" user={state.user}/>
                     )
                   }
                 </AppContext.Consumer>
               </Route>
+
+              <Route path="/payment/success" component={Confirmation}/>
+              <Route path="/payment/failure" component={Failure}/>
               
               <Route component={Home}/>
             </Switch>
@@ -123,9 +126,9 @@ export class App extends Component {
               <br/><br/>
               <Link to={'/terms'}>Terms and Conditions</Link>
             </footer>
-          </Router>
+          </AppContextProvider>
         </article>
-      </AppContextProvider>      
+      </Router>      
     )
   }
 }

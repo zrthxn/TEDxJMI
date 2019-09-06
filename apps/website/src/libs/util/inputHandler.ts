@@ -18,7 +18,7 @@ export function handleChangeById(event:any, state:any) {
   }
 
   if(event.target.id.includes('/')) {
-    if(event.target.id.split('/')[0].includes('#') && iterableMembers.length!==0) {
+    if(event.target.id.split('/')[0].includes('#')) {
       let parentKey = event.target.id.split('/')[0].split('#')[0]
       let index = parseInt(event.target.id.split('/')[0].split('#')[1], 10)
       let childKey = event.target.id.split('/')[1]

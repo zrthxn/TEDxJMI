@@ -7,7 +7,7 @@ interface TextboxProps {
   className?: string,
   type?: 'text' | 'number' | 'tel' | 'password' | 'email' | string,
   onChange?: Function,
-  value?: Function,
+  value?: string,
   placeholder?: string,
   validation?: Function,
   onValidate?: Function,
@@ -28,12 +28,10 @@ export class Textbox extends Component<TextboxProps> {
           <input id={this.props.id} className={(this.props.className!==undefined ? `textbox ${this.props.className}` : "textbox")} 
             type={ this.props.type!==null ? this.props.type : 'text' } 
             placeholder={this.props.placeholder}
+            defaultValue={(this.props.value!==undefined && this.props.value!==null ? this.props.value : '' )}
             onChange={(event)=>{
               if(this.props.onChange!==undefined)
                 this.props.onChange(event)
-              
-              if(this.props.value!==undefined)
-                this.props.value(event.target.value)
               
               var validationResult:boolean
               if(this.props.validation!==undefined)
@@ -117,9 +115,6 @@ export class Textarea extends Component<TextboxProps> {
             onChange={(event)=>{
               if(this.props.onChange!==undefined)
                 this.props.onChange(event)
-              
-              if(this.props.value!==undefined)
-                this.props.value(event.target.value)
             }}
           />
         </div>

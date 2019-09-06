@@ -19,7 +19,7 @@ export class Ticket extends Component<TicketProps> {
     return (
       <div className="ticket">
         <div className="ticket-body">
-          <h3 className="title">{ this.props.data.title }</h3>
+          <h3 className="title">{ this.props.data.createdOn }</h3>
 
           <Button size="small" color="primary" onClick={()=>{
             if(this.props.onCancel!==undefined)

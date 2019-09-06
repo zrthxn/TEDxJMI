@@ -5,12 +5,14 @@ require('firebase/firestore')
 
 const DatabaseConfig = require('../config.json').firebase
 
-if (firebase.apps.length === 0)
-    firebase.initializeApp(DatabaseConfig)
-export const database = firebase.database()
-export const firestore = firebase.firestore()
+if(firebase.apps.length === 0)
+  firebase.initializeApp(DatabaseConfig)
 
-export const auth = firebase.auth()
+export const Realtime = firebase.database()
+export const Firestore = firebase.firestore()
+export const Auth = firebase.auth()
+
+export default Firestore
 /* @author Alisamar Husain
 *
 * Standard Firebase/Firestore Export
