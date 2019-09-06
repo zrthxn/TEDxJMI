@@ -77,7 +77,7 @@ export class Register extends Component {
      * After login, return user to AppContext
      */
 
-    // this.context.actions.loginUser(user.data)
+    // this.context.actions.setUser(user.data)
     this.context.actions.endAppTransition()
     return
   }
