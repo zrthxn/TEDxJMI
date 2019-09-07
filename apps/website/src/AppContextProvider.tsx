@@ -7,7 +7,6 @@ export default class AppContextProvider extends Component {
   state = {
     ongoingAppTransition: false,
     user: {
-      _id: String(),
       name: String(),
       email: String(),
       phone: String(),
@@ -17,8 +16,7 @@ export default class AppContextProvider extends Component {
       studentIdNumber: String()
     },
     ticket: {
-      _id: String(),
-      userId: String(),
+      userEmail: String(),
       createdOn: String(),
       couponCode: String(),
       verified: Boolean(),

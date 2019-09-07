@@ -5,7 +5,6 @@ export const AppContext = React.createContext({
   state: {
     ongoingAppTransition: false,
     user: {
-      _id: String(),
       name: String(),
       email: String(),
       phone: String(),
@@ -15,8 +14,7 @@ export const AppContext = React.createContext({
       studentIdNumber: String()
     },
     ticket: {
-      _id: String(),
-      userId: String(),
+      userEmail: String(),
       createdOn: String(),
       couponCode: String(),
       verified: Boolean(),

@@ -12,7 +12,7 @@ export const router = express.Router()
 const ServerConfig = require('../assets/config.json')
 
 import { RegisterRouter } from './routes/Register'
-import { PaymentsRouter } from './routes/Payments'
+import { PaymentsRouter } from './routes/Payment'
 
 router.use((req, res, next)=>{
   // CSRF
