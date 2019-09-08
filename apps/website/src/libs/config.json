@@ -1,7 +1,7 @@
 {
 	"clientAPIKey": "zrthxn",
 	"endpoints": {
-		"backend": "http://localhost:3600"
+		"backend": "https://api.tedxjmi.org"
 	},
 	"firebase": {
 		"apiKey": "AIzaSyDD3HTp68D0JY-7iD9jvFCJV9jsiJXtrjM",
