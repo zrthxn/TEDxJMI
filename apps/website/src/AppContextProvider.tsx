@@ -41,11 +41,13 @@ export default class AppContextProvider extends Component {
   }
 
   endAppTransition = () => {
-    this.setState(()=>{
-      return {
-        ongoingAppTransition: false
-      }
-    })
+    setTimeout(()=>{
+      this.setState(()=>{
+        return {
+          ongoingAppTransition: false
+        }
+      })
+    }, 1000)
   }
 
   setUser = (user:UserModel|any) => {
