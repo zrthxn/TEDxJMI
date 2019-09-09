@@ -26,7 +26,7 @@ export class App extends Component {
   authService = new APIService()
 
   state = {
-    authenticated: false,
+    authenticated: true,
     sidebar: {
       isOpen: false
     }

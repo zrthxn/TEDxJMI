@@ -17,42 +17,42 @@ export class Speakers extends Component {
         <section>
           <CardContainer>
             <Card size="medium">
-              <img alt="speaker" src="/static/img/speakers/KavitaBahl.jpg"/>
+              <img alt="speaker" src="/assets/img/speakers/KavitaBahl.jpg"/>
               <div className="sub">Kavita Bahl</div>
             </Card>
 
             <Card size="medium">
-              <img alt="speaker" src="/static/img/speakers/NandanSaxena.jpg"/>
+              <img alt="speaker" src="/assets/img/speakers/NandanSaxena.jpg"/>
               <div className="sub">Nandan Saxena</div>
             </Card>
 
             <Card size="medium">
-              <img alt="speaker" src="/static/img/speakers/RajeshSGokhale.jpg"/>
+              <img alt="speaker" src="/assets/img/speakers/RajeshSGokhale.jpg"/>
               <div className="sub">Rajesh S Gokhale</div>
             </Card>
 
             <Card size="medium">
-              <img alt="speaker" src="/static/img/speakers/RamakrishnaRamaSwamy.jpg"/>
+              <img alt="speaker" src="/assets/img/speakers/RamakrishnaRamaSwamy.jpg"/>
               <div className="sub">Ramakrishna Ramaswamy</div>
             </Card>
 
             <Card size="medium">
-              <img alt="speaker" src="/static/img/speakers/SadafHussain.jpg"/>
+              <img alt="speaker" src="/assets/img/speakers/SadafHussain.jpg"/>
               <div className="sub">Sadaf Hussain</div>
             </Card>
 
             <Card size="medium">
-              <img alt="speaker" src="/static/img/speakers/SaeedNaqvi.jpg"/>
+              <img alt="speaker" src="/assets/img/speakers/SaeedNaqvi.jpg"/>
               <div className="sub">Saeed Naqvi</div>
             </Card>
 
             <Card size="medium">
-              <img alt="speaker" src="/static/img/speakers/TanmayaJain.jpg"/>
+              <img alt="speaker" src="/assets/img/speakers/TanmayaJain.jpg"/>
               <div className="sub">Tanmaya Jain</div>
             </Card>
 
             <Card size="medium">
-              <img alt="speaker" src="/static/img/speakers/VivekSharma.jpg"/>
+              <img alt="speaker" src="/assets/img/speakers/VivekSharma.jpg"/>
               <div className="sub">Vivek Sharma</div>
             </Card>
           </CardContainer>
