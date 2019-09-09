@@ -150,14 +150,13 @@ export class Register extends Component {
           <h1>Register</h1>
 
           <section>
-            <h3>Registrations Open</h3>
+            <h3>Registrations Closed</h3>
 
             <p style={{ textAlign: 'center' }}>
-              Fill in the following form to register for TEDxJMI 2019.
-              Please read the terms and conditions carefully before registering.
+              Registerations for this event haven't opened yet.
             </p>
 
-            <section>
+            {/* <section>
               {
                 this.state.showLogin ? (
                   <div style={{ display: 'flex', flexDirection: 'column', alignContent: 'center' }}>
@@ -264,7 +263,7 @@ export class Register extends Component {
                   </div>
                 )
               }
-            </section>
+            </section> */}
           </section>
         </article>
       )
