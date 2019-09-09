@@ -134,7 +134,7 @@ export class Dashboard extends Component<DashboardProps> {
    * @lifecycle
    * Lifecycle method 2: start payment, open portal
    */
-  payment = async () => {
+  payment = () => {
     this.context.actions.startAppTransition()
     launchPortal({
       key: this.state.payment.key,

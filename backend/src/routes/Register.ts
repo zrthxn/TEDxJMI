@@ -32,12 +32,6 @@ RegisterRouter.post('/user', (req, res)=>{
     .catch(()=>{
       res.sendStatus(403)
     })
-
-  // res.send({
-  //   _id: '1234567890',
-  //   name: userdata.name,
-  //   email: userdata.email
-  // })
 })
 
 RegisterRouter.post('/ticket', (req, res)=>{

@@ -2,22 +2,40 @@ import axios from 'axios'
 const config = require('../config.json')
 
 export class APIService {
-  request = axios
+  protected endpoint = config.endpoints.backend
 
-  protected auth = {
-    csrf: {
-      token: null
-    },
-    headers: {
-      'X-Access-Key': null,
-      'X-Access-Token': null
-    }
+  private auth = {
+    key: String(),
+    token: String()
   }
 
-  protected endpoint = String()
+  request = axios.create({
+    baseURL: this.endpoint,
+    timeout: 5000
+  })
 
   constructor() {
     this.setEndpoint(config.endpoints.backend)
+
+    let key = localStorage.getItem('tedxjmi:X-Request-Validation')
+    let token = localStorage.getItem('tedxjmi:Authorization')
+    
+    if(key!==null && token!==null) 
+      this.auth = { key, token }
+
+    this.request.interceptors.request.use((config)=>{
+      config.xsrfHeaderName = 'X-Request-Validation'
+      config.headers = {
+        [config.xsrfHeaderName] : this.auth.key,
+        Authorization: this.auth.token
+      }
+      return config
+    })
+
+    this.request.interceptors.response.use(
+      (response) => response,
+      (error) => Promise.reject(error.response)
+    )
   }
 
   addPathRoute(setPath:string) {
@@ -26,53 +44,34 @@ export class APIService {
 
   setEndpoint(setUrl:string) {
     this.endpoint = setUrl
-
-    this.authenticate().then((auth)=>{
-      this.auth.csrf.token = auth.csrfToken
-      this.auth.headers = {
-        'X-Access-Key': auth.key,
-        'X-Access-Token': auth.authToken
-      }
-
-      this.request.create({
-        baseURL: this.endpoint,
-        timeout: 5000
-      })
-      
-      this.request.interceptors.response.use(
-        (response) => response,
-        (error) => Promise.reject(error.response)
-      )
-
-      this.request.interceptors.request.use(config => {
-        config.headers.post['X-Access-Key'] = this.auth.headers["X-Access-Key"]
-        config.headers.post['X-Access-Token'] = this.auth.headers["X-Access-Token"]
-        // config.headers.com['X-Access-Key'] = this.auth.csrf.token
-        return config
-      })
+    
+    this.request = axios.create({
+      baseURL: this.endpoint,
+      timeout: 5000
     })
   }
 
   async authenticate() {
-    const authResponse = await this.request.post(
-      this.endpoint + '/_authenticate', {
-        apiKey: config.clientAPIKey
-      }
-    )
-    
-    return authResponse.data
+    // Not real key
+    const APIKEY = 'qWertT2uiOp2lkjhgfD5Sa2zxcvBn831'
+
+    try {
+      let authResponse = await this.request.post(
+        this.endpoint + '/_authenticate', {
+          apiKey: APIKEY
+        }
+      )
+      
+      let { key, token } = authResponse.data
+      localStorage.setItem('tedxjmi:X-Request-Validation', key)
+      localStorage.setItem('tedxjmi:Authorization', token)
+    } catch (error) {
+      return Promise.reject(error)
+    }
   }
 
   getEndpoint() { 
     return this.endpoint
-  }
-
-  async validate() {
-    return this.request.get(
-      this.endpoint + '/', {
-        headers: this.auth.headers
-      }
-    )
   }
 
   async registerUser(userdata:any) {

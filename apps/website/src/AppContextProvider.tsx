@@ -28,8 +28,7 @@ export default class AppContextProvider extends Component {
         taxPercent: Number(),
         amountPaid: Number(),
       }
-    },
-
+    }
   }
 
   startAppTransition = () => {
