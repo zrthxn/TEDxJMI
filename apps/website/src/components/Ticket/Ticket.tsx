@@ -2,10 +2,8 @@ import React, { Component } from 'react'
 import Button from '../Button/Button'
 import './Ticket.scss'
 
-import { TicketModel } from '../../Models'
-
 interface TicketProps {
-  data: TicketModel,
+  data: any,
   onUpdate?: Function,
   onCancel?: Function
 }

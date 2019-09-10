@@ -1,34 +1,29 @@
 import React, { Component } from 'react'
 import { AppContext } from './AppContext'
-import { Route } from 'react-router'
-import { UserModel, TicketModel } from './Models'
+import { Route } from 'react-router-dom'
 
 export default class AppContextProvider extends Component {
   state = {
     ongoingAppTransition: false,
+    userAuthenticated: false,
     user: {
       name: String(),
       email: String(),
       phone: String(),
       institution: String(),
-      createdOn: String(),
+      createdOn: Date(),
       isInternalStudent: Boolean(),
-      studentIdNumber: String()
+      studentIdNumber: String(),
+      couponCode: String()
     },
-    ticket: {
-      userEmail: String(),
-      createdOn: String(),
-      couponCode: String(),
-      verified: Boolean(),
-      paymentId: String(),
-      payment: {    
-        txnid: String(),
-        baseAmount: Number(),
-        discountPercentApplied: Number(),
-        taxPercent: Number(),
-        amountPaid: Number(),
-      }
+    errors: {
+
     }
+  }
+
+  appState = (setter:{} | ((prevState: Readonly<{}>, props: Readonly<{}>) => {} | Pick<{}, never> | null) |  Pick<{}, never> | null, 
+      callback?: (() => void) | undefined) => {
+    this.setState(setter, callback)
   }
 
   startAppTransition = () => {
@@ -49,43 +44,27 @@ export default class AppContextProvider extends Component {
     }, 1000)
   }
 
-  setUser = (user:UserModel|any) => {
-    this.setState({
-      user
-    })
-  }
-
-  setTicket = (ticket:TicketModel|any) => {
-    this.setState({
-      ticket
-    })
-  }
-
   render() {
     return (
-      <Route render={({ history })=>{
-          return (
-            <AppContext.Provider
-              value={{
-                state: this.state,
-                actions: {
-                  startAppTransition: this.startAppTransition,
-                  endAppTransition: this.endAppTransition,
-                  setUser: this.setUser,
-                  setTicket: this.setTicket,
-                  router: (path)=>{
-                    history.push(path)
-                  }
-                }
-              }}
-            >
-              {
-                this.props.children
+      <Route render={({ history })=>(
+        <AppContext.Provider
+          value={{
+            state: this.state,
+            actions: {
+              startAppTransition: this.startAppTransition,
+              endAppTransition: this.endAppTransition,
+              appState: this.appState,
+              router: (path)=>{
+                history.push(path)
               }
-            </AppContext.Provider>
-          )
-        }}
-      />
+            }
+          }}
+        >
+          {
+            this.props.children
+          }
+        </AppContext.Provider>
+      )}/>
     )
   }
 }

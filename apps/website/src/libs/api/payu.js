@@ -1,9 +1,6 @@
 const crypto = require('crypto')
 
 exports.launchPortal = (payment, userdata, callbacks) => {
-  console.log(userdata)
-  console.log(payment)
-
   window.bolt.launch({
     key: payment.key,
     txnid: payment.txnid,

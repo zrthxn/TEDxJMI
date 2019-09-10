@@ -5,6 +5,8 @@ require('firebase/firestore')
 
 const DatabaseConfig = require('../config.json').firebase
 
+DatabaseConfig.apiKey = process.env.REACT_APP_FIREBASE_APIKEY
+
 if(firebase.apps.length === 0)
   firebase.initializeApp(DatabaseConfig)
 

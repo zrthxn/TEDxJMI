@@ -12,32 +12,21 @@ import Dashboard from './pages/Dashboard'
 
 import { Loading } from './components/Loading/Loading'
 import { Title } from './components/Title/Title'
-import Confirmation from './components/Payments/Confirmation'
-import Failure from './components/Payments/Failure'
 
 import AppContextProvider from './AppContextProvider'
 import AppContext from './AppContext'
+
 import { APIService } from './libs/api/api'
 
 export class App extends Component {
   static contextType = AppContext
   context!: React.ContextType<typeof AppContext>
 
-  authService = new APIService()
-
   state = {
     authenticated: true,
     sidebar: {
       isOpen: false
     }
-  }
-  
-  componentDidMount() {
-    this.authService.authenticate().then(()=>{
-      this.setState({
-        authenticated: true
-      })
-    })
   }
   
   toggleSidebar = () => {
@@ -99,40 +88,18 @@ export class App extends Component {
               }
             </AppContext.Consumer>
 
-            {
-              this.state.authenticated ? (
-                <Switch>
-                  <Route exact path="/" component={Home}/>
-                  <Route path="/team" component={Team}/>
-                  <Route path="/speakers" component={Speakers}/>
-                  <Route path="/contact" component={Contact}/>
-                  <Route path="/donate" component={Contact}/>
-                  <Route path="/register" component={Register}/>
-                  <Route path="/terms" component={Terms}/>
-                  
-                  <Route path="/dashboard">
-                    <AppContext.Consumer>
-                      {
-                        ({ state }) => (
-                          <Dashboard intent="login" user={state.user}/>
-                        )
-                      }
-                    </AppContext.Consumer>
-                  </Route>
-
-                  <Route path="/payment/success" component={Confirmation}/>
-                  <Route path="/payment/failure" component={Failure}/>
-                  
-                  <Route component={Home}/>
-                </Switch>
-              ) : (
-                <article>
-                  <section className="center">
-                    <h2>Loading</h2>
-                  </section>
-                </article>
-              )
-            }
+            <Switch>
+              <Route exact path="/" component={Home}/>
+              <Route path="/team" component={Team}/>
+              <Route path="/speakers" component={Speakers}/>
+              <Route path="/contact" component={Contact}/>
+              <Route path="/donate" component={Contact}/>
+              <Route path="/register" component={Register}/>
+              <Route path="/terms" component={Terms}/>
+              <Route path="/dashboard" component={Dashboard}/>
+              
+              <Route component={Home}/>
+            </Switch>
             
             <footer>
               <div>

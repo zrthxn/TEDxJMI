@@ -1,22 +1,26 @@
 {
   "PORT": 3600,
-  "clientAPIKey": "qWertT2uiOp2lkjhgfD5Sa2zxcvBn831",
   "policy": {
     "ALLOW_ORIGIN": "*",
     "ALLOW_HEADERS": "Origin, X-Requested-With, Content-Type, Accept, X-Request-Validation, Authorization",
     "ALLOW_METHODS": "GET,POST,PUT,DELETE,OPTIONS"
   },
   "security": {
-    "GENERATOR": "nhB7yNsfJWJhsYCW/gyGt7jyn1sDC3vcfDTPMB75fOm4cpYGg/46TqDodLlAnniMieh8b3acUrqsmzex49oRYQ==",
-    "SECRET": "zzqSfeBgp+DJWhUqsAfGVE6bs4iQs/G8BhSH4JktMBLpNuJaYSq/fkiyOT/9rDyNwMtU4+AK+UdBl76Vl09KYuztyal82QSb8FUKxpbp0kU7Ffb3tCMMp5c3D/AolF9j9GaGQN4cE01dNBAJn13jFn5sqWG0Rhm+8BAFBKPDic+pzHA8BHE4D9PMDmRDtdS2nEIHO7JAstLrYYv4PxAwmwrvCtrDujKw94Oh3vTqftRb8N5dEMPGxVENQtNmL1I8BBxqyf0c28+QuBLTmYeP2P4Z28IhzEpIeWSM1BzHeYJ+w0KmBIO1F5x7+oWkl7LwLPuY/Wqam1Swm5B56k21VQ=="
+    "GENERATOR": "Mj296BWAypEvHAbgZQpo5Xeza1PEr1zH8IMKX+IcMguXguFKmo4tkIgHQ9PUWxyBjNDMR+Hx/7QuQFNkgwxX6g==",
+    "SECRET": "CjI5RDegw3/e2Y+kBanB9gJ6ATZQvBKQGccl+7r7pQs3XbScOEwYYuHCwy54IKiICv9EbqE6fzmHE88EUsIs1mol3oYqutpD8xe78TWXY8pJWYiiKLk0Qh0N+9e+HZz7gdv7Yp7mnV0khMxh6LhjimQLGojKvU7ZMqkOltJa8dqyOjQ5LOez3ZvsAV4jVlbMsPdOqwRG52Kl+bIxLBMz0GQWFDNyB01lcN8l1XpOnRNQL6Rycp2nCo5kJufdmXierSgyyamC4+YCV+MOrabA/DQfYoshrhdqCDT5uPdzzsJqSh7E40ByEhgu6Q8UrrsOuTT+0OBRmkZkZ630VJ7hvQ=="
+  },
+  "tickets": {
+    "basePrice": 500,
+    "internalDiscountAmount": 400,
+    "txnFee": 0.03,
+    "taxRate": 0.18
   },
   "firebase": {
-    "apiKey": "AIzaSyDD3HTp68D0JY-7iD9jvFCJV9jsiJXtrjM",
     "authDomain": "tedxjmiwebsite.firebaseapp.com",
     "databaseURL": "https://tedxjmiwebsite.firebaseio.com",
     "projectId": "tedxjmiwebsite",
-    "storageBucket": "",
+    "storageBucket": "tedxjmiwebsite.appspot.com",
     "messagingSenderId": "26885015640",
-    "appId": "1:26885015640:web:4d94488f82b2a320b1e22d"
+    "appId": "1:26885015640:web:03c82fee42875b0fb1e22d"
   }
 }

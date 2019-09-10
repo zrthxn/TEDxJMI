@@ -1,4 +1,6 @@
 import axios from 'axios'
+import crypto from 'crypto'
+import { UserModel, TransactionModel } from '../../Models'
 const config = require('../config.json')
 
 export class APIService {
@@ -52,13 +54,16 @@ export class APIService {
   }
 
   async authenticate() {
-    // Not real key
-    const APIKEY = 'qWertT2uiOp2lkjhgfD5Sa2zxcvBn831'
+    const LOCK = crypto.randomBytes(32).toString('base64')
+    var APIKEY = ''
+
+    if(process.env.REACT_APP_CLIENT_KEY!==undefined)
+      APIKEY = crypto.createHmac('sha256', LOCK).update(process.env.REACT_APP_CLIENT_KEY).digest('base64')
 
     try {
       let authResponse = await this.request.post(
         this.endpoint + '/_authenticate', {
-          apiKey: APIKEY
+          clientId: LOCK, apiKey: APIKEY
         }
       )
       
@@ -70,38 +75,20 @@ export class APIService {
     }
   }
 
-  getEndpoint() { 
-    return this.endpoint
-  }
-
-  async registerUser(userdata:any) {
-    return this.request.post(
-      this.endpoint + '/_register/user', {
-        userdata
-      }
-    ) 
-  }
+  getEndpoint = () => this.endpoint
   
-  async registerTicket(data:any) {
+  async registerTicket(user:UserModel, txn:TransactionModel) {
     return this.request.post(
       this.endpoint + '/_register/ticket', {
-        data
+        user, txn
       }
     ) 
   }
 
-  async createPayment(data:any) {
+  async createPayment(user:UserModel) {
     return this.request.post(
       this.endpoint + '/_payments/create', {
-        data
-      }
-    ) 
-  }
-
-  async refundPayment() {
-    return this.request.post(
-      this.endpoint + '/_payments/refund', {
-        
+        user
       }
     ) 
   }

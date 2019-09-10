@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
-import $ from 'jquery'
+import crypto, { createHash } from 'crypto'
 import { withRouter, Route, Link } from 'react-router-dom'
 import '../App.css'
 
 import AppContext from '../AppContext'
-import { UserModel, TicketModel } from '../Models'
-import { handleChangeById as inputHandler, handleChangeById } from '../libs/util/inputHandler'
+import { UserModel } from '../Models'
 import { launchPortal } from '../libs/api/payu'
 import { APIService } from '../libs/api/api'
+import { encrypt, decrypt } from '../libs/util/encryption'
+import Firestore from '../libs/util/database'
 
 import { Ticket } from '../components/Ticket/Ticket'
 import { Textbox } from '../components/Textbox/Textbox'
@@ -15,153 +16,94 @@ import { Checkbox } from '../components/Checkbox/Checkbox'
 import { Button } from '../components/Button/Button'
 import { Loading } from '../components/Loading/Loading'
 
-import Confirmation from '../components/Payments/Confirmation'
-import Failure from '../components/Payments/Failure'
-
-interface DashboardProps {
-  intent: 'register' | 'login' | 'payment'
-  user: UserModel | any
-  ticket?: TicketModel | any
-}
-
-export class Dashboard extends Component<DashboardProps> {
+export class Dashboard extends Component {
   static contextType = AppContext
   context!: React.ContextType<typeof AppContext>
 
   paymentService = new APIService()
 
   state = {
-    intent: null,
-    data: {
-      user: {
-        name: String(),
-        email: String(),
-        phone: String(),
-        institution: String(),
-        createdOn: Date(),
-        isInternalStudent: Boolean(),
-        studentIdNumber: String()
-      },
-      ticket: {
-        userEmail: String(),
-        createdOn: String(),
-        couponCode: String(),
-        verified: Boolean(),
-        paymentId: String(),
-        payment: {    
-          txnid: String(),
-          baseAmount: Number(),
-          discountPercentApplied: Number(),
-          taxPercent: Number(),
-          amountPaid: Number()
-        }
-      }
+    transactionCreationSuccessful: false,
+    transactionPaymentSuccessful: undefined,
+    transaction: {
+      txnid: String(),
+      baseAmount: Number(),
+      discountPercentApplied: Number(),
+      taxPercent: Number(),
+      amountPaid: Number()
     },
-    requiredFulfilled: false,
-    fieldsValidated: false,
-    required: [
-      'phone'
-    ],
-    iterableMembers: [
-
-    ],
     payment: {
       key: String(),
       salt: String()
+    },
+    ticket: {
+
     }
   }
-
-  bolt = null
 
   constructor(props:any) {
     super(props)
   }
 
   componentDidMount() {
-    let { data } = this.state
-    this.setState(()=>{
-      data.user = this.props.user
+    if(this.context.state.userAuthenticated) {
+      this.paymentService.createPayment(this.context.state.user).then(({ data })=>{
+        const { transaction, apiKey, salt, encoding, checksum } = data
+        const hash = crypto.createHash('sha512').update(JSON.stringify(transaction)).digest("base64")
 
-      if(this.props.ticket!==undefined)
-        data.ticket = this.props.ticket
-
-      this.context.actions.endAppTransition()
-      return {
-        intent: this.props.intent,
-        data
-      }
-    })
-  }
-
-  handleChangeById = (event:any) => {
-    const result = inputHandler(event, this.state)
-    this.setState((prevState, props)=>(
-      result
-    ))
-  }
-
-  /**
-   * @lifecycle
-   * Lifecycle method 1: finalize user data
-   */
-  onFinalize = async () => {
-    if(this.state.requiredFulfilled) {
-      this.context.actions.startAppTransition()
-
-      let payment = await this.paymentService.createPayment(this.state.data)
-      
-      let { data } = this.state
-      data.ticket.payment = payment.data.transaction
-      this.context.actions.setUser(data.user)
-
-      this.setState({
-        intent: 'payment',
-        data,
-        payment: {
-          key: payment.data.apiKey,
-          salt: payment.data.salt
-        }
+        if(hash===checksum)
+          this.setState({
+            transaction,
+            transactionCreationSuccessful: true,
+            payment: {
+              key: decrypt(apiKey, encoding),
+              salt: decrypt(salt, encoding)
+            }
+          })
+      }).finally(()=>{
+        this.context.actions.endAppTransition()
       })
-      return
-    }
-    else {
-      alert('Please fill all the required fields!')
-      return Promise.reject()
     }
   }
-
+  
   /**
    * @lifecycle
    * Lifecycle method 2: start payment, open portal
    */
-  payment = () => {
+  onProceedToPay = () => {
     this.context.actions.startAppTransition()
+    const { key, salt } = this.state.payment
+    const { txnid, amountPaid } = this.state.transaction
+    const { name, email, phone } = this.context.state.user
+    
     launchPortal({
-      key: this.state.payment.key,
-      salt: this.state.payment.salt,
-      txnid: this.state.data.ticket.payment.txnid,
-      amount: this.state.data.ticket.payment.amountPaid
+      key, salt, txnid,
+      amount: amountPaid
     }, {
-      name: this.state.data.user.name,
-      email: this.state.data.user.email,
-      phone: this.state.data.user.phone,
-      info: 'TEDXJMI Ticket'
+      name, email, phone,
+      info: 'TEDxJMI Ticket'
     }, {
       responseHandler: (BOLT:any) => {
         this.onPaymentAuthorize(BOLT.response)
           .then(()=>{
-            this.context.actions.router('/payment/success')
+            this.setState({ transactionPaymentSuccessful: true })
           })
           .catch(()=>{
-            this.context.actions.router('/payment/failure')
+            this.setState({ transactionPaymentSuccessful: false })
           })
           .finally(()=>{
             this.context.actions.endAppTransition()
           })
       },
 
-      catchException: (BOLT:any) => {
-        this.context.actions.router('/payment/failure')
+      catchException: async (BOLT:any) => {
+        this.setState({ transactionPaymentSuccessful: false })
+        this.context.actions.appState({
+          errors: {
+            ...BOLT
+          }
+        })
+        await Firestore.collection('Transactions').doc(this.state.transaction.txnid).update({ status: 'FAILED' })
         this.context.actions.endAppTransition()
       }
     })
@@ -173,134 +115,111 @@ export class Dashboard extends Component<DashboardProps> {
    */
   onPaymentAuthorize = async (apiResponse:any) => {
     if(apiResponse.txnStatus==='SUCCESS') {
-      let ticket = await this.paymentService.registerTicket(this.state.data)
-      
-      let { data } = this.state
+      let ticket = await this.paymentService.registerTicket(this.context.state.user, this.state.transaction)
+      this.setState({
+        transactionPaymentSuccessful: true,
+        ticket: ticket.data
+      })
 
-      this.context.actions.setTicket(data.ticket)
       return
     }
     else {
+      this.context.actions.appState({
+        errors: {
+          ...apiResponse
+        }
+      })
+
+      this.setState({
+        transactionPaymentSuccessful: false
+      })
+      
+      await Firestore.collection('Transactions').doc(this.state.transaction.txnid).update({ status: 'FAILED' })
       return Promise.reject()
     }
   }
 
-  /**
-   * @lifecycle
-   * Lifecycle method 4: payment refund
-   */
-  refundPayment = async () => {
-    this.context.actions.startAppTransition()
-    
-    // let refund = await this.paymentService.refundPayment()
-    // wait for API response
-    setTimeout(this.context.actions.endAppTransition, 1000)
-  }
-
   render() {
-    const { intent } = this.state
+    if(this.state.transactionCreationSuccessful)
+      if(this.state.transactionPaymentSuccessful===true)
+        return (
+          <div>Success</div>
+        )
+      else if(this.state.transactionPaymentSuccessful===false)
+        return (
+          <div>Failed</div>
+        )
+      else
+        return (
+          <article>
+            <h1>Payment</h1>
 
-    if(intent==="login")
-      return (
-        <article>
-          <section>
-            
-          </section>
-        </article>
-      )
+            <section style={{ padding: '1em 3.5em' }}>
+              <p style={{ textAlign: 'center' }}>
+                Fill in all the required details.
+              </p>
+              <p style={{ textAlign: 'center', color: '#ffffff80' }}>
+                Please note that this ticket is non-refundable and non-transferable.
+              </p>
+            </section>
 
-    else if(intent==="register")
-      return (
-        <article>
-          <h1>Dashboard</h1>
+            <section className="container">
+              <div 
+                style={{ 
+                  display: 'flex', flexDirection: 'row', 
+                  width: '24em', margin: 'auto',
+                  fontWeight: 600
+                }}
+              >
+                <p style={{ textAlign: 'left', margin: '0.5em', width: '11.75em' }}>
+                  <span>Ticket Price</span><br/><br/>
 
-          <section className="center">
-            In the section below, please select your ticket and go through the guidelines carefully.
-          </section>
+                  {
+                    this.state.transaction.discountPercentApplied!==0 ? (
+                      <span><span>Coupon Discount</span><br/><br/></span>
+                    ): null
+                  }                
 
-          <section className="center" style={{ maxWidth: '28em' }}>
-            <h2 style={{ margin: '0 1rem' }}>{ this.props.user.name }</h2>
-            <h3 style={{ color: '#ffffff80' }}>{ this.props.user.email }</h3>
-            
-            <Textbox id="user/phone" placeholder="Phone" className="dark" 
-              value={this.state.data.user.phone} onChange={this.handleChangeById}/>
-
-            <Textbox id="user/institution" placeholder="Institution" className="dark"
-              value={this.state.data.user.institution} onChange={this.handleChangeById}/>
-
-            <Checkbox label="JMI Student" checked={this.state.data.user.isInternalStudent} 
-              onChange={(target: { checked:boolean })=>{
-                this.setState(()=>{
-                  let { data } = this.state
-                  data.user.isInternalStudent = target.checked
-                  return {
-                    data
+                  <span>Tax</span><br/><br/>
+                </p>
+                
+                <p style={{ textAlign: 'right', margin: '0.5em', width: '12.25em' }}>
+                  <span>{ '\u20B9' + this.state.transaction.baseAmount }</span><br/><br/>
+                  
+                  {
+                    this.state.transaction.discountPercentApplied!==0 ? (
+                      <span><span>{ this.state.transaction.discountPercentApplied + '%' }</span><br/><br/></span>
+                    ): null
                   }
-                })
-              }}
-            />
+                  
+                  <span>{ this.state.transaction.taxPercent + '%' }</span><br/><br/>
+                </p>
+              </div>
 
-            {
-              this.state.data.user.isInternalStudent ? (
-                <Textbox id="user/studentIdNumber" placeholder="JMI ID Number" className="dark"
-                  value={this.state.data.user.studentIdNumber} onChange={this.handleChangeById}/>
-              ) : null
-            }
+              <div style={{ textAlign: 'center' }}>
+                <h3 style={{ margin: 0, color: '#dd0000', fontWeight: 800 }}>Total</h3>
+                <h2 style={{ marginTop: '0.25em' }}>
+                  { '\u20B9 ' + this.state.transaction.amountPaid }
+                </h2>
+              </div>
+            </section>
 
-            <Textbox id="ticket/couponCode" placeholder="Coupon Code" className="dark"
-              value={this.state.data.ticket.couponCode} onChange={this.handleChangeById}/>
-
-            <Button size="medium" color="primary" onClick={()=>{
-              this.onFinalize().then(()=>{
-                this.context.actions.endAppTransition()
-              }).catch(()=>{
-                this.context.actions.endAppTransition()
-              })
-            }}>
-              Proceed
+            <Button size="medium" color="primary" onClick={this.onProceedToPay}>
+              Proceed to Pay
             </Button>
+
             <p style={{ fontSize: '0.75em', textAlign: 'center' }}>
               By registering, you <br/> agree to the <Link to="/terms">Terms and Conditions</Link>
             </p>
-          </section>
-        </article>
-      )
-
-    else if(intent==="payment")
-      return (
-        <article>
-          <h2>Payment</h2>
-
-          <section>
-            <h3>
-              { '\u20B9' + this.state.data.ticket.payment.amountPaid }
-            </h3>
-          </section>
-
-          <Link to="#" style={{ fontSize: '1.25em' }} onClick={()=>(
-            this.setState({
-              intent: 'register'
-            })
-          )}>
-            Go Back
-          </Link>
-
-          <br/>
-
-          <Button size="medium" color="primary" onClick={()=>{
-            this.payment()
-          }}>
-            Proceed to Pay
-          </Button>
-          <p style={{ fontSize: '0.75em', textAlign: 'center' }}>
-            By registering, you <br/> agree to the <Link to="/terms">Terms and Conditions</Link>
-          </p>
-        </article>
-      )
-
+          </article>
+        )
     else
       return (
-        <Loading/>
+        <article>
+          <section style={{ textAlign: 'center' }}>
+            Loading...
+          </section>
+        </article>
       )
   }
 }

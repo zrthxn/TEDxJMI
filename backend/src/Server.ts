@@ -5,6 +5,8 @@ import * as bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 import crypto, { randomBytes } from 'crypto'
 
+require('dotenv')
+
 /**
  * @authors
  * Alisamar Husain | @zrthxn
@@ -64,11 +66,11 @@ import { RegisterRouter } from './routes/Register'
 import { PaymentsRouter } from './routes/Payment'
 
 server.post('/_authenticate', (req, res)=>{
-  const { apiKey } = req.body
+  const { clientId, apiKey } = req.body
   const { GENERATOR, SECRET } = ServerConfig.security
 
   if(apiKey!==undefined)
-    if(apiKey!==ServerConfig.clientAPIKey)
+    if(apiKey!==crypto.createHmac('sha256', clientId).update(process.env.CLIENT_KEY).digest('base64'))
       return res.status(403).send('ERR_INVALID_APIKEY')
 
   const random = crypto.randomBytes(32).toString('base64')

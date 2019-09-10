@@ -1,34 +1,27 @@
 import React from 'react'
-import { UserModel, TicketModel } from './Models'
 
 export const AppContext = React.createContext({
   state: {
     ongoingAppTransition: false,
+    userAuthenticated: true,
     user: {
       name: String(),
       email: String(),
       phone: String(),
       institution: String(),
-      createdOn: String(),
+      createdOn: Date(),
       isInternalStudent: Boolean(),
-      studentIdNumber: String()
+      studentIdNumber: String(),
+      couponCode: String()
     },
-    ticket: {
-      userEmail: String(),
-      createdOn: String(),
-      couponCode: String(),
-      verified: Boolean(),
-      paymentId: String(),
-      payment: {    
-        txnid: String(),
-        baseAmount: Number(),
-        discountPercentApplied: Number(),
-        taxPercent: Number(),
-        amountPaid: Number(),
-      }
+    errors: {
+
     }
   },
   actions: {
+    appState: (setter:any) => {
+      
+    },
     router: (path:string) => {
 
     },
@@ -37,12 +30,6 @@ export const AppContext = React.createContext({
     },
     endAppTransition: () => {
       
-    },
-    setUser: (user:UserModel|any) => {
-      
-    },
-    setTicket: (ticket:TicketModel|any) => {
-
     }
   }
 })
