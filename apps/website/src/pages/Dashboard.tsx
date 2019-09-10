@@ -116,11 +116,19 @@ export class Dashboard extends Component {
   onPaymentAuthorize = async (apiResponse:any) => {
     if(apiResponse.txnStatus==='SUCCESS') {
       let ticket = await this.paymentService.registerTicket(this.context.state.user, this.state.transaction)
-      this.setState({
-        transactionPaymentSuccessful: true,
-        ticket: ticket.data
-      })
-
+      if(ticket.data.status==='AUTH_PASSED')
+        this.setState({
+          transactionPaymentSuccessful: true,
+          ticket: ticket.data
+        })
+      else {
+        this.context.actions.appState({
+          errors: {
+            ...ticket.data
+          }
+        })
+        return Promise.reject()
+      }
       return
     }
     else {
@@ -143,11 +151,23 @@ export class Dashboard extends Component {
     if(this.state.transactionCreationSuccessful)
       if(this.state.transactionPaymentSuccessful===true)
         return (
-          <div>Success</div>
+          <article>
+            <section className="center">
+              <h1>Payment Successful</h1>
+              <p style={{ color: '#ffffff80', textAlign: 'center' }}>{ this.state.transaction.txnid }</p>
+              <h3> Thanks for booking your ticket!</h3>
+              <p>
+                We have emailed you with all your ticket details. We recommend you go through 
+                the guideline for the event here.
+              </p>
+            </section>
+          </article>
         )
       else if(this.state.transactionPaymentSuccessful===false)
         return (
-          <div>Failed</div>
+          <article>
+            <h2>Payment Failed</h2>
+          </article>
         )
       else
         return (

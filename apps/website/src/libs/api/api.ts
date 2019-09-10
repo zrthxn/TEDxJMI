@@ -78,9 +78,10 @@ export class APIService {
   getEndpoint = () => this.endpoint
   
   async registerTicket(user:UserModel, txn:TransactionModel) {
+    const checksum = crypto.createHash('sha512').update(JSON.stringify(user)).update(JSON.stringify(txn)).digest('base64')
     return this.request.post(
       this.endpoint + '/_register/ticket', {
-        user, txn
+        user, txn, checksum
       }
     ) 
   }
