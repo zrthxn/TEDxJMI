@@ -2,14 +2,16 @@ import express from 'express'
 import crypto from 'crypto'
 import Firestore from '../utils/Database'
 import { encrypt, decrypt } from '../utils/Encryption'
-
+import Gmailer from '../utils/Gmailer' 
+const mailer = new Gmailer()
 export const PaymentsRouter = express.Router()
 
 require('dotenv')
 
+const ServerConfig = require('../../assets/config.json')
 const { 
   basePrice, internalDiscountAmount, txnFee, taxRate 
-} = require('../../assets/config.json').tickets
+} = ServerConfig.tickets
 
 PaymentsRouter.post('/create', (req, res)=>{ 
   const { user } = req.body
@@ -76,12 +78,26 @@ PaymentsRouter.post('/create', (req, res)=>{
 })
 
 PaymentsRouter.post('/verify', (req, res)=>{
-  // Webhook from PayU
-  /**
-   * @todo
-   * Find ticket by TxnID and set
-   *  verified: true
-   * 
-   * If status is failed, send email to User and Admin
-   */
+  let data = req.body
+  if(data.status==='Success'){
+    let transRef = Firestore.collection('Transactions').doc(data.merchantTransactionId);
+    Firestore.runTransaction(t=>{
+      return t.get(transRef).then(doc=>{
+        t.update(transRef, {status: 'verified'})
+      })
+    }).then(()=>{
+      res.sendStatus(200)
+    })
+  } else {
+    mailer.SingleDelivery({
+      to : data.customerEmail,
+      subject : "Your payment failed | TEDxJMI",
+      body : "Your payment failed - " + data.merchantTransactionId
+    })
+    mailer.SingleDelivery({
+      to : ServerConfig.Gmail.username,
+      subject : "User payment failed | TEDxJMI",
+      body : "User payment failed - " + data.merchantTransactionId
+    })
+  }
 })

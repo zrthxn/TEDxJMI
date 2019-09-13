@@ -8,6 +8,7 @@ import { Textbox, Textarea } from '../components/Textbox/Textbox'
 import { handleChangeById as inputHandler, emailValidation } from '../libs/util/inputHandler'
 import { AppContext } from '../AppContext';
 import { Link } from 'react-router-dom'
+import { APIService } from '../libs/api/api'
 
 export class Contact extends Component {
   state = {
@@ -24,6 +25,7 @@ export class Contact extends Component {
     ],
     iterableMembers: []
   }
+  apiService = new APIService()
 
   handleChangeById = (event:any) => {
     const result = inputHandler(event, this.state)
@@ -40,6 +42,9 @@ export class Contact extends Component {
      * and to assign someone to get back to 
      * this.
      */
+    this.apiService.contactUs(this.state.data).then((response)=>{
+      this.setState({showConfirmation: true})
+    })
   }
 
   render() {
