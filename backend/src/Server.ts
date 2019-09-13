@@ -4,10 +4,8 @@ import fs from 'fs'
 import * as bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 import crypto, { randomBytes } from 'crypto'
-import Gmailer from './utils/Gmailer'
 
-const mailer = new Gmailer()
-require('dotenv')
+require('dotenv').config()
 
 /**
  * @authors
@@ -112,27 +110,21 @@ server.use('/_payments', PaymentsRouter)
 server.use('/_register', RegisterRouter)
 
 server.post('/_contact', (req, res) => {
-  let data = req.body
-  Firestore.collection('Mailers').get().then((snapshot) => {
-    let index = Math.floor(Math.random() * (snapshot.docs.length - 1))
-    mailer.SingleDelivery({
-      from: ServerConfig.Gmail.username,
-      to: ServerConfig.Gmail.username,
-      subject: 'Contact Form | ' + snapshot.docs[index].data().name + ' | ' + data.name,
-      replyTo: data.email,
-      body: `
-            <b>---------------- Contact Form Message ----------------</b> <br><br>
-            Name: ${data.name} <br> Email: ${data.email}<br><br>
-            Message: ${data.message}<br><br>
-            <b>------------------- End of Message -------------------</b> <br><br>
-          `
-    }).then(() => {
-      res.send(true)
-    })
-  }).catch(error => {
-    console.log(error)
-    res.send(false)
-  })
+  // let data = req.body
+  // mailer.SingleDelivery({
+  //   from: ServerConfig.Gmail.username,
+  //   to: ServerConfig.Gmail.username,
+  //   subject: 'Contact Form | ' + snapshot.docs[index].data().name + ' | ' + data.name,
+  //   replyTo: data.email,
+  //   body: `
+  //         <b>---------------- Contact Form Message ----------------</b> <br><br>
+  //         Name: ${data.name} <br> Email: ${data.email}<br><br>
+  //         Message: ${data.message}<br><br>
+  //         <b>------------------- End of Message -------------------</b> <br><br>
+  //       `
+  // }).then(() => {
+    res.sendStatus(200)
+  // })
 })
 
 server.use((req, res) => {

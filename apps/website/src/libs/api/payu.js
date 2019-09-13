@@ -11,8 +11,8 @@ exports.launchPortal = (payment, userdata, callbacks) => {
     phone: userdata.phone,
     productinfo: userdata.info,
     // udf1: 'Heelo',
-    surl : '/_payments/verify',
-    furl: '/_payments/verify'
+    surl : 'https://tedxjmi.org/_payments/verify',
+    furl: 'https://tedxjmi.org/_payments/verify'
   },
   { 
     responseHandler: callbacks.responseHandler,

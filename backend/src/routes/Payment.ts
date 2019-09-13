@@ -1,12 +1,14 @@
 import express from 'express'
 import crypto from 'crypto'
+import fs from 'fs'
+import path from 'path'
 import Firestore from '../utils/Database'
 import { encrypt, decrypt } from '../utils/Encryption'
 import Gmailer from '../utils/Gmailer' 
-const mailer = new Gmailer()
+
 export const PaymentsRouter = express.Router()
 
-require('dotenv')
+require('dotenv').config()
 
 const ServerConfig = require('../../assets/config.json')
 const { 
@@ -78,26 +80,41 @@ PaymentsRouter.post('/create', (req, res)=>{
 })
 
 PaymentsRouter.post('/verify', (req, res)=>{
-  let data = req.body
-  if(data.status==='Success'){
-    let transRef = Firestore.collection('Transactions').doc(data.merchantTransactionId);
-    Firestore.runTransaction(t=>{
-      return t.get(transRef).then(doc=>{
-        t.update(transRef, {status: 'verified'})
-      })
-    }).then(()=>{
-      res.sendStatus(200)
+  const Gmail = new Gmailer()
+  const data = req.body
+
+  const ref = Firestore.collection('Transactions').doc(data.merchantTransactionId)
+  Firestore.runTransaction( t =>{
+    return t.get(ref).then(doc=>{
+      var TEMPLATE_PATH
+      if(data.status==='Success') {
+        t.update(ref, { status: 'VERIFIED' })
+        TEMPLATE_PATH = path.join(__dirname, '..', '..', 'assets', 'templates', 'paymentconfirm.html')
+      } 
+      else {
+        t.update(ref, { status: 'FAILED' })
+        TEMPLATE_PATH = path.join(__dirname, '..', '..', 'assets', 'templates', 'paymentfail.html')
+      }
+
+      fs.readFile(
+        TEMPLATE_PATH,
+        (err, content)=>{
+          if(err) return console.error(err)
+
+          Gmail.SingleDataDelivery(
+            {
+              to: doc.data().email,
+              from: 'team@tedxjmi.org'
+            },
+            content.toString(),
+            [
+              { id: 'txnid', data: doc.id }
+            ]
+          )
+        }
+      )
     })
-  } else {
-    mailer.SingleDelivery({
-      to : data.customerEmail,
-      subject : "Your payment failed | TEDxJMI",
-      body : "Your payment failed - " + data.merchantTransactionId
-    })
-    mailer.SingleDelivery({
-      to : ServerConfig.Gmail.username,
-      subject : "User payment failed | TEDxJMI",
-      body : "User payment failed - " + data.merchantTransactionId
-    })
-  }
+  })
+
+  res.sendStatus(200)
 })

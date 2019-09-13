@@ -11,6 +11,9 @@ coverage/
 # production
 build/
 
+# credentials
+auth/
+
 # misc
 .env
 .DS_Store

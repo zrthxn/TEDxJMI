@@ -25,6 +25,7 @@ export class Contact extends Component {
     ],
     iterableMembers: []
   }
+  
   apiService = new APIService()
 
   handleChangeById = (event:any) => {
@@ -42,9 +43,8 @@ export class Contact extends Component {
      * and to assign someone to get back to 
      * this.
      */
-    this.apiService.contactUs(this.state.data).then((response)=>{
-      this.setState({showConfirmation: true})
-    })
+    await this.apiService.contactUs(this.state.data)
+    this.setState({ showConfirmation: true })
   }
 
   render() {

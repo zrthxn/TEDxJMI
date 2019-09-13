@@ -36,6 +36,7 @@ const buttonStyles = {
 
   small: {
     width: '8em',
+    fontSize: '0.75em',
     margin: '1rem auto',
     padding: '1rem'
   },

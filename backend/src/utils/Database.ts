@@ -4,8 +4,10 @@ import * as firebase from 'firebase'
 require('firebase/database')
 require('firebase/auth')
 require('firebase/firestore')
+require('dotenv').config()
 
 const DatabaseConfig = require('../../assets/config.json').firebase
+DatabaseConfig['apiKey'] = process.env.FIREBASE_APIKEY
 
 if(firebase.apps.length === 0)
   firebase.initializeApp(DatabaseConfig)

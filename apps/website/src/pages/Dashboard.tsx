@@ -36,9 +36,7 @@ export class Dashboard extends Component {
       key: String(),
       salt: String()
     },
-    ticket: {
-
-    }
+    ticketId: null
   }
 
   constructor(props:any) {
@@ -64,6 +62,8 @@ export class Dashboard extends Component {
         this.context.actions.endAppTransition()
       })
     }
+    else
+      this.context.actions.router('/register')
   }
   
   /**
@@ -119,7 +119,7 @@ export class Dashboard extends Component {
       if(ticket.data.status==='AUTH_PASSED')
         this.setState({
           transactionPaymentSuccessful: true,
-          ticket: ticket.data
+          ticketId: ticket.data.ticketId
         })
       else {
         this.context.actions.appState({
@@ -154,11 +154,25 @@ export class Dashboard extends Component {
           <article>
             <section className="center">
               <h1>Payment Successful</h1>
-              <p style={{ color: '#ffffff80', textAlign: 'center' }}>{ this.state.transaction.txnid }</p>
-              <h3> Thanks for booking your ticket!</h3>
-              <p>
-                We have emailed you with all your ticket details. We recommend you go through 
-                the guideline for the event here.
+              <h3>Thanks for booking your ticket!</h3>
+              
+              <p style={{ color: '#fff', textAlign: 'center' }}>
+                <span style={{ fontWeight: 800, color: '#ff0000' }}>TICKET NUMBER</span><br/>
+                <span style={{ fontSize: '1.25em' }}>{ this.state.ticketId }</span><br/>
+                <span style={{ color: '#ffffff80' }}>CONFIRMED</span><br/>
+              </p>
+
+              <p style={{ textAlign: 'center', margin: '2em 0' }}>
+                We have emailed you with all the details. You will need to show the confirmation email 
+                we just sent you at the conference venue to get your entry pass. <br/><br/>
+                
+                We recommend you go through the <Link to="#">guidelines</Link> for the event.<br/>
+              </p>
+
+              <p style={{ textAlign: 'center', fontSize: '1.25em' }}>
+                <Button size="small" color="primary" onClick={()=>{
+                  this.context.actions.router('/')
+                }}>Go Home</Button>
               </p>
             </section>
           </article>
@@ -166,7 +180,26 @@ export class Dashboard extends Component {
       else if(this.state.transactionPaymentSuccessful===false)
         return (
           <article>
-            <h2>Payment Failed</h2>
+            <section className="center">
+              <h2>Payment Failed</h2>
+              
+              <p>
+                There was a problem with your payment or you cancelled the payment by clicking 
+                the back button. If you think this is an error, please get in touch with us.
+              </p>
+
+              <p hidden id="payment-failed-error-details">
+                {
+                  JSON.stringify(this.context.state.errors)
+                }
+              </p>
+
+              <p style={{ textAlign: 'center', fontSize: '1.25em' }}>
+                <Button size="small" color="primary" onClick={()=>{
+                  this.context.actions.router('/')
+                }}>Go Home</Button>
+              </p>
+            </section>
           </article>
         )
       else
@@ -175,9 +208,6 @@ export class Dashboard extends Component {
             <h1>Payment</h1>
 
             <section style={{ padding: '1em 3.5em' }}>
-              <p style={{ textAlign: 'center' }}>
-                Fill in all the required details.
-              </p>
               <p style={{ textAlign: 'center', color: '#ffffff80' }}>
                 Please note that this ticket is non-refundable and non-transferable.
               </p>

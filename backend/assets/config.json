@@ -6,8 +6,8 @@
     "ALLOW_METHODS": "GET,POST,PUT,DELETE,OPTIONS"
   },
   "security": {
-    "GENERATOR": "l4v0+UWyvc2vaKfjJeO46pt6nZODnA5GtllZ76ZWN8/fubwV98k05RJWJxycM6HLj5jkgDCXKAvIazUQEEdcMg==",
-    "SECRET": "1sn1/e1c1kPQ/BlmmwhebchFs5RNqnYatAGZewxND8zndVcyPy+XXODUxGvLdNuHTFk1+5rvyVNUkoGY+1KHbmOPFXZI+haXNsAYm64/t0QKCjsVpoeiID8MrgdUfFr+kqvukYcdbEgXclI+7C+eIE/rQYj8A7Oo4n7miCg06CwgPJk1cjUste1OQmAnHRMcKqaHR92H5W7+XH9Rlld084zKjRuza9DQHMVCoJDEa+L1Rz+dJoMXNg94A9b4AapaCfpEaImvNxdGQtqA8xJENWzHRj8MD6eUGm90sptKjba+Yq7m8usXGNGea7s2/weqdisIfxIIIhrUiGHrosJfgg=="
+    "GENERATOR": "NjzN1LhC0RlsMK0qo8hV78rr3krxyiJBiPVLMh1SQkwZuyftHuOv/ydfRNdF0ixefiE4e3vrOljVbM5McgzMvA==",
+    "SECRET": "h3uW78ytWJGSIprZCAcWoQKt0ERTxvGslb417KCsq68DtEgVEO/07VY3XwwoCaGP8WSwe7Eoby4MP1fgqU1uR2uQYRCFyFLjQIkS1xRQUY0qRaGl35e4uwz7HiMpsqkm+O8PT4o/wu//VvC6IsHnjaH+SnXVdlnzehAOIJqhU703NglA80lx93TKima21FfAy+oCqSJWkoxuVJJh4gc3muBQNu+BvO39drPExBXMcMjXZhmcGGIoN99a/DBDS96cp4kSKwe0dp8sM9P8ImpPcrGSdiZS7fxCRmf4NndXJqZ7tB3IVMdE2zqUIQ1BX3+LRiiCOPT98T26H7tVenDztg=="
   },
   "tickets": {
     "basePrice": 500,
@@ -22,5 +22,9 @@
     "storageBucket": "tedxjmiwebsite.appspot.com",
     "messagingSenderId": "26885015640",
     "appId": "1:26885015640:web:03c82fee42875b0fb1e22d"
+  },
+  "gmailer": {
+    "username": "TEDxJMI",
+    "userId": "tedxjmiteam@gmail.com"
   }
 }

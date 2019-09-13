@@ -1,6 +1,6 @@
 import crypto from 'crypto'
 
-require('dotenv')
+require('dotenv').config()
 
 const ENCRYPTION_KEY = process.env.CLIENT_KEY
 const IV_LENGTH = 16
