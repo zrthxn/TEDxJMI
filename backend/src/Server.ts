@@ -4,6 +4,8 @@ import fs from 'fs'
 import * as bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 import crypto, { randomBytes } from 'crypto'
+import Gmailer from './utils/Gmailer'
+import GSheets from './utils/GSheets'
 
 require('dotenv').config()
 
@@ -31,9 +33,9 @@ server.use(bodyParser.urlencoded({ extended: true }))
 server.use(express.json())
 server.use(express.urlencoded({ extended: true }))
 
-server.listen(PORT, (err) => {
+server.listen(PORT, async (err) => {
   if (err) return console.error(err)
-  console.log(`Starting on ${PORT}...`)
+  console.log(`Starting on ${PORT}`)
 
   console.log('Recalculating security values')
   const GENERATOR = crypto.randomBytes(64).toString('base64')
@@ -51,6 +53,14 @@ server.listen(PORT, (err) => {
   })
 
   console.log('Listening')
+
+  const Gmail = new Gmailer()
+  const gmail = await Gmail.TestGmailer()
+  console.log('Done', gmail.success)
+
+  const Sheets = new GSheets()
+  const sheets = await Sheets.TestGSheets()
+  console.log('Done', sheets.success)
 })
 
 server.use((req, res, next) => {

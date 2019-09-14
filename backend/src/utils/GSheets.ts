@@ -63,19 +63,15 @@ export default class GSheets {
 		})
   }
 
-  TestGSheets = () => {
-    return new Promise((resolve,reject)=>{
-      this.authorize().then((auth)=>{
-          try {
-            let testObj = google.sheets({version: 'v4', auth})
-            if (testObj!=null) resolve({ success: true })
-          } catch(err) {
-            resolve({ success: false, errors: err })
-          }
-      }).catch((err)=>{
-        reject(err)
-      })
-    })
+  TestGSheets = async () => {
+    console.log('Testing Sheets API')
+    try {
+      const auth = await this.authorize()
+      const testObj = google.sheets({version: 'v4', auth})
+      if (testObj!=null) return({ success: true })
+    } catch(err) {
+      return Promise.reject({ success: false, errors: err })
+    }
   }
   
   AppendToSpreadsheet = (payload:ISpreadsheetEntryItem[]) => {

@@ -96,20 +96,16 @@ export default class Gmailer {
 		})
 	}
 
-	TestGmailer = () => {
-    return new Promise((resolve,reject)=>{
-      this.authorize().then((auth)=>{
-				try {
-					let testObj = google.sheets({version: 'v4', auth})
-					if (testObj!=null) resolve({ success: true })
-				} catch(err) {
-					resolve({ success: false, errors: err })
-				}
-      }).catch((err)=>{
-        reject(err)
-      })
-    })
-	}
+	TestGmailer = async () => {
+		console.log('Testing GMail API')
+    try {
+      const auth = await this.authorize()
+      const testObj = google.sheets({version: 'v4', auth})
+      if (testObj!=null) return({ success: true })
+    } catch(err) {
+      return Promise.reject({ success: false, errors: err })
+    }
+  }
 	
 	setFrequency(freq:number) {
 		console.log('Reset sending frequency', freq)
