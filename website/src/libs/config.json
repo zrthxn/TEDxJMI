@@ -1,6 +1,11 @@
 {
 	"endpoints": {
-		"backend": "http://localhost:3600"
+		"prod": {
+			"backend": "https://api.tedxjmi.org"
+		},
+		"dev": {
+			"backend": "http://localhost:3600"
+		}
 	},
 	"firebase": {
 		"authDomain": "tedxjmiwebsite.firebaseapp.com",

@@ -1,7 +1,9 @@
 import axios from 'axios'
 import crypto from 'crypto'
 import { UserModel, TransactionModel } from '../../Models'
+
 const config = require('../config.json')
+config.endpoints = process.env.NODE_ENV==='production' ? config.endpoints.prod : config.endpoints.dev
 
 export class APIService {
   protected endpoint = config.endpoints.backend
