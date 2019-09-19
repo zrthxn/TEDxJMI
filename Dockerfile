@@ -29,4 +29,4 @@ WORKDIR /server
 COPY --from=builder /backend/build build
 EXPOSE 3600
 
-CMD [ "node", "build/boot.js" ]
+CMD [ "node", "build/Server.js" ]
