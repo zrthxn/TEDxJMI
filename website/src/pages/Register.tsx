@@ -72,117 +72,120 @@ export class Register extends Component {
         <h1>Register</h1>
 
         <section className="center">
-          <div>
-            <h3>Registrations Closed</h3>
-            <p style={{ textAlign: 'center' }}>
-              Registrations have not opened yet. Please check back on a later date.
-            </p>
-          </div>
-          {/* {
-            this.state.authenticated ? (
-              <div style={{ display: 'flex', flexDirection: 'column', alignContent: 'center' }}>
-                {
-                  this.state.loggedIn ? (
-                    <div>
-                      <h2 style={{ margin: '0 1rem' }}>{ this.state.data.name }</h2>
-                      <h3 style={{ color: '#ffffff80' }}>{ this.state.data.email }</h3>
-                      <section style={{ maxWidth: '28em' }}>
-                        <Textbox id="phone" placeholder="Phone" className="dark" 
-                          value={this.state.data.phone} onChange={this.handleChangeById}/>
+          {
+            process.env.REACT_APP_REGISTERATION_OPEN==='YES' ? (
+              this.state.authenticated ? (
+                <div style={{ display: 'flex', flexDirection: 'column', alignContent: 'center' }}>
+                  {
+                    this.state.loggedIn ? (
+                      <div>
+                        <h2 style={{ margin: '0 1rem' }}>{ this.state.data.name }</h2>
+                        <h3 style={{ color: '#ffffff80' }}>{ this.state.data.email }</h3>
+                        <section style={{ maxWidth: '28em' }}>
+                          <Textbox id="phone" placeholder="Phone" className="dark" 
+                            value={this.state.data.phone} onChange={this.handleChangeById}/>
 
-                        <Textbox id="institution" placeholder="Institution" className="dark"
-                          value={this.state.data.institution} onChange={this.handleChangeById}/>
+                          <Textbox id="institution" placeholder="Institution" className="dark"
+                            value={this.state.data.institution} onChange={this.handleChangeById}/>
 
-                        <Checkbox label="JMI Student" checked={this.state.data.isInternalStudent} 
-                          onChange={(target: { checked:boolean })=>{
-                            this.setState(()=>{
-                              let { data } = this.state
-                              data.isInternalStudent = target.checked
-                              return {
-                                data
-                              }
+                          <Checkbox label="JMI Student" checked={this.state.data.isInternalStudent} 
+                            onChange={(target: { checked:boolean })=>{
+                              this.setState(()=>{
+                                let { data } = this.state
+                                data.isInternalStudent = target.checked
+                                return {
+                                  data
+                                }
+                              })
+                            }}
+                          />
+
+                          {
+                            this.state.data.isInternalStudent ? (
+                              <Textbox id="studentIdNumber" placeholder="JMI ID Number" className="dark"
+                                value={this.state.data.studentIdNumber} onChange={this.handleChangeById}/>
+                            ) : null
+                          }
+
+                          <Textbox id="couponCode" placeholder="Coupon Code" className="dark"
+                            value={this.state.data.couponCode} onChange={this.handleChangeById}/>
+
+                          <Button size="medium" color="primary" onClick={()=>{
+                            this.context.actions.startAppTransition()
+                            this.register()
+                              .then(()=>{
+                                this.context.actions.router('/dashboard')
+                              })
+                              .catch((err)=>{
+                                alert(err)
+                              })
+                          }}>
+                            Proceed
+                          </Button>
+                          <p style={{ fontSize: '0.75em', textAlign: 'center' }}>
+                            By registering, you <br/> agree to the <Link to="/terms">Terms and Conditions</Link>
+                          </p>
+                        </section>
+                      </div>
+                    ) : (
+                      <div>
+                        <h3>Registrations Open</h3>
+
+                        <p style={{ textAlign: 'center' }}>
+                          Fill in the following form to register for TEDxJMI 2019.
+                          Please read the terms and conditions carefully before registering.
+                        </p>
+
+                        <Textbox id="name" className="dark" placeholder="Name" onChange={this.handleChangeById} />
+
+                        <Textbox id="email" className="dark" placeholder="Email"
+                          onChange={this.handleChangeById}
+                          validationErrorHelptext="Not a valid email address"
+                          validation={(e: any) => {
+                            return emailValidation(e.target.value)
+                          }}
+                          onValidate={() => {
+                            this.setState({
+                              fieldsValidated: true
                             })
                           }}
                         />
 
-                        {
-                          this.state.data.isInternalStudent ? (
-                            <Textbox id="studentIdNumber" placeholder="JMI ID Number" className="dark"
-                              value={this.state.data.studentIdNumber} onChange={this.handleChangeById}/>
-                          ) : null
-                        }
-
-                        <Textbox id="couponCode" placeholder="Coupon Code" className="dark"
-                          value={this.state.data.couponCode} onChange={this.handleChangeById}/>
-
-                        <Button size="medium" color="primary" onClick={()=>{
-                          this.context.actions.startAppTransition()
-                          this.register()
-                            .then(()=>{
-                              this.context.actions.router('/dashboard')
-                            })
-                            .catch((err)=>{
-                              alert(err)
-                            })
-                        }}>
-                          Proceed
-                        </Button>
-                        <p style={{ fontSize: '0.75em', textAlign: 'center' }}>
-                          By registering, you <br/> agree to the <Link to="/terms">Terms and Conditions</Link>
-                        </p>
-                      </section>
-                    </div>
-                  ) : (
-                    <div>
-                      <h3>Registrations Open</h3>
-
-                      <p style={{ textAlign: 'center' }}>
-                        Fill in the following form to register for TEDxJMI 2019.
-                        Please read the terms and conditions carefully before registering.
-                      </p>
-
-                      <Textbox id="name" className="dark" placeholder="Name" onChange={this.handleChangeById} />
-
-                      <Textbox id="email" className="dark" placeholder="Email"
-                        onChange={this.handleChangeById}
-                        validationErrorHelptext="Not a valid email address"
-                        validation={(e: any) => {
-                          return emailValidation(e.target.value)
-                        }}
-                        onValidate={() => {
-                          this.setState({
-                            fieldsValidated: true
-                          })
-                        }}
-                      />
-
-                      <AppContext.Consumer>
-                        {
-                          appContext => (
-                            <div style={{ display: 'flex', flexDirection: 'row', maxWidth: '24em', margin: '2em auto' }}>                                  
-                              <Button color="primary"
-                                onClick={() => {
-                                  this.setState({
-                                    loggedIn: true
-                                  })
-                                }}
-                              >
-                                Start
-                              </Button>
-                            </div>
-                          )
-                        }
-                      </AppContext.Consumer>
-                    </div>
-                  )
-                }
-              </div>             
+                        <AppContext.Consumer>
+                          {
+                            appContext => (
+                              <div style={{ display: 'flex', flexDirection: 'row', maxWidth: '24em', margin: '2em auto' }}>                                  
+                                <Button color="primary"
+                                  onClick={() => {
+                                    this.setState({
+                                      loggedIn: true
+                                    })
+                                  }}
+                                >
+                                  Start
+                                </Button>
+                              </div>
+                            )
+                          }
+                        </AppContext.Consumer>
+                      </div>
+                    )
+                  }
+                </div>             
+              ) : (
+                <section className="center">
+                  <h3>Loading</h3>
+                </section>
+              )
             ) : (
-              <section className="center">
-                <h3>Loading</h3>
-              </section>
+              <div>
+                <h3>Registrations Closed</h3>
+                <p style={{ textAlign: 'center' }}>
+                  Registrations have not opened yet. Please check back on a later date.
+                </p>
+              </div>
             )
-          } */}
+          }
         </section>
       </article>
     )

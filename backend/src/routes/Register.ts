@@ -9,6 +9,12 @@ require('dotenv').config()
 
 export const RegisterRouter = express.Router()
 
+RegisterRouter.use((req, res, next)=>{
+  if(process.env.REGISTERATION_OPEN!=='YES')
+    return res.status(200).send('Registrations Closed')
+  next()
+})
+
 RegisterRouter.post('/ticket', async (req, res)=>{
   const { user, txn, checksum } = req.body
   const Gmail = new Gmailer()

@@ -15,6 +15,12 @@ const {
   basePrice, internalDiscountAmount, txnFee, taxRate 
 } = ServerConfig.tickets
 
+PaymentsRouter.use((req, res, next)=>{
+  if(process.env.REGISTERATION_OPEN!=='YES')
+    return res.status(200).send('Registrations Closed')
+  next()
+})
+
 PaymentsRouter.post('/create', (req, res)=>{ 
   const { user } = req.body
   const transaction = {
@@ -58,7 +64,7 @@ PaymentsRouter.post('/create', (req, res)=>{
       transaction.taxPercent = taxRate * 100
 
       // CRUCIAL --------------------------------
-      transaction.amountPaid = Math.ceil((transaction.baseAmount * (1 + (txnFee * (1 + taxRate)))) * (1 - transaction.discountPercentApplied/100))
+      transaction.amountPaid = Math.ceil((transaction.baseAmount * (1 + (taxRate * (1 + txnFee)))) * (1 - transaction.discountPercentApplied/100))
       // ========================================
 
       Firestore.collection('Mailing List').add({ name: user.name, email: user.email })

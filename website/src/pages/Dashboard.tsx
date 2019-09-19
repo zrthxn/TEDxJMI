@@ -197,7 +197,8 @@ export class Dashboard extends Component {
           <article>
             <h1>Payment</h1>
 
-            <section style={{ padding: '1em 3.5em' }}>
+            <section style={{ padding: '1em 3.5em', textAlign: 'center' }}>
+              <h3>Confirm Payment</h3>
               <p style={{ textAlign: 'center', color: '#ffffff80' }}>
                 Please note that this ticket is non-refundable and non-transferable.
               </p>
@@ -211,19 +212,19 @@ export class Dashboard extends Component {
                   fontWeight: 600
                 }}
               >
-                <p style={{ textAlign: 'left', margin: '0.5em', width: '11.75em' }}>
-                  <span>Ticket Price</span><br/><br/>
+                <p style={{ textAlign: 'left', margin: '0.5em', width: '11.75em', fontSize: '1.125rem' }}>
+                  <span><b>Ticket Price</b></span><br/><br/>
 
                   {
                     this.state.transaction.discountPercentApplied!==0 ? (
-                      <span><span>Coupon Discount</span><br/><br/></span>
+                      <span><span><b>Coupon Discount</b></span><br/><br/></span>
                     ): null
                   }                
 
-                  <span>Tax</span><br/><br/>
+                  <br/><span style={{ fontSize: '0.8em' }}>Transaction Fee</span><br/><br/>
                 </p>
                 
-                <p style={{ textAlign: 'right', margin: '0.5em', width: '12.25em' }}>
+                <p style={{ textAlign: 'right', margin: '0.5em', width: '12.25em', fontSize: '1.125rem' }}>
                   <span>{ '\u20B9' + this.state.transaction.baseAmount }</span><br/><br/>
                   
                   {
@@ -231,8 +232,8 @@ export class Dashboard extends Component {
                       <span><span>{ this.state.transaction.discountPercentApplied + '%' }</span><br/><br/></span>
                     ): null
                   }
-                  
-                  <span>{ this.state.transaction.taxPercent + '%' }</span><br/><br/>
+
+                  <br/><span style={{ fontSize: '0.8em' }}>{ this.state.transaction.taxPercent + '%' }</span><br/><br/>
                 </p>
               </div>
 
@@ -241,6 +242,13 @@ export class Dashboard extends Component {
                 <h2 style={{ marginTop: '0.25em' }}>
                   { '\u20B9 ' + this.state.transaction.amountPaid }
                 </h2>
+                
+                <p style={{ textAlign: 'center', opacity: 0.5, fontSize: '0.75em' }}>
+                  <i>
+                    Total amount payable is inclusive of transaction fee and <br/>
+                    GST charged by the payment service provider.
+                  </i>
+                </p>
               </div>
             </section>
 
