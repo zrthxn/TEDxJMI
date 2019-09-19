@@ -1,19 +1,15 @@
 import React, { Component } from 'react'
-import { Route, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import '../App.css'
 import './styles/Register.css'
 
 import { AppContext } from '../AppContext'
 import { handleChangeById as inputHandler, emailValidation } from '../libs/util/inputHandler'
-import Firestore from '../libs/util/database'
 import { APIService } from '../libs/api/api'
 
-import { Paper } from '../components/Paper/Paper'
 import { Textbox } from '../components/Textbox/Textbox'
 import { Button } from '../components/Button/Button'
 import { Checkbox } from '../components/Checkbox/Checkbox'
-
-import Dashboard from './Dashboard'
 
 export class Register extends Component {
   static contextType = AppContext

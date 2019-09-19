@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom'
 import '../App.css'
 import './styles/Home.css'
 
-import { Title } from '../components/Title/Title'
-import { Button } from '../components/Button/Button';
+import { Button } from '../components/Button/Button'
 import AppContext from '../AppContext'
 
 export class Home extends Component {

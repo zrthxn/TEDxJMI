@@ -16,8 +16,6 @@ import { Title } from './components/Title/Title'
 import AppContextProvider from './AppContextProvider'
 import AppContext from './AppContext'
 
-import { APIService } from './libs/api/api'
-
 export class App extends Component {
   static contextType = AppContext
   context!: React.ContextType<typeof AppContext>

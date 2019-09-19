@@ -1,20 +1,14 @@
 import React, { Component } from 'react'
-import crypto, { createHash } from 'crypto'
-import { withRouter, Route, Link } from 'react-router-dom'
+import crypto from 'crypto'
+import { Link } from 'react-router-dom'
 import '../App.css'
 
 import AppContext from '../AppContext'
-import { UserModel } from '../Models'
 import { launchPortal } from '../libs/api/payu'
 import { APIService } from '../libs/api/api'
-import { encrypt, decrypt } from '../libs/util/encryption'
+import { decrypt } from '../libs/util/encryption'
 import Firestore from '../libs/util/database'
-
-import { Ticket } from '../components/Ticket/Ticket'
-import { Textbox } from '../components/Textbox/Textbox'
-import { Checkbox } from '../components/Checkbox/Checkbox'
 import { Button } from '../components/Button/Button'
-import { Loading } from '../components/Loading/Loading'
 
 export class Dashboard extends Component {
   static contextType = AppContext
@@ -37,10 +31,6 @@ export class Dashboard extends Component {
       salt: String()
     },
     ticketId: null
-  }
-
-  constructor(props:any) {
-    super(props)
   }
 
   componentDidMount() {

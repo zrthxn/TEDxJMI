@@ -1,4 +1,4 @@
-import React, { Component, ReactElement, CSSProperties } from 'react'
+import React, { ReactElement, CSSProperties } from 'react'
 
 import '../../App.css'
 import './Button.css'
@@ -54,7 +54,7 @@ const buttonStyles = {
 
 function createStyle(props:ButtonProps) {
   let button = { }
-  let { color, variant, size, margins } = props
+  let { color, variant, size } = props
 
   if(color!==undefined) 
     button = { ...button, ...buttonStyles[color] }

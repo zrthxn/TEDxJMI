@@ -1,11 +1,10 @@
 # --- Installing stage
 FROM node AS installer
 
-WORKDIR /website
-
-ENV NODE_ENV=production
+WORKDIR /
 
 COPY apps/website/package*.json ./
+
 RUN npm install --quiet
 
 # ---
