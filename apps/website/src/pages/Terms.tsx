@@ -6,10 +6,6 @@ export default class Terms extends Component {
       <article>
         <h1>Terms and Conditions</h1>
         <section>
-          <p>
-            You agree to the following terms and conditions while registering.
-          </p>
-
           <div style={{ textAlign: 'left', padding: '2em', maxWidth: 800, margin: 'auto' }}>
             <h3>Registration</h3>
             <ul>

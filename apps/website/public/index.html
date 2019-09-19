@@ -31,7 +31,7 @@
 
     <!-- PayU Money Scripts -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-    <script id="bolt" src="https://sboxcheckout-static.citruspay.com/bolt/run/bolt.min.js" bolt-color="dd0000" bolt-logo="https://avatars3.githubusercontent.com/u/35369637"></script>
+    <script defer id="bolt" src="https://sboxcheckout-static.citruspay.com/bolt/run/bolt.min.js" bolt-color="dd0000" bolt-logo="https://avatars3.githubusercontent.com/u/35369637"></script>
 
     <title>TEDxJMI</title>
   </head>
@@ -39,29 +39,10 @@
     <noscript>You need to enable JavaScript to run this website.</noscript>
     <div id="root"></div>
 
-    <div id="particles"></div>
     <script>
       setTimeout(()=>{
-        particlesJS.load('particles', 'https://tedxjmi.org/assets/particlesjs-config.json', ()=>{})
+        particlesJS.load('particles', '/assets/particlesjs-config.json', ()=>{})
       }, 5000)
     </script>
-
-    <!-- <style>
-      #particles {
-        position: absolute;
-        top: 0;
-        left:0;
-        width: 100%;
-        height: 100vh;
-        z-index: -1;
-      }
-      #particles * {
-        animation: reveal 7.5s ease forwards;
-      }
-      @keyframes reveal {
-        from { opacity: 0; }
-        to { opacity: 1; }
-      }
-    </style> -->
   </body>
 </html>

@@ -102,7 +102,13 @@ export class App extends Component {
             </Switch>
             
             <footer>
-              <div>
+              <div className="social">
+                <a href="https://facebook.com/tedxjmi">
+                  <img src="/assets/img/icons/fb.png" width="25px" alt=""/>
+                </a>
+                <a href="https://instagram.com/tedxjmi">
+                  <img src="/assets/img/icons/insta.png" width="25px" alt=""/>
+                </a>
                 <h3>Social Links</h3>
               </div>
 

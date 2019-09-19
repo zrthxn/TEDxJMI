@@ -5,15 +5,29 @@ import './styles/Home.css'
 
 import { Title } from '../components/Title/Title'
 import { Button } from '../components/Button/Button';
+import AppContext from '../AppContext'
 
 export class Home extends Component {
   render() {
     return (
       <div>
-        <article id="particles" className="hero">
+        <article className="hero">
+          <div id="particles"></div>
           <div className="content">
             <h1>Breaking Shackles</h1>
             <h3>10<sup>th</sup> November</h3>
+            <AppContext.Consumer>
+              {
+                appContext => (
+                  <Button color="primary" 
+                    onClick={()=>{
+                      appContext.actions.router('/register')
+                  }}>
+                    Register
+                  </Button>
+                )
+              }
+            </AppContext.Consumer>
           </div>  
         </article>
         

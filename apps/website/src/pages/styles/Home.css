@@ -4,14 +4,32 @@
 
 /* ===== HERO ===== */
 .hero {
-  padding: 12em 2em;
-  /* height: 100vh; */
+  padding: 10em 2em;
   position: relative;
   display: flex;
   flex-flow: column;
 }
 .hero .content {
   margin: auto;
+} .hero .content h3 {
+  margin: 2em;
+}
+
+#particles {
+  position: absolute;
+  top: 0;
+  left:0;
+  padding: 1em;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+#particles * {
+  animation: reveal 2.5s ease forwards;
+}
+@keyframes reveal {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 /* ===== ABOUT ===== */
