@@ -5,8 +5,10 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node build/Server.js",
     "build": "rm -rf build && tsc -b",
-    "start": "npm run build && node build/Server.js"
+    "serve": "nodemon build/Server.js -e js",
+    "watch": "tsc -b -w"
   },
   "repository": {
     "type": "git",

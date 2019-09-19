@@ -44,7 +44,7 @@ server.listen(PORT, async (err) => {
   ServerConfig.security = { GENERATOR, SECRET }
 
   fs.readFile(path.join(__dirname, '..', 'assets', 'config.json'), (ser, data) => {
-    if (ser) return console.error(ser)
+    if(ser) return console.error(ser)
 
     data = JSON.parse(data.toString())
 

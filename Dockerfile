@@ -1,33 +1,32 @@
-# --- Installing stage
+# --- Installing stage ---
 FROM node AS installer
 
 WORKDIR /
 
-COPY apps/website/package*.json ./
-
+# Server
+RUN mkdir backend
+WORKDIR /backend
+COPY backend/package*.json ./
 RUN npm install --quiet
 
-# ---
-
-# Building stage
+# ---  Building stage ---
 FROM installer AS builder
 
-## Workdir is shared between the stage so let's reuse it as we neeed the packages
-WORKDIR /website
+WORKDIR /backend
 
-COPY ./src src
+ENV NODE_ENV=production
+
+COPY /backend /
 COPY tsconfig.json .
 RUN npm run build
 
-# ---
+# --- Run ---
+# Running code under slim image
+FROM node:12.0-slim
 
-# Running code under slim image (production part mostly)
-FROM node:11.4-slim
-
-## Clean new directory
-WORKDIR /app
-
-## We just need the build and package to execute the command
-COPY --from=builder /usr/src/app/build build
+# Clean new directory
+WORKDIR /server
+COPY --from=builder /backend/build build
+EXPOSE 3600
 
 CMD [ "node", "build/boot.js" ]
