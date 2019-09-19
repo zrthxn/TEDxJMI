@@ -3,7 +3,6 @@ FROM node AS installer
 
 WORKDIR /
 
-# Server
 RUN mkdir backend
 WORKDIR /backend
 COPY backend/package*.json ./
