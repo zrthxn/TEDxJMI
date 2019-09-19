@@ -71,8 +71,14 @@ export class Register extends Component {
       <article className="register">
         <h1>Register</h1>
 
-        <section>
-          {
+        <section className="center">
+          <div>
+            <h3>Registrations Closed</h3>
+            <p style={{ textAlign: 'center' }}>
+              Registrations have not opened yet. Please check back on a later date.
+            </p>
+          </div>
+          {/* {
             this.state.authenticated ? (
               <div style={{ display: 'flex', flexDirection: 'column', alignContent: 'center' }}>
                 {
@@ -176,7 +182,7 @@ export class Register extends Component {
                 <h3>Loading</h3>
               </section>
             )
-          }
+          } */}
         </section>
       </article>
     )
