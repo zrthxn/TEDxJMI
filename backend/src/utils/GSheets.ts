@@ -9,8 +9,8 @@ const TOKEN_PATH = './util/GoogleAPIs/Sheets/token.json';
 
 export default class GSheets {
   readonly SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
-  readonly CREDENTIALS_PATH = './auth/GSheets/credentials.json'
-  readonly TOKEN_PATH = './auth/GSheets/token.json'
+  readonly CREDENTIALS_PATH = './auth/credentials.json'
+  readonly TOKEN_PATH = './auth/Tokens/gsheets.json'
 
   private authorize() {
 		return new Promise((resolve:((client:OAuth2Client)=>any), reject) => {
@@ -46,13 +46,13 @@ export default class GSheets {
 					})
 					console.log('Authorization URL:', authUrl)
 					const rl = readline.createInterface({ input: process.stdin, output: process.stdout })
-					rl.question('Validation code: ', (code) => {
+					rl.question('Validation code: ', (auth) => {
 						rl.close()
-						oAuth2Client.getToken(code, (err, token) => {
+						oAuth2Client.getToken(auth, (err, token) => {
 							if (err) return console.error('Error retrieving access token', err)
 							oAuth2Client.setCredentials(token)
-							fs.writeFile(this.TOKEN_PATH, JSON.stringify(token), (err) => {
-								if (err) return reject(err)
+							fs.writeFile(this.TOKEN_PATH, JSON.stringify(token, null, 2), (e) => {
+								if (e) return reject(e)
 								console.log('Token stored to', this.TOKEN_PATH)
 								resolve(oAuth2Client)
 							})

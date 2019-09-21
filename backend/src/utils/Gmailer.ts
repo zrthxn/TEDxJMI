@@ -8,8 +8,8 @@ const GmailConfig = require('../../assets/config.json').gmailer
 
 export default class Gmailer {
 	readonly SCOPES = ['https://mail.google.com']
-	readonly CREDENTIALS_PATH = './auth/Gmail/credentials.json'
-	readonly TOKEN_PATH = './auth/Gmail/token.json'
+	readonly CREDENTIALS_PATH = './auth/credentials.json'
+	readonly TOKEN_PATH = './auth/Tokens/gmailer.json'
 
 	readonly Head
 	readonly MultipartSepartor
@@ -64,12 +64,12 @@ export default class Gmailer {
 					})
 					console.log('Authorization URL:', authUrl)
 					const rl = readline.createInterface({ input: process.stdin, output: process.stdout })
-					rl.question('Validation code: ', (code) => {
+					rl.question('Validation code: ', (auth) => {
 						rl.close()
-						oAuth2Client.getToken(code, (err, token) => {
+						oAuth2Client.getToken(auth, (err, token) => {
 							if (err) return console.error('Error retrieving access token', err)
 							oAuth2Client.setCredentials(token)
-							fs.writeFile(this.TOKEN_PATH, JSON.stringify(token), (err) => {
+							fs.writeFile(this.TOKEN_PATH, JSON.stringify(token, null, 2), (err) => {
 								if (err) return reject(err)
 								console.log('Token stored to', this.TOKEN_PATH)
 								resolve(oAuth2Client)

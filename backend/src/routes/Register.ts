@@ -38,7 +38,7 @@ RegisterRouter.post('/ticket', async (req, res)=>{
       Gmail.SingleDataDelivery(
         {
           to: user.email,
-          from: 'team@tedxjmi.org'
+          from: 'noreply@tedxjmi.org'
         },
         content.toString(),
         [

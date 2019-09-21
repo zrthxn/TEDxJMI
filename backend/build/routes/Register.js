@@ -40,7 +40,7 @@ exports.RegisterRouter.post('/ticket', (req, res) => __awaiter(this, void 0, voi
             return console.error(err);
         Gmail.SingleDataDelivery({
             to: user.email,
-            from: 'team@tedxjmi.org'
+            from: 'noreply@tedxjmi.org'
         }, content.toString(), [
             { id: 'ticket', data: ticketId }
         ]);

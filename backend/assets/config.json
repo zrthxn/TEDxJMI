@@ -6,8 +6,8 @@
     "ALLOW_METHODS": "GET,POST,PUT,DELETE,OPTIONS"
   },
   "security": {
-    "GENERATOR": "PNcq6cvfTQ8EdrHZyJRVNh6Gt3upPz36crM3u++JipJbvI9vmUcWAOdX+ld+1jsr0+05e8x3FZ6QJ2yGW4uIYQ==",
-    "SECRET": "t4sRxbuyIv/TqXxPiOaGnqZwNit6fwRCe8tV4/ocYn+w29OP/HZHWUc0kU6l0ngc1k9l8wcbUYA72XuuWBpX+7Dy4jC1FBlbn/+8ahZzFi02u2r17NcErpgl20t2Ko9xipEMdocA+DoD2JkGU27IwL31cjGzzBeTcywcUDLuuUnwxE8j5Qy1TBA0R45ZWctkyNkO5orkjsEhV7IqW2/XqfTaM33kCu814MpwnCGuPhVP1GIqQ9kuH4rfB9X/nJUb1SnovPf7D97bCDPXB4VIta+3oq5mZH6hu1ySgfBQ5Hk1z3kDv1lz/ZTnw/c8SKcZl8ktuX8LE0aMtX4SrlFLuw=="
+    "GENERATOR": "5xIdn9sAy7VRJiGQpptVUUL+dgl7Pp2osjfxIXId1KFqd21MF+5JfTc+iJopl/37f8JInQRx+BmqWx6bZYq0/A==",
+    "SECRET": "wmMiI+Q4OSxhy5otKfHDOzEfnDxVnudjDuTvo90iu9QWMQTE5EfqeGiSNChajWgavarIiy3utsiLFVCWPNet8goryFnH3DUD9B0Pd0hYJQmwvztrI8SkhIEWKFFrljBDv/1Ir9gubVJpAuI10tXl/0nUlF+sNUxDhS1cULOJnjXySGmmNMhQV2rTZeBvEQDc/1gbtcACyLsSqjY6gC7Xp3vaeMVRn48kJgA+oOI/hzn6YpDt8yLNHYOrUswIk/Shkxv813a3sxvnhweSmNOl5MKFnym4/VTUwlHXWDZUoGCkp9Mgt/HcxJ8NjKRb0qKWCW97hSnYE26VTNSORMHpJA=="
   },
   "tickets": {
     "basePrice": 500,

@@ -100,7 +100,7 @@ exports.PaymentsRouter.post('/verify', (req, res) => {
                     return console.error(err);
                 Gmail.SingleDataDelivery({
                     to: doc.data().email,
-                    from: 'team@tedxjmi.org'
+                    from: 'noreply@tedxjmi.org'
                 }, content.toString(), [
                     { id: 'txnid', data: doc.id }
                 ]);

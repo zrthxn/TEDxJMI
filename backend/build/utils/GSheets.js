@@ -20,8 +20,8 @@ const TOKEN_PATH = './util/GoogleAPIs/Sheets/token.json';
 class GSheets {
     constructor() {
         this.SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
-        this.CREDENTIALS_PATH = './auth/GSheets/credentials.json';
-        this.TOKEN_PATH = './auth/GSheets/token.json';
+        this.CREDENTIALS_PATH = './auth/credentials.json';
+        this.TOKEN_PATH = './auth/Tokens/gsheets.json';
         this.TestGSheets = () => __awaiter(this, void 0, void 0, function* () {
             console.log('Testing Sheets API');
             try {
@@ -100,15 +100,15 @@ class GSheets {
                     });
                     console.log('Authorization URL:', authUrl);
                     const rl = readline_1.default.createInterface({ input: process.stdin, output: process.stdout });
-                    rl.question('Validation code: ', (code) => {
+                    rl.question('Validation code: ', (auth) => {
                         rl.close();
-                        oAuth2Client.getToken(code, (err, token) => {
+                        oAuth2Client.getToken(auth, (err, token) => {
                             if (err)
                                 return console.error('Error retrieving access token', err);
                             oAuth2Client.setCredentials(token);
-                            fs_1.default.writeFile(this.TOKEN_PATH, JSON.stringify(token), (err) => {
-                                if (err)
-                                    return reject(err);
+                            fs_1.default.writeFile(this.TOKEN_PATH, JSON.stringify(token, null, 2), (e) => {
+                                if (e)
+                                    return reject(e);
                                 console.log('Token stored to', this.TOKEN_PATH);
                                 resolve(oAuth2Client);
                             });
