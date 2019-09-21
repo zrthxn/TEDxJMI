@@ -42,6 +42,7 @@ exports.RegisterRouter.post('/ticket', (req, res) => __awaiter(this, void 0, voi
             to: user.email,
             from: 'noreply@tedxjmi.org'
         }, content.toString(), [
+            { id: 'name', data: user.name },
             { id: 'ticket', data: ticketId }
         ]);
     });

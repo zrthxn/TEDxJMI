@@ -1,7 +1,7 @@
 {
   "particles": {
     "number": {
-      "value": 100,
+      "value": 80,
       "density": {
         "enable": true,
         "value_area": 800
@@ -11,18 +11,18 @@
       "value": "#ff0000"
     },
     "shape": {
-      "type": "circle",
+      "type": "polygon",
       "stroke": {
         "width": 0,
         "color": "#000000"
       },
       "polygon": {
-        "nb_sides": 5
+        "nb_sides": 4
       },
       "image": {
         "src": "img/github.svg",
-        "width": 100,
-        "height": 100
+        "width": 250,
+        "height": 250
       }
     },
     "opacity": {
@@ -36,7 +36,7 @@
       }
     },
     "size": {
-      "value": 3,
+      "value": 5,
       "random": true,
       "anim": {
         "enable": false,
@@ -75,7 +75,7 @@
         "mode": "bubble"
       },
       "onclick": {
-        "enable": true,
+        "enable": false,
         "mode": "repulse"
       },
       "resize": true
