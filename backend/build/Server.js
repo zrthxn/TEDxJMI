@@ -40,6 +40,7 @@ require('dotenv').config();
  */
 const server = express_1.default();
 const ServerConfig = require('../assets/config.json');
+ServerConfig.security = require('../assets/security.json').tokens;
 const { PORT } = ServerConfig || 4000;
 // server.use(cookieParser())
 server.use(bodyParser.json());
@@ -54,12 +55,12 @@ server.listen(PORT, (err) => __awaiter(this, void 0, void 0, function* () {
     const GENERATOR = crypto_1.default.randomBytes(64).toString('base64');
     const SECRET = crypto_1.default.randomBytes(256).toString('base64');
     ServerConfig.security = { GENERATOR, SECRET };
-    fs_1.default.readFile(path_1.default.join(__dirname, '..', 'assets', 'config.json'), (ser, data) => {
+    fs_1.default.readFile(path_1.default.join(__dirname, '..', 'assets', 'security.json'), (ser, data) => {
         if (ser)
             return console.error(ser);
         data = JSON.parse(data.toString());
-        data['security'] = { GENERATOR, SECRET };
-        fs_1.default.writeFile(path_1.default.join(__dirname, '..', 'assets', 'config.json'), JSON.stringify(data, null, 2), () => { });
+        data['tokens'] = { GENERATOR, SECRET };
+        fs_1.default.writeFile(path_1.default.join(__dirname, '..', 'assets', 'security.json'), JSON.stringify(data, null, 2), () => { });
     });
     console.log('Listening');
     const Gmail = new Gmailer_1.default();

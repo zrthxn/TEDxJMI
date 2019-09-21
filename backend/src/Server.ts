@@ -25,6 +25,7 @@ require('dotenv').config()
 const server = express()
 
 const ServerConfig = require('../assets/config.json')
+ServerConfig.security = require('../assets/security.json').tokens
 const { PORT } = ServerConfig || 4000
 
 // server.use(cookieParser())
@@ -43,13 +44,13 @@ server.listen(PORT, async (err) => {
 
   ServerConfig.security = { GENERATOR, SECRET }
 
-  fs.readFile(path.join(__dirname, '..', 'assets', 'config.json'), (ser, data) => {
+  fs.readFile(path.join(__dirname, '..', 'assets', 'security.json'), (ser, data) => {
     if(ser) return console.error(ser)
 
     data = JSON.parse(data.toString())
 
-    data['security'] = { GENERATOR, SECRET }
-    fs.writeFile(path.join(__dirname, '..', 'assets', 'config.json'), JSON.stringify(data, null, 2), () => { })
+    data['tokens'] = { GENERATOR, SECRET }
+    fs.writeFile(path.join(__dirname, '..', 'assets', 'security.json'), JSON.stringify(data, null, 2), () => { })
   })
 
   console.log('Listening')
