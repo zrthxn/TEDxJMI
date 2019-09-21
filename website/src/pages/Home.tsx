@@ -11,7 +11,7 @@ export class Home extends Component {
     return (
       <div>
         <article className="hero">
-          <div id="particles"></div>
+          <div id="particles" className="particles"></div>
           <div className="content">
             <h1>Breaking Shackles</h1>
             <h3>10<sup>th</sup> November</h3>
