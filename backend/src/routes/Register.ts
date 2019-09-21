@@ -42,6 +42,7 @@ RegisterRouter.post('/ticket', async (req, res)=>{
         },
         content.toString(),
         [
+          { id: 'name', data: user.name },
           { id: 'ticket', data: ticketId }
         ]
       )

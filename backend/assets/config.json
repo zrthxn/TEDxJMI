@@ -6,8 +6,8 @@
     "ALLOW_METHODS": "GET,POST,PUT,DELETE,OPTIONS"
   },
   "tickets": {
-    "basePrice": 500,
-    "internalDiscountAmount": 400,
+    "basePrice": 750,
+    "internalDiscountAmount": 250,
     "txnFee": 0.03,
     "taxRate": 0.18
   },
@@ -22,9 +22,5 @@
   "gmailer": {
     "username": "TEDxJMI",
     "userId": "mailer.tedxjmi@gmail.com"
-  },
-  "security": {
-    "GENERATOR": "eUZDwlVXvTxN2ra3ngujmki0APFuqpg4VJfZBYUtcsbLw+lTP7ok5Kl/1SfiM7dU94ImajX6/ZOGVDLsoWY/Tw==",
-    "SECRET": "INCTd8A3dKtK2xZU0ZTgqd7MX9Toj3wtMRwu69x2XAK66yd3Q6x0KBLpS+4Nyhrsw3R3zpG5hQGh26TSWfvmIh+jMrWZwl3ArZeMLO3CTflZYuqHWeTLC6gX2FYbzX8qH2zCKGi26cz/uJ9MZtH53v11DsLdtKL9FNv/nJgtjzQW1BJakW8Xd7ArfdTNDjdhVtC/SPrsB7BZ5oFv1g7/Nwmpnhktbxrv1BJ2bhHXlY2H1WGHW7SULA5fpc4H3yku0YATBrMXryF7QfWNhtz6qxZFQxkeXbIz2srLzM6NxxOUWzT0hUETgudnIcHFSdQf50/Ml1ub7pOW5QYHX4go+Q=="
   }
 }
