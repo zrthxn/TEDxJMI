@@ -33,7 +33,7 @@
 
     <!-- PayU Money Scripts -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-    <script async id="bolt" bolt-color="dd0000" bolt-logo="%PUBLIC_URL%/assets/icon.png"
+    <script async id="bolt" bolt-color="dd0000" bolt-logo="https://tedxjmi.org/assets/icon.png"
       src="https://sboxcheckout-static.citruspay.com/bolt/run/bolt.min.js"></script>
 
     <title>TEDxJMI</title>
@@ -43,7 +43,9 @@
     <div id="root"></div>
 
     <script>
-      particlesJS.load('particles', '/assets/particlesjs-config.json', ()=>{})
+      setTimeout(()=>{
+        particlesJS.load('particles', '/assets/particlesjs-config.json', ()=>{})
+      }, 1000)
     </script>
   </body>
 </html>

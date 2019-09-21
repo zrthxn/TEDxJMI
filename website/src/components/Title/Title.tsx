@@ -1,13 +1,13 @@
 import React from 'react'
-import './Title.css'
+import './Title.scss'
 
 export function Title() {
   return (
     <div className="tedxjmi">
-      <span className="alpha">
+      <span className="tedx">
         TED<sup>x</sup>
       </span>
-      <span className="beta">JMI</span>
+      <span className="jmi">JMI</span>
     </div>
   )
 }

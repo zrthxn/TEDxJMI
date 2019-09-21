@@ -221,7 +221,7 @@ export class Dashboard extends Component {
                     ): null
                   }                
 
-                  <br/><span style={{ fontSize: '0.8em' }}>Transaction Fee</span><br/><br/>
+                  <span style={{ fontSize: '0.8em' }}>Transaction Fee</span><br/><br/>
                 </p>
                 
                 <p style={{ textAlign: 'right', margin: '0.5em', width: '12.25em', fontSize: '1.125rem' }}>
@@ -233,7 +233,7 @@ export class Dashboard extends Component {
                     ): null
                   }
 
-                  <br/><span style={{ fontSize: '0.8em' }}>{ this.state.transaction.taxPercent + '%' }</span><br/><br/>
+                  <span style={{ fontSize: '0.8em' }}>{ this.state.transaction.taxPercent + '%' }</span><br/><br/>
                 </p>
               </div>
 
