@@ -23,7 +23,10 @@ RUN npm run build
 # Running code under slim image
 FROM node:12.0-slim
 
+WORKDIR /
+
 # Clean new directory
+RUN mkdir server
 WORKDIR /server
 COPY --from=builder /backend/build build
 EXPOSE 3600
