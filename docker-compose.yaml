@@ -1,15 +1,15 @@
-version: "3"
-networks:
-  api:
-    external: true
-services:
-  tedxjmi:
-    networks:
-      - api
-    build:
-      context: .
-      dockerfile: Dockerfile
-    environment:
-      ENV_NAME: prod
-    ports:
-      - 3600:3600
+# version: "3"
+# networks:
+#   api:
+#     external: true
+# services:
+#   tedxjmi:
+#     networks:
+#       - api
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#     environment:
+#       ENV_NAME: prod
+#     ports:
+#       - 3600:3600
