@@ -1,34 +1,28 @@
-# --- Installing stage ---
 FROM node AS installer
 
-WORKDIR /
-
-RUN mkdir backend
+# ----- Installing stage -----
 WORKDIR /backend
-COPY backend/package*.json ./
-RUN npm install --quiet
 
-# ---  Building stage ---
+COPY backend/package*.json ./
+RUN npm install
+
+# -----  Building stage -----
 FROM installer AS builder
 
-WORKDIR /backend
-
+## Environment variables
 ENV NODE_ENV=production
 
-COPY /backend /
-COPY tsconfig.json .
+COPY backend ./
 RUN npm run build
 
-# --- Run ---
-# Running code under slim image
-FROM node:12.0-slim
+# ----- Run -----
+## Running code under slim image
+# FROM node:12.0-slim
 
-WORKDIR /
+## Clean new directory
+# WORKDIR /server
 
-# Clean new directory
-RUN mkdir server
-WORKDIR /server
-COPY --from=builder /backend/build build
-EXPOSE 3600
-
+# COPY --from=builder /backend/build build
 CMD [ "node", "build/Server.js" ]
+
+EXPOSE 3600
