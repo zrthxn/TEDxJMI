@@ -1,17 +1,21 @@
 FROM node AS installer
 
-# ----- Installing stage -----
+# --- CONTAINER ENVIRONMENT --- #
 WORKDIR /backend
-
-COPY backend/* ./
-RUN npm install
-
-# -----  Building stage -----
-## Environment variables
 ENV NODE_ENV=production
 
+# --- INSTALL --- #
+COPY ./backend/package.json /backend/
+RUN npm install
+
+# --- BUILD --- #
+FROM installer AS builder
+
+WORKDIR /backend
+COPY ./backend /backend
+COPY ./backend/.env /backend
 RUN npm run build
 
-# ----- Run -----
-CMD [ "node", "build/Server.js" ]
+# --- RUN --- #
 EXPOSE 3600
+CMD [ "node", "build/Server.js" ]
