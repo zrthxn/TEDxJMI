@@ -7,6 +7,11 @@ import { Button } from '../components/Button/Button'
 import AppContext from '../AppContext'
 
 export class Home extends Component {
+  
+  componentDidMount() {
+    // window.location.reload()
+  }
+  
   render() {
     return (
       <div>

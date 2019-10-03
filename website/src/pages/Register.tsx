@@ -79,14 +79,20 @@ export class Register extends Component {
                   {
                     this.state.loggedIn ? (
                       <div>
-                        <h2 style={{ margin: '0 1rem' }}>{ this.state.data.name }</h2>
-                        <h3 style={{ color: '#ffffff80' }}>{ this.state.data.email }</h3>
-                        <section style={{ maxWidth: '28em' }}>
+                        <h3>{ this.state.data.name }</h3>
+                        <p style={{ textAlign: 'center', opacity: 0.5 }}>
+                          { this.state.data.email }
+                        </p>
+
+                        <section style={{ maxWidth: '28em', padding: '0 1em' }}>
                           <Textbox id="phone" placeholder="Phone" className="dark" 
                             value={this.state.data.phone} onChange={this.handleChangeById}/>
 
                           <Textbox id="institution" placeholder="Institution" className="dark"
                             value={this.state.data.institution} onChange={this.handleChangeById}/>
+                      
+                          <Textbox id="couponCode" placeholder="Coupon Code" className="dark"
+                            value={this.state.data.couponCode} onChange={this.handleChangeById}/>
 
                           <Checkbox label="JMI Student" checked={this.state.data.isInternalStudent} 
                             onChange={(target: { checked:boolean })=>{
@@ -106,9 +112,6 @@ export class Register extends Component {
                                 value={this.state.data.studentIdNumber} onChange={this.handleChangeById}/>
                             ) : null
                           }
-
-                          <Textbox id="couponCode" placeholder="Coupon Code" className="dark"
-                            value={this.state.data.couponCode} onChange={this.handleChangeById}/>
 
                           <Button size="medium" color="primary" onClick={()=>{
                             this.context.actions.startAppTransition()
@@ -131,9 +134,8 @@ export class Register extends Component {
                       <div>
                         <h3>Registrations Open</h3>
 
-                        <p style={{ textAlign: 'center' }}>
-                          Fill in the following form to register for TEDxJMI 2019.
-                          Please read the terms and conditions carefully before registering.
+                        <p style={{ textAlign: 'center', opacity: 0.5 }}>
+                          Fill in this form to book your tickets
                         </p>
 
                         <Textbox id="name" className="dark" placeholder="Name" onChange={this.handleChangeById} />
@@ -154,16 +156,23 @@ export class Register extends Component {
                         <AppContext.Consumer>
                           {
                             appContext => (
-                              <div style={{ display: 'flex', flexDirection: 'row', maxWidth: '24em', margin: '2em auto' }}>                                  
+                              <div style={{ display: 'flex', flexDirection: 'column', maxWidth: '24em', margin: '2em auto' }}>                                  
                                 <Button color="primary"
                                   onClick={() => {
-                                    this.setState({
-                                      loggedIn: true
-                                    })
+                                    if(this.state.data.email!==String() && this.state.fieldsValidated)
+                                      this.setState({
+                                        loggedIn: true
+                                      })
+                                    else
+                                      alert('Please fill in your details')
                                   }}
                                 >
                                   Start
                                 </Button>
+
+                                <p style={{ fontSize: '0.75em', textAlign: 'center', margin: '2em 0' }}>
+                                  By registering, you <br/> agree to the <Link to="/terms">Terms and Conditions</Link>
+                                </p>
                               </div>
                             )
                           }

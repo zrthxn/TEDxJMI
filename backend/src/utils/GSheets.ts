@@ -83,10 +83,10 @@ export default class GSheets {
             valueInputOption: 'RAW',
             insertDataOption: 'INSERT_ROWS',
             
-            // resource: {
-            //   majorDimension: "ROWS",
-            //   values: [entry.values]
-            // },
+            requestBody: {
+              majorDimension: "ROWS",
+              values: [entry.values]
+            },
             auth: auth
           }, function(err, response) {
             if (!err) {

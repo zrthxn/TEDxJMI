@@ -22,5 +22,11 @@
   "gmailer": {
     "username": "TEDxJMI",
     "userId": "mailer.tedxjmi@gmail.com"
+  },
+  "spreadsheets": {
+    "tickets": {
+      "ssId": "1VvZkzG3Sg2fersliG33RVGnFA7QwAfu8-3uT3ZTtfPc",
+      "sheet": "TICKETS"
+    }
   }
 }

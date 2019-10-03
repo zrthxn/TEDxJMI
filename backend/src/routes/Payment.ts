@@ -11,9 +11,7 @@ export const PaymentsRouter = express.Router()
 require('dotenv').config()
 
 const ServerConfig = require('../../assets/config.json')
-const { 
-  basePrice, internalDiscountAmount, txnFee, taxRate 
-} = ServerConfig.tickets
+const { basePrice, internalDiscountAmount, txnFee, taxRate } = ServerConfig.tickets
 
 PaymentsRouter.use((req, res, next)=>{
   if(process.env.REGISTERATION_OPEN!=='YES')
@@ -39,19 +37,28 @@ PaymentsRouter.post('/create', (req, res)=>{
       
       transaction.baseAmount = basePrice
 
-      if(user.isInternalStudent && user.studentIdNumber!==undefined && user.studentIdNumber!=='')
-        transaction.baseAmount = internalDiscountAmount
+      const internal = await Firestore.collection('Coupons').where('couponCode', '==', 'JMISTD').limit(1).get()
+
+      if(user.isInternalStudent && user.studentIdNumber!==undefined && user.studentIdNumber!=='') {
+        if(internal.docs!==undefined && internal.docs.length > 0) {
+          const coupon = internal.docs[0].data()
+
+          if(coupon!==undefined && coupon!==null)
+            if(coupon.maxUses!==0) {
+              transaction.baseAmount = internalDiscountAmount
+              user.couponCode = 'JMISTD'
+            }
+        }
+      }
         
-      const query = await Firestore.collection('Coupons').where('couponCode', '==', user.couponCode).limit(1).get()      
+      const query = await Firestore.collection('Coupons').where('couponCode', '==', user.couponCode).limit(1).get()
       
       if(query.docs!==undefined && query.docs.length > 0) {
         const coupon = query.docs[0].data()
 
         if(coupon!==undefined && coupon!==null) {
-          if(coupon.maxUses!==0) {
+          if(coupon.maxUses!==0)
             transaction.discountPercentApplied = coupon.discount
-            Firestore.collection('Coupons').doc(query.docs[0].id).update({ maxUses: (coupon.maxUses - 1)  })
-          }
           else
             transaction.discountPercentApplied = 0
         }
@@ -120,7 +127,9 @@ PaymentsRouter.post('/verify', (req, res)=>{
         }
       )
     })
+  }).then(()=>{
+    res.sendStatus(200)
+  }).catch(()=>{
+    res.sendStatus(500)
   })
-
-  res.sendStatus(200)
 })

@@ -37,7 +37,15 @@ export class Dashboard extends Component {
     if(this.context.state.userAuthenticated) {
       this.paymentService.createPayment(this.context.state.user).then(({ data })=>{
         const { transaction, apiKey, salt, encoding, checksum } = data
-        const hash = crypto.createHash('sha512').update(JSON.stringify(transaction)).digest("base64")
+        
+        let hash
+        try {
+          hash = crypto.createHash('sha512').update(JSON.stringify(transaction)).digest("base64")
+        } catch (error) {
+          alert('Error in creating your payment! Please try again.')
+          this.context.actions.router('/register')
+          window.location.reload()
+        }
 
         if(hash===checksum)
           this.setState({
@@ -152,10 +160,7 @@ export class Dashboard extends Component {
                 <span style={{ color: '#ffffff80' }}>CONFIRMED</span><br/>
               </p>
 
-              <p style={{ textAlign: 'center', margin: '2em 0' }}>
-                We have emailed you with all the details. You will need to show the confirmation email 
-                we just sent you at the conference venue to get your entry pass. <br/><br/>
-                
+              <p style={{ textAlign: 'center', margin: '2em 0' }}>                
                 We recommend you go through the <Link to="#">guidelines</Link> for the event.<br/>
               </p>
 
@@ -173,21 +178,29 @@ export class Dashboard extends Component {
             <section className="center">
               <h2>Payment Failed</h2>
               
-              <p>
+              <p style={{ textAlign: 'center' }}>
                 There was a problem with your payment or you cancelled the payment by clicking 
                 the back button. If you think this is an error, please get in touch with us.
               </p>
 
-              <p hidden id="payment-failed-error-details">
+              <AppContext.Consumer>
                 {
-                  JSON.stringify(this.context.state.errors)
+                  appContext => (
+                    <p hidden id="payment-failed-error-details">
+                      {
+                        JSON.stringify(appContext.state.errors)
+                      }
+                    </p>
+                  )
                 }
-              </p>
+              </AppContext.Consumer>
 
               <p style={{ textAlign: 'center', fontSize: '1.25em' }}>
                 <Button size="small" color="primary" onClick={()=>{
-                  this.context.actions.router('/')
-                }}>Go Home</Button>
+                  this.context.actions.router('/contact')
+                }}>Contact Us</Button>
+                <br/>
+                <Link to="/">Home</Link>
               </p>
             </section>
           </article>

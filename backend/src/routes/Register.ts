@@ -7,6 +7,7 @@ import Gmailer from '../utils/Gmailer'
 import GSheets from '../utils/GSheets'
 
 require('dotenv').config()
+const ServerConfig = require('../../assets/config.json')
 
 export const RegisterRouter = express.Router()
 
@@ -19,7 +20,7 @@ RegisterRouter.use((req, res, next)=>{
 RegisterRouter.post('/ticket', async (req, res)=>{
   const { user, txn, checksum } = req.body
   const Gmail = new Gmailer()
-  const GSheet = new GSheets()
+  const Sheets = new GSheets()
 
   var ticketId = 'TEDXJMI'
   ticketId += Date.now().toString(36).toUpperCase()
@@ -31,6 +32,18 @@ RegisterRouter.post('/ticket', async (req, res)=>{
   txn.status = 'SUCCESSFUL'
   await Firestore.collection('Transactions').doc(txn.txnid).update({ status: 'SUCCESSFUL' })
   await Firestore.collection('Tickets').doc(ticketId).set({ user, txn })
+
+  if(user.isInternalStudent && user.couponCode==='')
+    user.couponCode = 'JMISTD'
+
+  const couponQuery = await Firestore.collection('Coupons').where('couponCode', '==', user.couponCode).limit(1).get()
+  const coupon = couponQuery.docs[0].data()
+
+  if(coupon!==undefined && coupon!==null) {
+    if(coupon.maxUses!==0) {
+      Firestore.collection('Coupons').doc(couponQuery.docs[0].id).update({ maxUses: (coupon.maxUses - 1)  })
+    }
+  }
 
   fs.readFile(
     path.join(__dirname, '..', '..', 'assets', 'templates', 'confirmation.html'),
@@ -50,14 +63,20 @@ RegisterRouter.post('/ticket', async (req, res)=>{
       )
     }
   )
-  GSheet.AppendToSpreadsheet([{
-    ssId : "1VvZkzG3Sg2fersliG33RVGnFA7QwAfu8-3uT3ZTtfPc",
-    sheet: "TICKETS",
-    values: [user.name, user.email, user.phone, 
-              user.instituion, user.createdOn, 
-              user.isInternalStudent, user.studentIdNumber,
-              user.couponCode]
-  }])
+  
+  Sheets.AppendToSpreadsheet([
+    {
+      ssId : ServerConfig.spreadsheets.tickets.ssId,
+      sheet: ServerConfig.spreadsheets.tickets.sheet, 
+      values: [ 
+        user.createdOn, ticketId,
+        user.name, user.email, user.phone, 
+        user.institution, user.isInternalStudent, user.studentIdNumber,
+        user.couponCode, txn.baseAmount, txn.discountPercentApplied, 
+        txn.status
+      ]
+    }
+  ])
 
   res.send({ ticketId, status: 'AUTH_PASSED' })
 })
