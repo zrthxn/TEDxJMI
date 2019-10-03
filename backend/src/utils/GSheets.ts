@@ -3,9 +3,6 @@ import readline from 'readline'
 import { google } from 'googleapis'
 import { OAuth2Client } from 'googleapis-common'
 
-const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
-const CREDENTIALS_PATH = './util/GoogleAPIs/Sheets/credentials.json';
-const TOKEN_PATH = './util/GoogleAPIs/Sheets/token.json';
 
 export default class GSheets {
   readonly SCOPES = ['https://www.googleapis.com/auth/spreadsheets']

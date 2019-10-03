@@ -4,6 +4,7 @@ import fs from 'fs'
 import path from 'path'
 import Firestore from '../utils/Database'
 import Gmailer from '../utils/Gmailer'
+import GSheets from '../utils/GSheets'
 
 require('dotenv').config()
 
@@ -18,6 +19,7 @@ RegisterRouter.use((req, res, next)=>{
 RegisterRouter.post('/ticket', async (req, res)=>{
   const { user, txn, checksum } = req.body
   const Gmail = new Gmailer()
+  const GSheet = new GSheets()
 
   var ticketId = 'TEDXJMI'
   ticketId += Date.now().toString(36).toUpperCase()
@@ -48,6 +50,14 @@ RegisterRouter.post('/ticket', async (req, res)=>{
       )
     }
   )
+  GSheet.AppendToSpreadsheet([{
+    ssId : "1VvZkzG3Sg2fersliG33RVGnFA7QwAfu8-3uT3ZTtfPc",
+    sheet: "TICKETS",
+    values: [user.name, user.email, user.phone, 
+              user.instituion, user.createdOn, 
+              user.isInternalStudent, user.studentIdNumber,
+              user.couponCode]
+  }])
 
   res.send({ ticketId, status: 'AUTH_PASSED' })
 })
