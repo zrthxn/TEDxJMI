@@ -4,13 +4,14 @@
 .tedxjmi {
   color: #ff0000;
   font-size: 1em;
+  max-width: 6em;
+  margin: auto;
   
-  .tedx {
-    font-weight: 800 !important;
-    margin-right: 0.125em;
-  }
-  .jmi {
-    font-weight: 200 !important;
-    color: #fff;
+  display: flex;
+  flex-direction: column;
+
+  img {
+    width: 100%;
+    margin: auto;
   }
 }

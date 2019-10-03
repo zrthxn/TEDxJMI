@@ -37,7 +37,7 @@ export class Home extends Component {
         
         <article className="about">
           <section className="content">
-            <h2>The TED<sup>x</sup> Conference</h2>
+            <h2>The TEDx Conference</h2>
 
             <p>
               TEDxJMI brings together a collection of doers, thinkers, innovators, explorers, visionaries, teachers and learners 
