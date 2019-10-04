@@ -17,7 +17,7 @@ export class Dashboard extends Component {
   paymentService = new APIService()
 
   state = {
-    transactionCreationSuccessful: false,
+    transactionCreationSuccessful: undefined,
     transactionPaymentSuccessful: undefined,
     transaction: {
       txnid: String(),
@@ -42,7 +42,7 @@ export class Dashboard extends Component {
         try {
           hash = crypto.createHash('sha512').update(JSON.stringify(transaction)).digest("base64")
         } catch (error) {
-          alert('Error in creating your payment! Please try again.')
+          alert('There was an error in creating your payment. Please try again.')
           this.context.actions.router('/register')
           window.location.reload()
         }
@@ -56,6 +56,9 @@ export class Dashboard extends Component {
               salt: decrypt(salt, encoding)
             }
           })
+      }).catch((err)=>{
+        alert('There was an error creating your payment. This may be because you have already registered.')
+        this.context.actions.router('/register')
       }).finally(()=>{
         this.context.actions.endAppTransition()
       })
@@ -78,16 +81,16 @@ export class Dashboard extends Component {
       key, salt, txnid,
       amount: amountPaid
     }, {
-      name, email, phone,
+      name, email, phone, 
       info: 'TEDxJMI Ticket'
     }, {
       responseHandler: (BOLT:any) => {
         this.onPaymentAuthorize(BOLT.response)
           .then(()=>{
-            this.setState({ transactionPaymentSuccessful: true })
+            this.setState(()=>({ transactionPaymentSuccessful: true }))
           })
           .catch(()=>{
-            this.setState({ transactionPaymentSuccessful: false })
+            this.setState(()=>({ transactionPaymentSuccessful: false }))
           })
           .finally(()=>{
             this.context.actions.endAppTransition()
@@ -114,11 +117,12 @@ export class Dashboard extends Component {
   onPaymentAuthorize = async (apiResponse:any) => {
     if(apiResponse.txnStatus==='SUCCESS') {
       let ticket = await this.paymentService.registerTicket(this.context.state.user, this.state.transaction)
-      if(ticket.data.status==='AUTH_PASSED')
+      if(ticket.data.status==='AUTH_PASSED') {
         this.setState({
-          transactionPaymentSuccessful: true,
           ticketId: ticket.data.ticketId
         })
+        return
+      }
       else {
         this.context.actions.appState({
           errors: {
@@ -127,7 +131,6 @@ export class Dashboard extends Component {
         })
         return Promise.reject()
       }
-      return
     }
     else {
       this.context.actions.appState({
@@ -146,7 +149,7 @@ export class Dashboard extends Component {
   }
 
   render() {
-    if(this.state.transactionCreationSuccessful)
+    if(this.state.transactionCreationSuccessful===true)
       if(this.state.transactionPaymentSuccessful===true)
         return (
           <article>
@@ -180,20 +183,26 @@ export class Dashboard extends Component {
               
               <p style={{ textAlign: 'center' }}>
                 There was a problem with your payment or you cancelled the payment by clicking 
-                the back button. If you think this is an error, please get in touch with us.
-              </p>
+                the back button. <br/><br/>
+                
+                If you think this is an error, please get in touch with us with a screenshot of this page.<br/><br/>
 
-              <AppContext.Consumer>
-                {
-                  appContext => (
-                    <p hidden id="payment-failed-error-details">
-                      {
-                        JSON.stringify(appContext.state.errors)
-                      }
-                    </p>
-                  )
-                }
-              </AppContext.Consumer>
+                <AppContext.Consumer>
+                  {
+                    appContext => (
+                      <p style={{
+                        opacity: 0.25,
+                        textAlign: 'left',
+                        maxWidth: '50%',
+                        margin: 'auto'
+                      }}>
+                        ERRORS <br/>
+                        { JSON.stringify(appContext.state.errors) }
+                      </p>
+                    )
+                  }
+                </AppContext.Consumer>
+              </p>
 
               <p style={{ textAlign: 'center', fontSize: '1.25em' }}>
                 <Button size="small" color="primary" onClick={()=>{
@@ -274,11 +283,23 @@ export class Dashboard extends Component {
             </p>
           </article>
         )
+    else if(this.state.transactionCreationSuccessful===false)
+      return (
+        <article>
+          <section style={{ textAlign: 'center' }}>
+            <h3>Failure</h3>
+            <p>
+              We could not create your transaction. Please get in touch 
+              with us if you think is an error.
+            </p>
+          </section>
+        </article>
+      )
     else
       return (
         <article>
           <section style={{ textAlign: 'center' }}>
-            Loading...
+            <h3>Loading...</h3>
           </section>
         </article>
       )

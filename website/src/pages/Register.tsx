@@ -94,6 +94,18 @@ export class Register extends Component {
                           <Textbox id="couponCode" placeholder="Coupon Code" className="dark"
                             value={this.state.data.couponCode} onChange={this.handleChangeById}/>
 
+                          {/* <Checkbox label="Attended a TEDx Event before?"
+                            onChange={(target: { checked:boolean })=>{
+                              this.setState(()=>{
+                                let { data } = this.state
+                                data.isInternalStudent = target.checked
+                                return {
+                                  data
+                                }
+                              })
+                            }}
+                          /> */}
+
                           <Checkbox label="JMI Student" checked={this.state.data.isInternalStudent} 
                             onChange={(target: { checked:boolean })=>{
                               this.setState(()=>{

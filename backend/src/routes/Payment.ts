@@ -22,6 +22,7 @@ PaymentsRouter.use((req, res, next)=>{
 PaymentsRouter.post('/create', (req, res)=>{ 
   const { user } = req.body
   const transaction = {
+    user,
     baseAmount: undefined,
     discountPercentApplied: undefined,
     taxPercent: undefined,

@@ -7,7 +7,10 @@ import Gmailer from '../utils/Gmailer'
 import GSheets from '../utils/GSheets'
 
 require('dotenv').config()
+
 const ServerConfig = require('../../assets/config.json')
+const Gmail = new Gmailer()
+const Sheets = new GSheets()
 
 export const RegisterRouter = express.Router()
 
@@ -19,11 +22,8 @@ RegisterRouter.use((req, res, next)=>{
 
 RegisterRouter.post('/ticket', async (req, res)=>{
   const { user, txn, checksum } = req.body
-  const Gmail = new Gmailer()
-  const Sheets = new GSheets()
 
-  var ticketId = 'TEDXJMI'
-  ticketId += Date.now().toString(36).toUpperCase()
+  const ticketId = 'TEDXJMI' + Date.now().toString(36).toUpperCase()
 
   const hash = crypto.createHash('sha512').update(JSON.stringify(user)).update(JSON.stringify(txn)).digest('base64')
   if(hash!==checksum)
@@ -37,7 +37,13 @@ RegisterRouter.post('/ticket', async (req, res)=>{
     user.couponCode = 'JMISTD'
 
   const couponQuery = await Firestore.collection('Coupons').where('couponCode', '==', user.couponCode).limit(1).get()
-  const coupon = couponQuery.docs[0].data()
+  
+  let coupon
+  try {
+    coupon = couponQuery.docs[0].data()
+  } catch (err) {
+    coupon = undefined
+  }
 
   if(coupon!==undefined && coupon!==null) {
     if(coupon.maxUses!==0) {
