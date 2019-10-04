@@ -121,21 +121,23 @@ server.use('/_payments', PaymentsRouter)
 server.use('/_register', RegisterRouter)
 
 server.post('/_contact', (req, res) => {
-  // let data = req.body
-  // mailer.SingleDelivery({
-  //   from: ServerConfig.Gmail.username,
-  //   to: ServerConfig.Gmail.username,
-  //   subject: 'Contact Form | ' + snapshot.docs[index].data().name + ' | ' + data.name,
-  //   replyTo: data.email,
-  //   body: `
-  //         <b>---------------- Contact Form Message ----------------</b> <br><br>
-  //         Name: ${data.name} <br> Email: ${data.email}<br><br>
-  //         Message: ${data.message}<br><br>
-  //         <b>------------------- End of Message -------------------</b> <br><br>
-  //       `
-  // }).then(() => {
+  const data = req.body 
+  const Gmail = new Gmailer()
+  
+  Gmail.SingleDelivery({
+    to: 'tedxjmiteam@gmail.org',
+    from: 'noreply@tedxjmi.org',
+    subject: 'You\'ve got Mail | Contact Form Message -' + data.name,
+    replyTo: data.email,
+    body: `
+      <b>---------------- Contact Form Message ----------------</b> <br><br>
+      Name: ${data.name} <br> Email: ${data.email}<br><br>
+      Message: ${data.message}<br><br>
+      <b>------------------- End of Message -------------------</b> <br><br>
+    `
+  }).then(() => {
     res.sendStatus(200)
-  // })
+  })
 })
 
 server.use((req, res) => {

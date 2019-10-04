@@ -52,6 +52,11 @@ export class Contact extends Component {
       <article>
         <h1>Contact</h1>
 
+        <section className="center">
+          Use the contact form to get in touch with us <br/>
+          Or contact us at the phone or email given below
+        </section>
+
         {
           this.state.showConfirmation ? (
             <section className="center">
@@ -119,7 +124,19 @@ export class Contact extends Component {
           )
         }
 
-        
+        <section className="center">
+          <h3>Khawar Suhail <br/><span style={{ opacity: 0.5, fontSize: '0.8em' }}>Organiser</span></h3>
+          <a href="tel:8188943884" style={{ textAlign: 'center', color: '#ff0000' }}>+91 8188943884</a>
+          <br/><br/>
+          <h3>Mohd. Ammar <br/><span style={{ opacity: 0.5, fontSize: '0.8em' }}>Organiser</span></h3>
+          <a href="tel:8800206651" style={{ textAlign: 'center', color: '#ff0000' }}>+91 8800206651</a>
+          <br/><br/>
+
+          <p style={{ textAlign: 'center', fontSize: '1.25em', opacity: 0.5 }}>Email</p>
+          <a href="mailto:team@tedxjmi.org" style={{ color: '#fff' }}>
+            <h3>team@tedxjmi.org</h3>
+          </a>
+        </section>        
       </article>
     )
   }
