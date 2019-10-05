@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import '../App.css'
 
 import { Card, CardContainer } from '../components/Card/Card'
-import Drawer from '../components/Card/Drawer'
 
 export class Speakers extends Component {
   render() {

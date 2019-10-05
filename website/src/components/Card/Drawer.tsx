@@ -1,4 +1,4 @@
-import React, { HTMLAttributes } from 'react'
+import React from 'react'
 import './Card.css'
 
 export default function Drawer(props:any) {
