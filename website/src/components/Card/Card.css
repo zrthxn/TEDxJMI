@@ -61,3 +61,34 @@
   padding: 1em;
   z-index: 20;
 }
+
+.drawer {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  animation: openDrawer 0.5s ease forwards;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  background-color: #fff;
+}
+.drawer .drawer-content {
+  padding: 1em;
+  max-width: 600px;
+  margin: auto;
+}
+.drawer .drawer-close {
+  text-align: center;
+  margin: 1em auto;
+  cursor: pointer;
+}
+@keyframes openDrawer {
+  from {
+    top: 100vh;
+  }
+  to {
+    top: 0;
+  }
+}

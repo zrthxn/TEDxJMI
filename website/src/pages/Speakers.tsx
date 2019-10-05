@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import '../App.css'
 
 import { Card, CardContainer } from '../components/Card/Card'
+import Drawer from '../components/Card/Drawer'
 
 export class Speakers extends Component {
   render() {
@@ -16,7 +17,11 @@ export class Speakers extends Component {
         <h3>2017</h3>
         <section>
           <CardContainer>
-            <Card size="medium">
+            <Card size="medium" drawer={()=>(
+              <div>
+                <h1>Drawer Content</h1>
+              </div>
+            )}>
               <img alt="speaker" src="/assets/img/speakers/KavitaBahl.jpg"/>
               <div className="sub">Kavita Bahl</div>
             </Card>

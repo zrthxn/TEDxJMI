@@ -1,12 +1,15 @@
-import React, { Component } from 'react'
+import React, { Component, ReactElement } from 'react'
 import './Card.css'
+import Drawer from './Drawer'
 
 interface CardProps {
   size?: 'small' | 'medium' | 'large'
+  drawer?: ((renderProps?:any)=>((typeof React.Component) | ReactElement))
 }
 
 export class Card extends Component<CardProps> {
   state = {
+    openDrawer: false,
     style: {
       
     }
@@ -42,12 +45,30 @@ export class Card extends Component<CardProps> {
     })
   }
 
+  toggleDrawer = () => {
+    this.setState({
+      openDrawer: !this.state.openDrawer
+    })
+  }
+
   render() {
     return (
-      <div className="card" style={ this.state.style }>
-        <div className="card-content">
+      <div className="card" style={ this.state.style } onClick={this.toggleDrawer}>
+        <div className="card-content" onClick={this.toggleDrawer}>
           {
             this.props.children
+          }
+
+          {
+            this.state.openDrawer ? (
+              this.props.drawer!==undefined && this.props.drawer!==null ? (
+                <Drawer onClose={this.toggleDrawer}>
+                  {
+                    this.props.drawer()
+                  }
+                </Drawer>
+              ) : null
+            ) : null
           }
         </div>
       </div>
@@ -55,16 +76,14 @@ export class Card extends Component<CardProps> {
   }
 }
 
-export class CardContainer extends Component {
-  render() {
-    return (
-      <div style={{ display: 'flex', flexFlow: 'row', flexWrap: 'wrap' }}>
-        {
-          this.props.children
-        }
-      </div>
-    )
-  }
+export function CardContainer(props:any) {
+  return (
+    <div style={{ display: 'flex', flexFlow: 'row', flexWrap: 'wrap' }}>
+      {
+        props.children
+      }
+    </div>
+  )
 }
 
 export default Card
