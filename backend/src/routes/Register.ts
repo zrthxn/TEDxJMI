@@ -86,3 +86,22 @@ RegisterRouter.post('/ticket', async (req, res)=>{
 
   res.send({ ticketId, status: 'AUTH_PASSED' })
 })
+
+RegisterRouter.post('/close', (req, res)=>{
+  Gmail.SingleDelivery({
+    to: 'team@tedxjmi.org',
+    from: 'noreply@tedxjmi.org',
+    subject: 'Registrations Auto-Closed',
+    body: `
+      <h1>Registrations Auto-Closed</h1>
+      <p>
+        The website registrations have been auto-closed by 
+        the number of registrations you set.
+      </p>
+      <br><br>
+      <p>
+        <i>I am the website server. I am a bot!</i>
+      </p>
+    `
+  })
+})

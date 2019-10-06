@@ -88,6 +88,11 @@ export class Contact extends Component {
                   validation={(event:any)=>{
                     return emailValidation(event.target.value)
                   }}
+                  onValidate={()=>{
+                    this.setState({
+                      fieldsValidated: true
+                    })
+                  }}
                 />
 
                 <Textarea id="message" placeholder="Message" onChange={this.handleChangeById}/>
