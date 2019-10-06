@@ -40,23 +40,18 @@ export class Register extends Component {
     iterableMembers: []
   }
 
-  componentWillMount() {
+  componentDidMount() {
     Firestore.collection('Tickets').get().then((ticketQuery)=>{
       if(process.env.REACT_APP_MAX_REGISTERATIONS!==undefined)
         if(ticketQuery.docs.length < parseInt(process.env.REACT_APP_MAX_REGISTERATIONS, 10) && 
           process.env.REACT_APP_REGISTERATION_OPEN==='YES') {
-          this.setState({
-            registrationsOpen: true
+          this.authService.authenticate().then(()=>{
+            this.setState({
+              authenticated: true,
+              registrationsOpen: true
+            })
           })
         }
-    })
-  }
-
-  componentDidMount() {
-    this.authService.authenticate().then(()=>{
-      this.setState({
-        authenticated: true
-      })
     })
   }
   
