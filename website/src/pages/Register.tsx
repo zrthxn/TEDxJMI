@@ -42,14 +42,17 @@ export class Register extends Component {
 
   componentDidMount() {
     this.authService.authenticate().then(()=>{
-      this.setState(()=>({ authenticated: true }))
       Firestore.collection('Tickets').get().then((ticketQuery)=>{
         if(process.env.REACT_APP_MAX_REGISTRATIONS!==undefined)    
           if(ticketQuery.docs.length < parseInt(process.env.REACT_APP_MAX_REGISTRATIONS, 10) && 
             process.env.REACT_APP_REGISTRATION_OPEN==='YES') {
-            this.setState(()=>({ registrationsOpen: true }))
+            this.setState({ 
+              registrationsOpen: true, 
+              authenticated: true 
+            })
           }
           else {
+            this.setState({ authenticated: true })
             this.authService.sendAutoCloseNotification({
               regNumber: ticketQuery.docs.length
             })
