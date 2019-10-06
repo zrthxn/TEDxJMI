@@ -8,12 +8,6 @@
   flex-direction: column;
 }
 @media (min-width: 600px) {
-  .card:first-of-type {
-    margin-right: 1em;
-  }
-  .card:last-of-type {
-    margin-left: 1em;
-  }
   .card:only-child {
     margin: 2em auto;
   }
@@ -75,13 +69,15 @@
   background-color: #fff;
 }
 .drawer .drawer-content {
-  padding: 1em;
+  padding: 2em;
   max-width: 600px;
   margin: auto;
 }
 .drawer .drawer-close {
   text-align: center;
   margin: 1em auto;
+  padding: 0.5em 1.5em;
+  border: 1px solid #1c1c1c80;
   cursor: pointer;
 }
 @keyframes openDrawer {

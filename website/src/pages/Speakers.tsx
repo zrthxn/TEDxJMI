@@ -8,19 +8,25 @@ export class Speakers extends Component {
     return (
       <article>
         <h1>Speakers</h1>
-        <br/>
+        
         <section className="center">
-          <h2>To be Announced</h2>
-        </section>
-
-        <h3>2017</h3>
-        <section>
           <CardContainer>
             <Card size="medium" drawer={()=>(
               <div>
-                <h1>Drawer Content</h1>
+                <h1>Ishteyaque Amjad</h1>
               </div>
             )}>
+              <img alt="speaker" src="/assets/img/team/x.png"/>
+              <div className="sub">Ishteyaque Amjad</div>
+            </Card>
+          </CardContainer>
+        </section>
+
+        <h2><b>Previous Years Speakers</b></h2>
+        <h3>2017</h3>
+        <section>
+          <CardContainer>
+            <Card size="medium">
               <img alt="speaker" src="/assets/img/speakers/KavitaBahl.jpg"/>
               <div className="sub">Kavita Bahl</div>
             </Card>
