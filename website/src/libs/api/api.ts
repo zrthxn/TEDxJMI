@@ -103,5 +103,13 @@ export class APIService {
       }
     )
   }
+
+  async sendAutoCloseNotification(data:any){
+    return this.request.post(
+      this.endpoint + '/_register/close', {
+        data
+      }
+    )
+  }
 }
   

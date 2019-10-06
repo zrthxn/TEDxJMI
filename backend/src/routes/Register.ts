@@ -95,10 +95,10 @@ RegisterRouter.post('/close', (req, res)=>{
     body: `
       <h1>Registrations Auto-Closed</h1>
       <p>
-        The website registrations have been auto-closed by 
-        the number of registrations you set.
+        The website registrations have been auto-closed by the app. <br>
+        Registrations Closed at: ${req.body.data.regNumber}
       </p>
-      <br><br>
+      <br><br><br>
       <p>
         <i>I am the website server. I am a bot!</i>
       </p>
