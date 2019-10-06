@@ -125,13 +125,14 @@ server.post('/_contact', (req, res) => {
   const Gmail = new Gmailer()
   
   Gmail.SingleDelivery({
-    to: 'tedxjmiteam@gmail.org',
+    to: 'team@tedxjmi.org',
     from: 'noreply@tedxjmi.org',
-    subject: 'You\'ve got Mail | Contact Form Message -' + data.name,
+    subject: 'You\'ve got Mail | ' + data.name + ' - Contact Form Message',
     replyTo: data.email,
     body: `
       <b>---------------- Contact Form Message ----------------</b> <br><br>
-      Name: ${data.name} <br> Email: ${data.email}<br><br>
+      Name: ${data.name} <br> 
+      Email: ${data.email}<br><br>
       Message: ${data.message}<br><br>
       <b>------------------- End of Message -------------------</b> <br><br>
     `

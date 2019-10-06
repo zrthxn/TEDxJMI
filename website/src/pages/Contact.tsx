@@ -36,15 +36,12 @@ export class Contact extends Component {
   }
 
   sendMessage = async () => {
-    /**
-     * @todo
-     * Axios request to the server to send
-     * an email and to add to mailing list
-     * and to assign someone to get back to 
-     * this.
-     */
-    await this.apiService.contactUs(this.state.data)
-    this.setState({ showConfirmation: true })
+    if(this.state.requiredFulfilled && this.state.fieldsValidated) {
+      await this.apiService.contactUs(this.state.data)
+      this.setState({ showConfirmation: true })
+    }
+    else
+      alert('Please fill in all the fields correctly.')
   }
 
   render() {
