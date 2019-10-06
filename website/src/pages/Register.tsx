@@ -42,9 +42,9 @@ export class Register extends Component {
 
   componentDidMount() {
     Firestore.collection('Tickets').get().then((ticketQuery)=>{
-      if(process.env.REACT_APP_MAX_REGISTERATIONS!==undefined)
-        if(ticketQuery.docs.length < parseInt(process.env.REACT_APP_MAX_REGISTERATIONS, 10) && 
-          process.env.REACT_APP_REGISTERATION_OPEN==='YES') {
+      if(process.env.REACT_APP_MAX_REGISTRATIONS!==undefined)
+        if(ticketQuery.docs.length < parseInt(process.env.REACT_APP_MAX_REGISTRATIONS, 10) && 
+          process.env.REACT_APP_REGISTRATION_OPEN==='YES') {
           this.authService.authenticate().then(()=>{
             this.setState({
               authenticated: true,
