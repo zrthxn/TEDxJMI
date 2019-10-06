@@ -12,6 +12,7 @@ import { APIService } from '../libs/api/api'
 
 export class Contact extends Component {
   state = {
+    loading: false,
     showConfirmation: false,
     data: {
       name: null,
@@ -35,9 +36,16 @@ export class Contact extends Component {
     ))
   }
 
+  componentDidMount() {
+    this.apiService.authenticate().then(()=>{
+      this.setState({
+        loading: true
+      })
+    })
+  }
+  
   sendMessage = async () => {
     try {
-      await this.apiService.authenticate()
       await this.apiService.sendContactFormMessage(this.state.data)
       this.setState({ showConfirmation: true })
     } catch (error) {
@@ -76,59 +84,67 @@ export class Contact extends Component {
             </section>
           ) : (
             <section className="contact-form">
-              <Paper>
-                <div className="head">
-                  <h3><b>Send a Message</b></h3>
-                  <p>Leave your queries and questions here and we will get back to you!</p>
-                </div>
+              {
+                this.state.loading ? (
+                  <Paper>
+                    <div className="head">
+                      <h3><b>Send a Message</b></h3>
+                      <p>Leave your queries and questions here and we will get back to you!</p>
+                    </div>
 
-                <Textbox id="name" placeholder="Name" onChange={this.handleChangeById}/>
+                    <Textbox id="name" placeholder="Name" onChange={this.handleChangeById}/>
 
-                <Textbox id="email" placeholder="Email" onChange={this.handleChangeById}
-                  validationErrorHelptext="Not a valid email address"
-                  validation={(event:any)=>{
-                    return emailValidation(event.target.value)
-                  }}
-                  onValidate={()=>{
-                    this.setState({
-                      fieldsValidated: true
-                    })
-                  }}
-                />
+                    <Textbox id="email" placeholder="Email" onChange={this.handleChangeById}
+                      validationErrorHelptext="Not a valid email address"
+                      validation={(event:any)=>{
+                        return emailValidation(event.target.value)
+                      }}
+                      onValidate={()=>{
+                        this.setState({
+                          fieldsValidated: true
+                        })
+                      }}
+                    />
 
-                <Textarea id="message" placeholder="Message" onChange={this.handleChangeById}/>
+                    <Textarea id="message" placeholder="Message" onChange={this.handleChangeById}/>
 
-                <AppContext.Consumer>
-                  {
-                    appContext => (
-                      <Button color="primary" size="medium" 
-                        onClick={()=>{
-                          if(this.state.requiredFulfilled && this.state.fieldsValidated) {
-                            appContext.actions.startAppTransition()
-                            this.sendMessage().then(()=>{
-                              setTimeout(()=>{
-                                appContext.actions.endAppTransition()
-                                this.setState({
-                                  showConfirmation: true
+                    <AppContext.Consumer>
+                      {
+                        appContext => (
+                          <Button color="primary" size="medium" 
+                            onClick={()=>{
+                              if(this.state.requiredFulfilled && this.state.fieldsValidated) {
+                                appContext.actions.startAppTransition()
+                                this.sendMessage().then(()=>{
+                                  setTimeout(()=>{
+                                    appContext.actions.endAppTransition()
+                                    this.setState({
+                                      showConfirmation: true
+                                    })
+                                  }, 1000)
                                 })
-                              }, 1000)
-                            })
-                          }
-                          else {
-                            alert('Please fill in all the fields correctly.')
-                          }
-                        }}
-                      >
-                        Send
-                      </Button>
-                    )
-                  }
-                </AppContext.Consumer>
-                
-                <p style={{ fontSize: '0.75em', textAlign: 'center' }}>
-                  By sending this message you <br/> agree to the <Link to="/terms">Terms and Conditions</Link>
-                </p>
-              </Paper>
+                              }
+                              else {
+                                alert('Please fill in all the fields correctly.')
+                              }
+                            }}
+                          >
+                            Send
+                          </Button>
+                        )
+                      }
+                    </AppContext.Consumer>
+                    
+                    <p style={{ fontSize: '0.75em', textAlign: 'center' }}>
+                      By sending this message you <br/> agree to the <Link to="/terms">Terms and Conditions</Link>
+                    </p>
+                  </Paper>
+                ) : (
+                  <section className="center">
+                    <h3>Loading</h3>
+                  </section>
+                )
+              }
             </section>
           )
         }
