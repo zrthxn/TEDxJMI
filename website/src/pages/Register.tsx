@@ -6,6 +6,7 @@ import './styles/Register.css'
 import { AppContext } from '../AppContext'
 import { handleChangeById as inputHandler, emailValidation } from '../libs/util/inputHandler'
 import { APIService } from '../libs/api/api'
+import Firestore from '../libs/util/database'
 
 import { Textbox } from '../components/Textbox/Textbox'
 import { Button } from '../components/Button/Button'
@@ -19,6 +20,7 @@ export class Register extends Component {
 
   state = {
     authenticated: false,
+    registrationsOpen: false,
     loggedIn: false,
     data: {
       name: String(),
@@ -36,6 +38,18 @@ export class Register extends Component {
       'regName', 'regEmail'
     ],
     iterableMembers: []
+  }
+
+  componentWillMount() {
+    Firestore.collection('Tickets').get().then((ticketQuery)=>{
+      if(process.env.REACT_APP_MAX_REGISTERATIONS!==undefined)
+        if(ticketQuery.docs.length < parseInt(process.env.REACT_APP_MAX_REGISTERATIONS, 10) && 
+          process.env.REACT_APP_REGISTERATION_OPEN==='YES') {
+          this.setState({
+            registrationsOpen: true
+          })
+        }
+    })
   }
 
   componentDidMount() {
@@ -73,8 +87,8 @@ export class Register extends Component {
 
         <section className="center">
           {
-            process.env.REACT_APP_REGISTERATION_OPEN==='YES' ? (
-              this.state.authenticated ? (
+            this.state.authenticated ? (
+              this.state.registrationsOpen ? (
                 <div style={{ display: 'flex', flexDirection: 'column', alignContent: 'center' }}>
                   {
                     this.state.loggedIn ? (
@@ -194,17 +208,18 @@ export class Register extends Component {
                   }
                 </div>             
               ) : (
-                <section className="center">
-                  <h3>Loading</h3>
-                </section>
+                <div>
+                  <h3>Registrations Closed</h3>
+                  <p style={{ textAlign: 'center' }}>
+                    Registrations are currently closed. <br/>
+                    Please check back on a later date.
+                  </p>
+                </div>
               )
             ) : (
-              <div>
-                <h3>Registrations Closed</h3>
-                <p style={{ textAlign: 'center' }}>
-                  Registrations have not opened yet. Please check back on a later date.
-                </p>
-              </div>
+              <section className="center">
+                <h3>Loading</h3>
+              </section>
             )
           }
         </section>
