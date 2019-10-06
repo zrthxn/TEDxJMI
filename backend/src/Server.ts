@@ -121,7 +121,7 @@ server.use('/_payments', PaymentsRouter)
 server.use('/_register', RegisterRouter)
 
 server.post('/_contact', (req, res) => {
-  const data = req.body 
+  const { data } = req.body 
   const Gmail = new Gmailer()
   
   Gmail.SingleDelivery({

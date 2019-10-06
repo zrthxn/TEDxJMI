@@ -96,7 +96,7 @@ export class APIService {
     ) 
   }
 
-  async contactUs(data:any){
+  async sendContactFormMessage(data:any){
     return this.request.post(
       this.endpoint + '/_contact', {
         data

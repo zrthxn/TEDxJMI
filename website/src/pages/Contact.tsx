@@ -37,7 +37,8 @@ export class Contact extends Component {
 
   sendMessage = async () => {
     try {
-      await this.apiService.contactUs(this.state.data)
+      await this.apiService.authenticate()
+      await this.apiService.sendContactFormMessage(this.state.data)
       this.setState({ showConfirmation: true })
     } catch (error) {
       this.setState({ showConfirmation: false })
