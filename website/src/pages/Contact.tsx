@@ -36,12 +36,13 @@ export class Contact extends Component {
   }
 
   sendMessage = async () => {
-    if(this.state.requiredFulfilled && this.state.fieldsValidated) {
+    try {
       await this.apiService.contactUs(this.state.data)
       this.setState({ showConfirmation: true })
+    } catch (error) {
+      this.setState({ showConfirmation: false })
+      alert('There was an error in sending your message.')
     }
-    else
-      alert('Please fill in all the fields correctly.')
   }
 
   render() {
@@ -96,15 +97,20 @@ export class Contact extends Component {
                     appContext => (
                       <Button color="primary" size="medium" 
                         onClick={()=>{
-                          appContext.actions.startAppTransition()
-                          this.sendMessage().then(()=>{
-                            setTimeout(()=>{
-                              appContext.actions.endAppTransition()
-                              this.setState({
-                                showConfirmation: true
-                              })
-                            }, 1000)
-                          })
+                          if(this.state.requiredFulfilled && this.state.fieldsValidated) {
+                            appContext.actions.startAppTransition()
+                            this.sendMessage().then(()=>{
+                              setTimeout(()=>{
+                                appContext.actions.endAppTransition()
+                                this.setState({
+                                  showConfirmation: true
+                                })
+                              }, 1000)
+                            })
+                          }
+                          else {
+                            alert('Please fill in all the fields correctly.')
+                          }
                         }}
                       >
                         Send
