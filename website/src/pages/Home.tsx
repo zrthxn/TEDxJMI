@@ -5,11 +5,11 @@ import './styles/Home.css'
 
 import { Button } from '../components/Button/Button'
 import AppContext from '../AppContext'
+import { triggerParticles } from '../Particles'
 
 export class Home extends Component {
-  
   componentDidMount() {
-    // window.location.reload()
+    triggerParticles()
   }
   
   render() {
