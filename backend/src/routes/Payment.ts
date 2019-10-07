@@ -79,6 +79,12 @@ PaymentsRouter.post('/create', (req, res)=>{
 
       Firestore.collection('Transactions').add(transaction).then((doc)=>{
         transaction['txnid'] = doc.id
+
+        // Set 15 Minutes to Complete Payment
+        setTimeout(()=>{
+          Firestore.collection('Transactions').doc(doc.id).update({ status: 'TIMEOUT' })
+        }, 15 * 60 * 1000)
+
         res.send({
           transaction,
           encoding: 'hex',
