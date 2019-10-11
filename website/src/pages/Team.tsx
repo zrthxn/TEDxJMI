@@ -23,13 +23,13 @@ export class Team extends Component {
               </div>
             </Card>
 
-            {/* <Card size="medium">
+            <Card size="medium">
               <img alt="team" src="/assets/img/team/x.png"/>
               <div className="sub">
                 <b>Prof. Seemi Farhat</b><br/>
                 Dean of Student Welfare
               </div>
-            </Card> */}
+            </Card>
           </CardContainer>
         </section>
 
@@ -58,6 +58,35 @@ export class Team extends Component {
               </Card>
 
               <Card size="medium">
+                <img alt="team" src="/assets/img/team/shruty.jpg"/>
+                <div className="sub">Shruty Yadav</div>
+              </Card>
+
+              <Card size="medium">
+                <img alt="team" src="/assets/img/team/mehnaz.jpg"/>
+                <div className="sub">Mehnaz Hussain</div>
+              </Card>
+            </CardContainer>
+
+            <CardContainer>
+              <Card size="medium">
+                <img alt="team" src="/assets/img/team/ramsha.jpg"/>
+                <div className="sub">Ramsha Khan</div>
+              </Card>
+
+              <Card size="medium">
+                <img alt="team" src="/assets/img/team/shireen.jpg"/>
+                <div className="sub">Shireen Syed</div>
+              </Card>
+            </CardContainer>
+          </div>
+        </section>
+
+        <section className="center">
+          <h2>Marketing and Public Relations</h2>
+          <div>
+            <CardContainer>
+              <Card size="medium">
                 <img alt="team" src="/assets/img/team/alisamar.jpg"/>
                 <div className="sub">Alisamar Husain</div>
               </Card>
@@ -66,26 +95,8 @@ export class Team extends Component {
                 <img alt="team" src="/assets/img/team/anvita.jpeg"/>
                 <div className="sub">Anvita Goel</div>
               </Card>
-
-              <Card size="medium">
-                <img alt="team" src="/assets/img/team/shruty.jpg"/>
-                <div className="sub">Shruty</div>
-              </Card>
             </CardContainer>
           </div>
-          {/* <div>
-            <CardContainer>
-              <Card size="medium">
-                <img alt="team" src="/assets/img/team/alisamar.jpg"/>
-                <div className="sub">Alisamar Husain</div>
-              </Card>
-
-              <Card size="medium">
-                <img alt="team" src="/assets/img/team/anvita.jpg"/>
-                <div className="sub">Anvita Goel</div>
-              </Card>
-            </CardContainer>
-          </div> */}
         </section>
 
         <section className="center">
@@ -99,7 +110,7 @@ export class Team extends Component {
         </section>
 
         <section className="center">
-          <h2>Media and Public Relations</h2>
+          <h2>Media and Technical Affairs</h2>
           <CardContainer>
             <Card size="medium">
               <img alt="team" src="/assets/img/team/mariam.jpg"/>
@@ -114,11 +125,28 @@ export class Team extends Component {
         </section>
 
         <section className="center">
-          <h2>Event Logistics</h2>
+          <h2>Production and<br/>Logistics</h2>
           <CardContainer>
             <Card size="medium">
               <img alt="team" src="/assets/img/team/zuhair.jpg"/>
-              <div className="sub">Zuhair</div>
+              <div className="sub">Zuhair Khwaja</div>
+            </Card>
+
+            <Card size="medium">
+              <img alt="team" src="/assets/img/team/danyaal.jpg"/>
+              <div className="sub">Danyaal Jameel</div>
+            </Card>
+          </CardContainer>
+
+          <CardContainer>
+            <Card size="medium">
+              <img alt="team" src="/assets/img/team/sufu.jpg"/>
+              <div className="sub">Sufiyan Sajid</div>
+            </Card>
+            
+            <Card size="medium">
+              <img alt="team" src="/assets/img/team/suhaib.jpg"/>
+              <div className="sub">Suhaib</div>
             </Card>
           </CardContainer>
         </section>

@@ -190,7 +190,7 @@ header .container {
 
 #sidebar-toggle:checked ~ .hamburger {
   position: fixed;
-  top: 1.6em;
+  top: 1.85em;
   right: 1em;
 }
 #sidebar-toggle:checked ~ .hamburger span::before {

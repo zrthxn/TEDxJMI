@@ -17,7 +17,7 @@ export default class AppContextProvider extends Component {
       couponCode: String()
     },
     errors: {
-
+      
     }
   }
 

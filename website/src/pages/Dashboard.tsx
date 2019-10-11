@@ -17,8 +17,8 @@ export class Dashboard extends Component {
   paymentService = new APIService()
 
   state = {
-    transactionCreationSuccessful: undefined,
-    transactionPaymentSuccessful: undefined,
+    transactionCreationSuccessful: true, //undefined,
+    transactionPaymentSuccessful: false, //undefined,
     transaction: {
       txnid: String(),
       baseAmount: Number(),
@@ -34,34 +34,35 @@ export class Dashboard extends Component {
   }
 
   componentDidMount() {
-    if(this.context.state.userAuthenticated) {
-      this.paymentService.createPayment(this.context.state.user).then(({ data })=>{
-        const { transaction, apiKey, salt, encoding, checksum } = data
+    // if(this.context.state.userAuthenticated) {
+    if(true) {
+      // this.paymentService.createPayment(this.context.state.user).then(({ data })=>{
+      //   const { transaction, apiKey, salt, encoding, checksum } = data
         
-        let hash
-        try {
-          hash = crypto.createHash('sha512').update(JSON.stringify(transaction)).digest("base64")
-        } catch (error) {
-          alert('There was an error in creating your payment. Please try again.')
-          this.context.actions.router('/register')
-          window.location.reload()
-        }
+      //   let hash
+      //   try {
+      //     hash = crypto.createHash('sha512').update(JSON.stringify(transaction)).digest("base64")
+      //   } catch (error) {
+      //     alert('There was an error in creating your payment. Please try again.')
+      //     this.context.actions.router('/register')
+      //     window.location.reload()
+      //   }
 
-        if(hash===checksum)
-          this.setState({
-            transaction,
-            transactionCreationSuccessful: true,
-            payment: {
-              key: decrypt(apiKey, encoding),
-              salt: decrypt(salt, encoding)
-            }
-          })
-      }).catch((err)=>{
-        alert('There was an error creating your payment. This may be because you have already registered.')
-        this.context.actions.router('/register')
-      }).finally(()=>{
-        this.context.actions.endAppTransition()
-      })
+      //   if(hash===checksum)
+      //     this.setState({
+      //       transaction,
+      //       transactionCreationSuccessful: true,
+      //       payment: {
+      //         key: decrypt(apiKey, encoding),
+      //         salt: decrypt(salt, encoding)
+      //       }
+      //     })
+      // }).catch((err)=>{
+      //   alert('There was an error creating your payment. This may be because you have already registered.')
+      //   this.context.actions.router('/register')
+      // }).finally(()=>{
+      //   this.context.actions.endAppTransition()
+      // })
     }
     else
       this.context.actions.router('/register')
@@ -181,7 +182,7 @@ export class Dashboard extends Component {
             <section className="center">
               <h2>Payment Failed</h2>
               
-              <p style={{ textAlign: 'center' }}>
+              <div style={{ textAlign: 'center' }}>
                 There was a problem with your payment or you cancelled the payment by clicking 
                 the back button. <br/><br/>
                 
@@ -190,19 +191,18 @@ export class Dashboard extends Component {
                 <AppContext.Consumer>
                   {
                     appContext => (
-                      <p style={{
-                        opacity: 0.25,
-                        textAlign: 'left',
-                        maxWidth: '50%',
-                        margin: 'auto'
-                      }}>
-                        ERRORS <br/>
-                        { JSON.stringify(appContext.state.errors) }
-                      </p>
+                      <div style={{ opacity: 0.25, textAlign: 'left' }}>
+                        <p style={{ textAlign: 'center' }}><b>ERRORS</b></p>
+                        <pre style={{ maxWidth: '75%', margin: 'auto', overflowX: 'scroll' }}>
+                          { 
+                            JSON.stringify(appContext.state.errors, null, 2)
+                          }
+                        </pre>
+                      </div>
                     )
                   }
                 </AppContext.Consumer>
-              </p>
+              </div>
 
               <p style={{ textAlign: 'center', fontSize: '1.25em' }}>
                 <Button size="small" color="primary" onClick={()=>{
