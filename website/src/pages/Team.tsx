@@ -129,7 +129,7 @@ export class Team extends Component {
           <CardContainer>
             <Card size="medium">
               <img alt="team" src="/assets/img/team/zuhair.jpg"/>
-              <div className="sub">Zuhair Khwaja</div>
+              <div className="sub">Zuhair Siddiqui</div>
             </Card>
 
             <Card size="medium">
