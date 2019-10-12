@@ -34,35 +34,34 @@ export class Dashboard extends Component {
   }
 
   componentDidMount() {
-    // if(this.context.state.userAuthenticated) {
-    if(true) {
-      // this.paymentService.createPayment(this.context.state.user).then(({ data })=>{
-      //   const { transaction, apiKey, salt, encoding, checksum } = data
+    if(this.context.state.userAuthenticated) {
+      this.paymentService.createPayment(this.context.state.user).then(({ data })=>{
+        const { transaction, apiKey, salt, encoding, checksum } = data
         
-      //   let hash
-      //   try {
-      //     hash = crypto.createHash('sha512').update(JSON.stringify(transaction)).digest("base64")
-      //   } catch (error) {
-      //     alert('There was an error in creating your payment. Please try again.')
-      //     this.context.actions.router('/register')
-      //     window.location.reload()
-      //   }
+        let hash
+        try {
+          hash = crypto.createHash('sha512').update(JSON.stringify(transaction)).digest("base64")
+        } catch (error) {
+          alert('There was an error in creating your payment. Please try again.')
+          this.context.actions.router('/register')
+          window.location.reload()
+        }
 
-      //   if(hash===checksum)
-      //     this.setState({
-      //       transaction,
-      //       transactionCreationSuccessful: true,
-      //       payment: {
-      //         key: decrypt(apiKey, encoding),
-      //         salt: decrypt(salt, encoding)
-      //       }
-      //     })
-      // }).catch((err)=>{
-      //   alert('There was an error creating your payment. This may be because you have already registered.')
-      //   this.context.actions.router('/register')
-      // }).finally(()=>{
-      //   this.context.actions.endAppTransition()
-      // })
+        if(hash===checksum)
+          this.setState({
+            transaction,
+            transactionCreationSuccessful: true,
+            payment: {
+              key: decrypt(apiKey, encoding),
+              salt: decrypt(salt, encoding)
+            }
+          })
+      }).catch((err)=>{
+        alert('There was an error creating your payment. This may be because you have already registered.')
+        this.context.actions.router('/register')
+      }).finally(()=>{
+        this.context.actions.endAppTransition()
+      })
     }
     else
       this.context.actions.router('/register')
