@@ -17,8 +17,8 @@ export class Dashboard extends Component {
   paymentService = new APIService()
 
   state = {
-    transactionCreationSuccessful: true, //undefined,
-    transactionPaymentSuccessful: false, //undefined,
+    transactionCreationSuccessful: undefined,
+    transactionPaymentSuccessful: undefined,
     transaction: {
       txnid: String(),
       baseAmount: Number(),
