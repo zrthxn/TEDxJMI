@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom'
 import '../App.css'
 
 import AppContext from '../AppContext'
+import Firestore from '../libs/util/database'
 import { launchPortal } from '../libs/api/payu'
 import { APIService } from '../libs/api/api'
 import { decrypt } from '../libs/util/encryption'
-import Firestore from '../libs/util/database'
 import { Button } from '../components/Button/Button'
 
 export class Dashboard extends Component {
