@@ -50,7 +50,7 @@ export class Speakers extends Component {
               <div className="sub">Zain Anwar</div>
             </Card>
 
-            <Card drawer={()=>(
+            <Card size="large" drawer={()=>(
               <div>
                 <p>
                 Major Mohommed Ali Shah is a motivational speaker, a Defence expert and a Defence analyst on many
