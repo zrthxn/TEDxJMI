@@ -33,7 +33,7 @@ RegisterRouter.post('/ticket', async (req, res)=>{
   await Firestore.collection('Transactions').doc(txn.txnid).update({ status: 'SUCCESSFUL' })
   await Firestore.collection('Tickets').doc(ticketId).set({ user, txn })
 
-  if(user.isInternalStudent && user.couponCode==='')
+  if(user.isInternalStudent && user.studentIdNumber!==undefined && user.studentIdNumber!=='')
     user.couponCode = 'JMISTD'
 
   const couponQuery = await Firestore.collection('Coupons').where('couponCode', '==', user.couponCode).limit(1).get()
@@ -46,7 +46,7 @@ RegisterRouter.post('/ticket', async (req, res)=>{
   }
 
   if(coupon!==undefined && coupon!==null) {
-    if(coupon.maxUses!==0) {
+    if(coupon.maxUses>0) {
       Firestore.collection('Coupons').doc(couponQuery.docs[0].id).update({ maxUses: (coupon.maxUses - 1)  })
     }
   }

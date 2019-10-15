@@ -45,12 +45,14 @@ PaymentsRouter.post('/create', (req, res)=>{
           const coupon = internal.docs[0].data()
 
           if(coupon!==undefined && coupon!==null)
-            if(coupon.maxUses!==0) {
+            if(coupon.maxUses>0) {
               transaction.baseAmount = internalDiscountAmount
               user.couponCode = 'JMISTD'
             }
         }
       }
+      else
+        user.isInternalStudent = false
         
       const query = await Firestore.collection('Coupons').where('couponCode', '==', user.couponCode).limit(1).get()
       
