@@ -103,5 +103,10 @@ RegisterRouter.post('/close', (req, res)=>{
         <i>I am the website server. I am a bot!</i>
       </p>
     `
+  }).then((result) => {
+    res.status(200).send(result)
+  }).catch((err) => {
+    res.status(500).send(err)
+    console.error(err)
   })
 })
