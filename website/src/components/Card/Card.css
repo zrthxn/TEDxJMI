@@ -26,7 +26,7 @@
 }
 
 .card .card-content img {
-  max-height: 100%;
+  max-height: 120%;
   object-fit: fill;
   background-color: #fff;
   margin : auto auto;
