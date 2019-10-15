@@ -29,6 +29,26 @@ export class Speakers extends Component {
               <img alt="speaker" src="/assets/img/speakers/IshteyaqueAmjad.jpg"/>
               <div className="sub">Ishteyaque Amjad</div>
             </Card>
+
+            <Card size="large" drawer={()=>(
+              <div>
+                <h1>Zain Anwar</h1>
+                <h3>Filmmaker, MensXP</h3>
+                <p>
+                An alumnus of AJK MCRC, Jamia Millia Islamia, Zain currently heads videos for MensXP, a major 
+                online lifestyle portal by Times Internet. A filmmaker by profession, Zain is a Filmfare nominated 
+                director and has a series of awards under his name for his directorial work. His most noticeable 
+                work has been "Mehram" an independent film which was critically acclaimed across the globe. 
+                <br/><br/>
+                Zain  is known for his YouTube show "Honest Reviews" which has created a new 
+                language and format for film reviews on video. In the past, Zain has worked with various reputed 
+                organisations like NDTV, Dainik Bhaskar, Radio Mirchi etc. 
+                </p>
+              </div>
+            )}>
+              <img alt="speaker" src="/assets/img/speakers/ZainAnwar.jpg"/>
+              <div className="sub">Zain Anwar</div>
+            </Card>
           </CardContainer>
         </section>
 
