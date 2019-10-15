@@ -49,6 +49,23 @@ export class Speakers extends Component {
               <img alt="speaker" src="/assets/img/speakers/ZainAnwar.jpg"/>
               <div className="sub">Zain Anwar</div>
             </Card>
+
+            <Card drawer={()=>(
+              <div>
+                <p>
+                Major Mohommed Ali Shah is a motivational speaker, a Defence expert and a Defence analyst on many
+                popular Indian News Channels. He is a well known Theatre and film personality too, and a visiting faculty
+                at Subhash Ghai's "Whistling Woods International".
+                <br/><br/>
+                He served the nation as a commando at the Indo-Pak border.He was awarded a commendation card for
+                his exceptional and meritorious service to the nation. He is also an alumnus of the prestigious IIM 
+                Calcutta and has done Theatre with Thespians such as Tom Alter and his uncle, Naseeruddin Shah.
+                </p>
+              </div>
+            )}>
+              <img alt="speaker" src="/assets/img/speakers/MohommedAliShah.jpg"/>
+              <div className="sub">Mohommed Ali Shah</div>
+            </Card>
           </CardContainer>
         </section>
 
