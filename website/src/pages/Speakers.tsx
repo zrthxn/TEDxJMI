@@ -52,6 +52,7 @@ export class Speakers extends Component {
 
             <Card size="large" drawer={()=>(
               <div>
+                <h1>Mohommed Ali Shah</h1>
                 <p>
                 Major Mohommed Ali Shah is a motivational speaker, a Defence expert and a Defence analyst on many
                 popular Indian News Channels. He is a well known Theatre and film personality too, and a visiting faculty
