@@ -53,6 +53,12 @@ export class Home extends Component {
           </section>  
         </article>
 
+        <article style={{ maxHeight: '42em', overflow: 'hidden', display: 'flex', flexDirection: 'row' }}>
+          <video autoPlay muted style={{ width: '100%', objectFit: 'cover' }}>
+            <source src="/assets/promovideo.mp4" type="video/mp4"/>
+          </video>
+        </article>
+
         <article className="venue">
           <h3>Jamia Millia Islamia, New Delhi</h3>
           <Link to={'#'} onClick={()=>{
