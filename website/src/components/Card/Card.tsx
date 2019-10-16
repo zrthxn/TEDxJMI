@@ -1,6 +1,5 @@
 import React, { Component, ReactElement } from 'react'
 import './Card.css'
-import Drawer from './Drawer'
 
 interface CardProps {
   size?: 'small' | 'medium' | 'large'
@@ -55,21 +54,18 @@ export class Card extends Component<CardProps> {
     return (
       <div className="card" style={ this.state.style } onClick={this.toggleDrawer}>
         <div className="card-content" onClick={this.toggleDrawer}>
-          {
-            this.props.children
-          }
-
-          {
-            this.state.openDrawer ? (
-              this.props.drawer!==undefined && this.props.drawer!==null ? (
-                <Drawer onClose={this.toggleDrawer}>
-                  {
-                    this.props.drawer()
-                  }
-                </Drawer>
-              ) : null
-            ) : null
-          }
+          <CardContext.Provider
+            value={{
+              state: this.state,
+              actions: {
+                toggleDrawer: this.toggleDrawer
+              }
+            }}
+          >
+            {
+              this.props.children
+            }
+          </CardContext.Provider>
         </div>
       </div>
     )
@@ -85,5 +81,16 @@ export function CardContainer(props:any) {
     </div>
   )
 }
+
+export const CardContext = React.createContext({
+  state: {
+    openDrawer: false
+  },
+  actions: {
+    toggleDrawer: () => {
+      console.log()
+    }
+  }
+})
 
 export default Card
