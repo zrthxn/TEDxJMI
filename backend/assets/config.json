@@ -6,8 +6,8 @@
     "ALLOW_METHODS": "GET,POST,PUT,DELETE,OPTIONS"
   },
   "tickets": {
-    "basePrice": 750,
-    "internalDiscountAmount": 250,
+    "basePrice": 600,
+    "internalDiscountAmount": 200,
     "txnFee": 0.03,
     "taxRate": 0.18
   },
