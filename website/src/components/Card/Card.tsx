@@ -52,22 +52,22 @@ export class Card extends Component<CardProps> {
 
   render() {
     return (
-      <div className="card" style={ this.state.style } onClick={this.toggleDrawer}>
-        <div className="card-content" onClick={this.toggleDrawer}>
-          <CardContext.Provider
-            value={{
-              state: this.state,
-              actions: {
-                toggleDrawer: this.toggleDrawer
-              }
-            }}
-          >
+      <CardContext.Provider
+        value={{
+          state: this.state,
+          actions: {
+            toggleDrawer: this.toggleDrawer
+          }
+        }}
+      >
+        <div className="card" style={ this.state.style }>
+          <div className="card-content" onClick={this.toggleDrawer}>
             {
               this.props.children
             }
-          </CardContext.Provider>
+          </div>
         </div>
-      </div>
+      </CardContext.Provider>
     )
   }
 }

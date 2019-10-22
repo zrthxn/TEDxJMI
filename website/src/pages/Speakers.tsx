@@ -79,7 +79,7 @@ export class Speakers extends Component {
               <img alt="speaker" src="/assets/img/speakers/OliviaDeka.jpg"/>
               <div className="sub">Olivia Deka</div>
 
-              <Drawer>
+              {/* <Drawer>
                 <div>
                   <h1>Olivia Deka</h1>
                   <p>
@@ -93,7 +93,28 @@ export class Speakers extends Component {
                     opportunities and network.
                   </p>
                 </div>
-              </Drawer>
+              </Drawer> */}
+            </Card>
+
+            <Card size="large">
+              <img alt="speaker" src="/assets/img/speakers/ShamsAlam.png"/>
+              <div className="sub">Shams Alam</div>
+
+              {/* <Drawer>
+                <div>
+                  <h1>Shams Alam</h1>
+                  <p>
+                    Olivia Deka is a changemaker who advocates for social issues pertaining Sustainable Development 
+                    Goals 2030. She is the Founder of She For Change, an organisation that works on fostering 
+                    entrepreneurial leadership amongst young girls and on strengthening the entrepreneurial 
+                    ecosystem for Young Women Changemakers to catalyse larger social impact. 
+                    <br/><br/>
+                    The idea behind her initaitive is to help reinforce the belief in the potential of young 
+                    women who can break barriers and change the world when given the right resources, tools, 
+                    opportunities and network.
+                  </p>
+                </div>
+              </Drawer> */}
             </Card>
           </CardContainer>
         </section>

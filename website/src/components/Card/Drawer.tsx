@@ -18,7 +18,7 @@ export default function Drawer(props:any) {
                   </div>
                   
                   <span className="drawer-close" onClick={cardContext.actions.toggleDrawer}>
-                    Close
+                    Tap to Close
                   </span>
                 </div>
               ) : (
