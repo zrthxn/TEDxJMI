@@ -34,6 +34,27 @@ export class Speakers extends Component {
             </Card>
 
             <Card size="large">
+              <img alt="speaker" src="/assets/img/speakers/SanjayDalmia.jpg"/>
+              <div className="sub">Sanjay Dalmia</div>
+
+              <Drawer>
+                <div>
+                  <h1>Sanjay Dalmia</h1>
+                  <h3>Chairman – Dalmia Group of Companies</h3>
+                  <p>
+                    Mr. Sanjay Dalmia, Chairman of the Dalmia Group of Companies, is a visionary
+                    who creates innovativebusinesses, takesout of the box initiatives which today
+                    influences not only the immediate community but the country at large.
+                    <br/><br/>
+                    Mr Sanjay Dalmia is also a Founder Director of the recently launched "Europe-India Chamber of Commerce" 
+                    (EICC) with Headquarter in Brussels, which was formed with the aim of promoting trade, 
+                    commerce and investments between India and Europe.
+                  </p>
+                </div>
+              </Drawer>
+            </Card>
+
+            <Card size="large">
               <img alt="speaker" src="/assets/img/speakers/ZainAnwar.jpg"/>
               <div className="sub">Zain Anwar</div>
 
@@ -79,7 +100,7 @@ export class Speakers extends Component {
               <img alt="speaker" src="/assets/img/speakers/OliviaDeka.jpg"/>
               <div className="sub">Olivia Deka</div>
 
-              {/* <Drawer>
+              <Drawer>
                 <div>
                   <h1>Olivia Deka</h1>
                   <p>
@@ -93,28 +114,48 @@ export class Speakers extends Component {
                     opportunities and network.
                   </p>
                 </div>
-              </Drawer> */}
+              </Drawer>
             </Card>
 
             <Card size="large">
               <img alt="speaker" src="/assets/img/speakers/ShamsAlam.png"/>
               <div className="sub">Shams Alam</div>
 
-              {/* <Drawer>
+              <Drawer>
                 <div>
                   <h1>Shams Alam</h1>
                   <p>
-                    Olivia Deka is a changemaker who advocates for social issues pertaining Sustainable Development 
-                    Goals 2030. She is the Founder of She For Change, an organisation that works on fostering 
-                    entrepreneurial leadership amongst young girls and on strengthening the entrepreneurial 
-                    ecosystem for Young Women Changemakers to catalyse larger social impact. 
+                    Shams Alam completed his B.E. in Mechanical Engineering & MBA in HR & Operations. 
+                    He is a paraplegic who has overcome all odds to become a world record holder for 
+                    the longest open sea swimming. 
                     <br/><br/>
-                    The idea behind her initaitive is to help reinforce the belief in the potential of young 
-                    women who can break barriers and change the world when given the right resources, tools, 
-                    opportunities and network.
+                    He is an international gold medalist para-swimmer & was awarded best emerging leader 
+                    in disability sports & sports diplomacy by U.S. Department of State Global Sports 
+                    Mentoring Program in 2018.
                   </p>
                 </div>
-              </Drawer> */}
+              </Drawer>
+            </Card>
+
+            <Card size="large">
+              <img alt="speaker" src="/assets/img/speakers/NavedKhan.jpeg"/>
+              <div className="sub">Naved Khan</div>
+
+              <Drawer>
+                <div>
+                  <h1>Naved Khan</h1>
+                  <p>
+                    Try as you might but you can't resist laughing at his jokes. Yess you heard it right!!
+                    Our next speaker is Mr. Naved Khan(famously known as RJ Naved), currently works as 
+                    an RJ at the renowned "Radio Mirchi" 
+                    <br/><br/>
+                    RJ Naved lives up to our  expectations by being the wittiest man. Being an RJ, he has 
+                    the power to influence a wide variety of audience. Riding high following his win at 
+                    the India Radio Forum Awards,  Radio Mirchi's RJ Naved tickles the funny bone with 
+                    his one-liners and the all-famous murgas.
+                  </p>
+                </div>
+              </Drawer>
             </Card>
           </CardContainer>
         </section>
