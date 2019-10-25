@@ -59,6 +59,22 @@ export class Home extends Component {
           </video>
         </article>
 
+        <article style={{ backgroundColor: '#fff', color: '#000' }}>
+          <section className="partners">
+            <div className="partner">
+              <img src="/assets/img/partners/Lotto.jpg" alt=""/>
+              <h3>Lotto</h3>
+              <p> Youth Partner </p>
+            </div>
+
+            <div className="partner">
+              <img src="/assets/img/partners/IEEE.png" alt=""/>
+              <h3>IEEE JMI</h3>
+              <p> Logistics Partner </p>
+            </div>
+          </section>
+        </article>
+
         <article className="venue">
           <h3>Jamia Millia Islamia, New Delhi</h3>
           <Link to={'#'} onClick={()=>{

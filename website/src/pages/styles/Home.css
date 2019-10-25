@@ -62,3 +62,30 @@
 .home-venue {
   padding: 4em;
 }
+
+.partners {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+}
+.partner {
+  display: flex;
+  flex-direction: column;
+  max-width: 25%;
+  margin: 1em auto;
+}
+.partner img {
+  height: 10em;
+  width: auto;
+  object-fit: contain;
+  margin: 1em;
+}
+.partner p, .partner h3 {
+  margin: 0.25em 0;
+  text-align: center;
+}
+@media (max-width: 600px) {
+  .partner {
+    max-width: 50%;
+  }
+}
