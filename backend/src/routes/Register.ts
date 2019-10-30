@@ -52,10 +52,31 @@ RegisterRouter.post('/ticket', async (req, res)=>{
   }
 
   fs.readFile(
+    path.join(__dirname, '..', '..', 'assets', 'templates', 'paymentconfirm.html'),
+    (err, content)=>{
+      if(err) return console.error(err)
+      Gmail.SingleDataDelivery(
+        {
+          to: user.email,
+          from: 'noreply@tedxjmi.org'
+        },
+        content.toString(),
+        [
+          { id: 'name', data: user.name },
+          { id: 'txnid', data: txn.txnid },
+          { id: 'subtotal', data: txn.baseAmount },
+          { id: 'discount', data: txn.baseAmount * (txn.discountPercentApplied/100) },
+          { id: 'txnfee', data:  txn.amountPaid - (txn.baseAmount - (txn.baseAmount * (txn.discountPercentApplied/100))) },
+          { id: 'total', data: txn.amountPaid }
+        ]
+      )
+    }
+  )
+
+  fs.readFile(
     path.join(__dirname, '..', '..', 'assets', 'templates', 'confirmation.html'),
     (err, content)=>{
       if(err) return console.error(err)
-
       Gmail.SingleDataDelivery(
         {
           to: user.email,
