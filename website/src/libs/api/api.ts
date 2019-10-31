@@ -59,10 +59,12 @@ export class APIService {
     const LOCK = crypto.randomBytes(32).toString('base64')
     var APIKEY = ''
 
-    if(process.env.REACT_APP_CLIENT_KEY!==undefined)
-      APIKEY = crypto.createHmac('sha256', LOCK).update(process.env.REACT_APP_CLIENT_KEY).digest('base64')
-
     try {
+      if(process.env.REACT_APP_CLIENT_KEY!==undefined)
+        APIKEY = crypto.createHmac('sha256', LOCK).update(process.env.REACT_APP_CLIENT_KEY).digest('base64')
+      else
+        throw new Error('CLIENT KEY UNDEFINED')
+
       let authResponse = await this.request.post(
         this.endpoint + '/_authenticate', {
           clientId: LOCK, apiKey: APIKEY

@@ -8,9 +8,6 @@ export class Team extends Component {
     return (
       <article>
         <h1>The Team</h1>
-        {/* <section className="center">
-          These are the people responsible for finding voices that have ideas which can inspire people.
-        </section> */}
 
         <section className="center">
           <h2>Faculty Advisors</h2>
@@ -20,14 +17,6 @@ export class Team extends Component {
               <div className="sub">
                 <b>Prof. Rihan K. Suri</b><br/>
                 Placement Officer
-              </div>
-            </Card>
-
-            <Card size="medium">
-              <img alt="team" src="/assets/img/team/x.png"/>
-              <div className="sub">
-                <b>Prof. Seemi Farhat</b><br/>
-                Dean of Student Welfare
               </div>
             </Card>
           </CardContainer>

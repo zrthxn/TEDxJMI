@@ -9,7 +9,6 @@ export class Speakers extends Component {
     return (
       <article>
         <h1>Speakers</h1>
-        
         <section className="center">
           <CardContainer>
             <Card size="large">
@@ -63,14 +62,14 @@ export class Speakers extends Component {
                   <h1>Zain Anwar</h1>
                   <h3>Filmmaker, MensXP</h3>
                   <p>
-                  An alumnus of AJK MCRC, Jamia Millia Islamia, Zain currently heads videos for MensXP, a major 
-                  online lifestyle portal by Times Internet. A filmmaker by profession, Zain is a Filmfare nominated 
-                  director and has a series of awards under his name for his directorial work. His most noticeable 
-                  work has been "Mehram" an independent film which was critically acclaimed across the globe. 
-                  <br/><br/>
-                  Zain  is known for his YouTube show "Honest Reviews" which has created a new 
-                  language and format for film reviews on video. In the past, Zain has worked with various reputed 
-                  organisations like NDTV, Dainik Bhaskar, Radio Mirchi etc. 
+                    An alumnus of AJK MCRC, Jamia Millia Islamia, Zain currently heads videos for MensXP, a major 
+                    online lifestyle portal by Times Internet. A filmmaker by profession, Zain is a Filmfare nominated 
+                    director and has a series of awards under his name for his directorial work. His most noticeable 
+                    work has been "Mehram" an independent film which was critically acclaimed across the globe. 
+                    <br/><br/>
+                    Zain  is known for his YouTube show "Honest Reviews" which has created a new 
+                    language and format for film reviews on video. In the past, Zain has worked with various reputed 
+                    organisations like NDTV, Dainik Bhaskar, Radio Mirchi etc. 
                   </p>
                 </div>
               </Drawer>
@@ -84,13 +83,13 @@ export class Speakers extends Component {
                 <div>
                   <h1>Mohommed Ali Shah</h1>
                   <p>
-                  Major Mohommed Ali Shah is a motivational speaker, a Defence expert and a Defence analyst on many
-                  popular Indian News Channels. He is a well known Theatre and film personality too, and a visiting faculty
-                  at Subhash Ghai's "Whistling Woods International".
-                  <br/><br/>
-                  He served the nation as a commando at the Indo-Pak border.He was awarded a commendation card for
-                  his exceptional and meritorious service to the nation. He is also an alumnus of the prestigious IIM 
-                  Calcutta and has done Theatre with Thespians such as Tom Alter and his uncle, Naseeruddin Shah.
+                    Major Mohommed Ali Shah is a motivational speaker, a Defence expert and a Defence analyst on many
+                    popular Indian News Channels. He is a well known Theatre and film personality too, and a visiting faculty
+                    at Subhash Ghai's "Whistling Woods International".
+                    <br/><br/>
+                    He served the nation as a commando at the Indo-Pak border.He was awarded a commendation card for
+                    his exceptional and meritorious service to the nation. He is also an alumnus of the prestigious IIM 
+                    Calcutta and has done Theatre with Thespians such as Tom Alter and his uncle, Naseeruddin Shah.
                   </p>
                 </div>
               </Drawer>
@@ -153,6 +152,51 @@ export class Speakers extends Component {
                     the power to influence a wide variety of audience. Riding high following his win at 
                     the India Radio Forum Awards,  Radio Mirchi's RJ Naved tickles the funny bone with 
                     his one-liners and the all-famous murgas.
+                  </p>
+                </div>
+              </Drawer>
+            </Card>
+
+            <Card size="large">
+              <img alt="speaker" src="/assets/img/speakers/VikasJain.jpeg"/>
+              <div className="sub">Vikas Jain</div>
+
+              <Drawer>
+                <div>
+                  <h1>Vikas Jain</h1>
+                  <h3>Co-Founder, Micromax Informatics</h3>
+                  <p>
+                    Vikas Jain is the Co-Founder of Micromax Informatics Limited. With over 14 years of experience
+                    in international business and planning and the information technology sector, Vikas has played a
+                    crucial role in garnering and accelerating the business dynamics of Micromax.
+                    <br/><br/>
+                    With his unique set of expertise in the 3G business dynamics, coupled with a great sense of
+                    innovative world scale business ideas, Vikas has successfully contributed in taking the company
+                    to newer markets and helping in global expansion.
+                  </p>
+                </div>
+              </Drawer>
+            </Card>
+          </CardContainer>
+        </section>
+
+        <h1>Performers</h1>
+        <section>
+          <CardContainer>
+            <Card size="large">
+              <img alt="speaker" src="/assets/img/speakers/Raga.jpg"/>
+              <div className="sub">Raga</div>
+
+              <Drawer>
+                <div>
+                  <h1>Raga</h1>
+                  <p>
+                    Raga is a popular Indian rapper, singer, and lyricist who was previously known as Ewill Myth in his
+                    early underground career. Ravi Mishra A.K.A. Raga is a india based rapper,songwriter and music producer.
+                    <br/><br/>
+                    He was born in a middle class family of Laxmi Nagar in East Delhi who came to prominence with his album 
+                    "Rap Ka Mausam". Raga has now successfully built his huge reputation in the underground rapping and
+                    mainstream market.
                   </p>
                 </div>
               </Drawer>

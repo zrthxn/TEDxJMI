@@ -60,6 +60,8 @@ export class Home extends Component {
         </article>
 
         <article style={{ backgroundColor: '#fff', color: '#000' }}>
+          <br/>
+          <h1>Partners</h1>
           <section className="partners">
             <div className="partner">
               <img src="/assets/img/partners/Lotto.jpg" alt=""/>
@@ -71,6 +73,14 @@ export class Home extends Component {
               <img src="/assets/img/partners/IEEE.png" alt=""/>
               <h3>IEEE JMI</h3>
               <p> Logistics Partner </p>
+            </div>
+
+            <div className="partner">
+              <img src="/assets/img/partners/Rataal.jpg" alt=""/>
+            </div>
+
+            <div className="partner">
+              <img src="/assets/img/partners/Masah.jpg" alt=""/>
             </div>
           </section>
         </article>
