@@ -1,17 +1,14 @@
 import express from 'express'
 import crypto from 'crypto'
-import fs from 'fs'
-import path from 'path'
 import Firestore from '../utils/Database'
-import { encrypt, decrypt } from '../utils/Encryption'
-import Gmailer from '../utils/Gmailer' 
+import { encrypt } from '../utils/Encryption'
 
 export const PaymentsRouter = express.Router()
 
 require('dotenv').config()
 
 const ServerConfig = require('../../assets/config.json')
-const { basePrice, internalDiscountAmount, txnFee, taxRate } = ServerConfig.tickets
+const { basePrice, txnFee, taxRate } = ServerConfig.tickets
 
 PaymentsRouter.use((req, res, next)=>{
   if(process.env.REGISTERATION_OPEN!=='YES')
@@ -38,21 +35,21 @@ PaymentsRouter.post('/create', (req, res)=>{
       
       transaction.baseAmount = basePrice
 
-      const internal = await Firestore.collection('Coupons').where('couponCode', '==', 'JMISTD').limit(1).get()
+      // const internal = await Firestore.collection('Coupons').where('couponCode', '==', 'JMISTD').limit(1).get()
 
-      if(user.isInternalStudent && user.studentIdNumber!==undefined && user.studentIdNumber!=='') {
-        if(internal.docs!==undefined && internal.docs.length > 0) {
-          const coupon = internal.docs[0].data()
+      // if(user.isInternalStudent && user.studentIdNumber!==undefined && user.studentIdNumber!=='') {
+      //   if(internal.docs!==undefined && internal.docs.length > 0) {
+      //     const coupon = internal.docs[0].data()
 
-          if(coupon!==undefined && coupon!==null)
-            if(coupon.maxUses>0) {
-              transaction.baseAmount = internalDiscountAmount
-              user.couponCode = 'JMISTD'
-            }
-        }
-      }
-      else
-        user.isInternalStudent = false
+      //     if(coupon!==undefined && coupon!==null)
+      //       if(coupon.maxUses>0) {
+      //         transaction.baseAmount = internalDiscountAmount
+      //         user.couponCode = 'JMISTD'
+      //       }
+      //   }
+      // }
+      // else
+      //   user.isInternalStudent = false
         
       const query = await Firestore.collection('Coupons').where('couponCode', '==', user.couponCode).limit(1).get()
       

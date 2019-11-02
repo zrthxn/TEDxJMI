@@ -106,7 +106,7 @@ export class Register extends Component {
                           <Textbox id="institution" placeholder="Institution" className="dark"
                             value={this.state.data.institution} onChange={this.handleChangeById}/>
                       
-                          <Textbox id="couponCode" placeholder="Coupon Code" className="dark"
+                          <Textbox id="couponCode" placeholder="Coupon Code (Optional)" className="dark"
                             value={this.state.data.couponCode} onChange={this.handleChangeById}/>
 
                           {/* <Checkbox label="Attended a TEDx Event before?"
