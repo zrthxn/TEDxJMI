@@ -186,39 +186,16 @@ export class Speakers extends Component {
             <Card size="large">
               <img alt="speaker" src="/assets/img/speakers/Raga.jpg"/>
               <div className="sub">Raga</div>
-
-              <Drawer>
-                <div>
-                  <h1>Raga</h1>
-                  <p>
-                    Raga is a popular Indian rapper, singer, and lyricist who was previously known as Ewill Myth in his
-                    early underground career. Ravi Mishra A.K.A. Raga is a india based rapper,songwriter and music producer.
-                    <br/><br/>
-                    He was born in a middle class family of Laxmi Nagar in East Delhi who came to prominence with his album 
-                    "Rap Ka Mausam". Raga has now successfully built his huge reputation in the underground rapping and
-                    mainstream market.
-                  </p>
-                </div>
-              </Drawer>
             </Card>
 
             <Card size="large">
-              <img alt="speaker" src="/assets/img/speakers/Raga.jpg"/>
-              <div className="sub">Raga</div>
+              <img alt="speaker" src="/assets/img/speakers/R2H.jpg"/>
+              <div className="sub">Round2Hell</div>
+            </Card>
 
-              <Drawer>
-                <div>
-                  <h1>Raga</h1>
-                  <p>
-                    Raga is a popular Indian rapper, singer, and lyricist who was previously known as Ewill Myth in his
-                    early underground career. Ravi Mishra A.K.A. Raga is a india based rapper,songwriter and music producer.
-                    <br/><br/>
-                    He was born in a middle class family of Laxmi Nagar in East Delhi who came to prominence with his album 
-                    "Rap Ka Mausam". Raga has now successfully built his huge reputation in the underground rapping and
-                    mainstream market.
-                  </p>
-                </div>
-              </Drawer>
+            <Card size="large">
+              <img alt="speaker" src="/assets/img/speakers/Ikhtiyar.png"/>
+              <div className="sub">Ikhtiyar</div>
             </Card>
           </CardContainer>
         </section>
