@@ -24,6 +24,7 @@ export class Dashboard extends Component {
       baseAmount: Number(),
       discountPercentApplied: Number(),
       taxPercent: Number(),
+      txnFee: Number(),
       amountPaid: Number()
     },
     payment: {
@@ -254,7 +255,7 @@ export class Dashboard extends Component {
                     ): null
                   }
 
-                  <span style={{ fontSize: '0.8em' }}>{ this.state.transaction.taxPercent + '%' }</span><br/><br/>
+                  <span style={{ fontSize: '0.8em' }}>3%</span><br/><br/>
                 </p>
               </div>
 
