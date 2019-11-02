@@ -20,10 +20,10 @@ PaymentsRouter.post('/create', (req, res)=>{
   const { user } = req.body
   const transaction = {
     user,
-    baseAmount: undefined,
-    discountPercentApplied: undefined,
-    taxPercent: undefined,
-    amountPaid: undefined,
+    baseAmount: 0,
+    discountPercentApplied: 0,
+    taxPercent: 0,
+    amountPaid: 0,
     status: 'PENDING'
   }
   
@@ -71,7 +71,10 @@ PaymentsRouter.post('/create', (req, res)=>{
       transaction.taxPercent = taxRate * 100
 
       // CRUCIAL --------------------------------
-      transaction.amountPaid = Math.ceil((transaction.baseAmount * (1 + (taxRate * (1 + txnFee)))) * (1 - transaction.discountPercentApplied/100))
+      // transaction.amountPaid = Math.ceil(( transaction.baseAmount * (1 + (taxRate * (1 + txnFee))) ) * (1 - transaction.discountPercentApplied/100))
+      
+        // Remove Tax
+        transaction.amountPaid = Math.ceil(( transaction.baseAmount * (1 + txnFee) ) * (1 - transaction.discountPercentApplied/100))
       // ========================================
 
       Firestore.collection('Mailing List').add({ name: user.name, email: user.email })
