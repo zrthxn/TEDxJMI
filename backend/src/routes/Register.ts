@@ -28,6 +28,10 @@ RegisterRouter.post('/ticket', async (req, res)=>{
   const hash = crypto.createHash('sha512').update(JSON.stringify(user)).update(JSON.stringify(txn)).digest('base64')
   if(hash!==checksum)
     return res.status(403).send({ status: 'AUTH_FAILED' })
+
+  const timeout = await Firestore.collection('Transactions').doc(txn.txnid).get()
+  if(timeout.data().status==='TIMEOUT')
+    return res.status(403).send({ status: 'TIMEOUT' })
   
   txn.status = 'SUCCESSFUL'
   await Firestore.collection('Transactions').doc(txn.txnid).update({ status: 'SUCCESSFUL' })
