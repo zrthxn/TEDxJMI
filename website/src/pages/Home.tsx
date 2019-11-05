@@ -53,7 +53,7 @@ export class Home extends Component {
           </section>  
         </article>
 
-        <article style={{ maxHeight: '42em', overflow: 'hidden', display: 'flex', flexDirection: 'row' }}>
+        <article style={{ maxHeight: '36em', overflow: 'hidden', display: 'flex', flexDirection: 'row' }}>
           <video autoPlay muted style={{ width: '100%', objectFit: 'cover' }}>
             <source src="/assets/promovideo.mp4" type="video/mp4"/>
           </video>
@@ -61,18 +61,18 @@ export class Home extends Component {
 
         <article style={{ backgroundColor: '#fff', color: '#000' }}>
           <br/>
-          <h1>Partners</h1>
+          <h2>Partners</h2>
           <section className="partners">
             <div className="partner">
               <img src="/assets/img/partners/Lotto.jpg" alt=""/>
-              <h3>Lotto</h3>
-              <p> Youth Partner </p>
             </div>
 
             <div className="partner">
-              <img src="/assets/img/partners/IEEE.png" alt=""/>
-              <h3>IEEE JMI</h3>
-              <p> Logistics Partner </p>
+              <img src="/assets/img/partners/JamiaCoop.png" alt=""/>
+            </div>
+
+            <div className="partner">
+              <img src="/assets/img/partners/Powergrid.png" alt=""/>
             </div>
 
             <div className="partner">

@@ -99,7 +99,7 @@ export class Team extends Component {
         </section>
 
         <section className="center">
-          <h2>Media and Technical Affairs</h2>
+          <h2>Design and Media</h2>
           <CardContainer>
             <Card size="medium">
               <img alt="team" src="/assets/img/team/mariam.jpg"/>
@@ -110,11 +110,16 @@ export class Team extends Component {
               <img alt="team" src="/assets/img/team/zaid.jpg"/>
               <div className="sub">Zaid</div>
             </Card>
+
+            <Card size="medium">
+              <img alt="team" src="/assets/img/team/wasiq.jpg"/>
+              <div className="sub">Wasiq</div>
+            </Card>
           </CardContainer>
         </section>
 
         <section className="center">
-          <h2>Production and<br/>Logistics</h2>
+          <h2>Production and Logistics</h2>
           <CardContainer>
             <Card size="medium">
               <img alt="team" src="/assets/img/team/zuhair.jpg"/>

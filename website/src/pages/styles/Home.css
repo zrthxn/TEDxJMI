@@ -67,18 +67,25 @@
   display: flex;
   flex-flow: row;
   flex-wrap: wrap;
+  padding: 2em;
 }
 .partner {
   display: flex;
   flex-direction: column;
-  max-width: 25%;
-  margin: 1em auto;
+  max-width: 30%;
+  margin: 0.5em auto;
 }
 .partner img {
-  height: 10em;
+  height: 8em;
   width: auto;
   object-fit: contain;
   margin: 1em;
+  transition: filter 0.25s ease;
+  filter: grayscale();
+}
+.partner img:active, img:focus, img:hover {
+  transition: filter 0.25s ease;
+  filter: none;
 }
 .partner p, .partner h3 {
   margin: 0.25em 0;
@@ -87,5 +94,8 @@
 @media (max-width: 600px) {
   .partner {
     max-width: 50%;
+  }
+  .partner img {
+    height: 5em;
   }
 }
