@@ -53,9 +53,9 @@ export class Register extends Component {
           }
           else {
             this.setState({ authenticated: true })
-            this.authService.sendAutoCloseNotification({
-              regNumber: ticketQuery.docs.length
-            })
+            // this.authService.sendAutoCloseNotification({
+            //   regNumber: ticketQuery.docs.length
+            // })
           }
       })
     })
