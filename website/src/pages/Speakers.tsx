@@ -12,6 +12,16 @@ export class Speakers extends Component {
         <section className="center">
           <CardContainer>
             <Card size="large">
+              <img alt="speaker" src="/assets/img/speakers/VC.jfif"/>
+              <div className="sub">
+                <b>Prof. Najma Akhtar</b><br/>
+                Chief Guest
+              </div>
+            </Card>
+          </CardContainer>
+
+          <CardContainer>
+            <Card size="large">
               <img alt="speaker" src="/assets/img/speakers/IshteyaqueAmjad.jpg"/>
               <div className="sub">Ishteyaque Amjad</div>
 

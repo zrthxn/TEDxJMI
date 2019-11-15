@@ -12,7 +12,7 @@ import { APIService } from '../libs/api/api'
 
 export class Contact extends Component {
   state = {
-    loading: false,
+    loading: false, //true,
     showConfirmation: false,
     data: {
       name: null,
@@ -39,19 +39,19 @@ export class Contact extends Component {
   componentDidMount() {
     this.apiService.authenticate().then(()=>{
       this.setState({
-        loading: true
+        loading: false
       })
     })
   }
   
   sendMessage = async () => {
-    try {
-      await this.apiService.sendContactFormMessage(this.state.data)
-      this.setState({ showConfirmation: true })
-    } catch (error) {
-      this.setState({ showConfirmation: false })
-      alert('There was an error in sending your message.')
-    }
+    // try {
+    //   await this.apiService.sendContactFormMessage(this.state.data)
+    //   this.setState({ showConfirmation: true })
+    // } catch (error) {
+    //   this.setState({ showConfirmation: false })
+    //   alert('There was an error in sending your message.')
+    // }
   }
 
   render() {
@@ -85,7 +85,7 @@ export class Contact extends Component {
           ) : (
             <section className="contact-form">
               {
-                this.state.loading ? (
+                !this.state.loading ? (
                   <Paper>
                     <div className="head">
                       <h3><b>Send a Message</b></h3>

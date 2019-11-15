@@ -19,7 +19,7 @@ export class Register extends Component {
   authService = new APIService()
 
   state = {
-    authenticated: false,
+    authenticated: true, //false,
     registrationsOpen: false,
     loggedIn: false,
     data: {
@@ -41,24 +41,24 @@ export class Register extends Component {
   }
 
   componentDidMount() {
-    this.authService.authenticate().then(()=>{
-      Firestore.collection('Tickets').get().then((ticketQuery)=>{
-        if(process.env.REACT_APP_MAX_REGISTRATIONS!==undefined)    
-          if(ticketQuery.docs.length < parseInt(process.env.REACT_APP_MAX_REGISTRATIONS, 10) && 
-            process.env.REACT_APP_REGISTRATION_OPEN==='YES') {
-            this.setState({ 
-              registrationsOpen: true, 
-              authenticated: true 
-            })
-          }
-          else {
-            this.setState({ authenticated: true })
-            // this.authService.sendAutoCloseNotification({
-            //   regNumber: ticketQuery.docs.length
-            // })
-          }
-      })
-    })
+    // this.authService.authenticate().then(()=>{
+    //   Firestore.collection('Tickets').get().then((ticketQuery)=>{
+    //     if(process.env.REACT_APP_MAX_REGISTRATIONS!==undefined)    
+    //       if(ticketQuery.docs.length < parseInt(process.env.REACT_APP_MAX_REGISTRATIONS, 10) && 
+    //         process.env.REACT_APP_REGISTRATION_OPEN==='YES') {
+    //         this.setState({ 
+    //           registrationsOpen: true, 
+    //           authenticated: true 
+    //         })
+    //       }
+    //       else {
+    //         this.setState({ authenticated: true })
+    //         // this.authService.sendAutoCloseNotification({
+    //         //   regNumber: ticketQuery.docs.length
+    //         // })
+    //       }
+    //   })
+    // })
   }
   
   handleChangeById = (event: any) => {

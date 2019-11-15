@@ -10,13 +10,28 @@ export class Team extends Component {
         <h1>The Team</h1>
 
         <section className="center">
-          <h2>Faculty Advisors</h2>
           <CardContainer>
+            <Card size="medium">
+              <img alt="team" src="/assets/img/team/seemi.jpg"/>
+              <div className="sub">
+                <b>Prof. Seemi F. Basir</b><br/>
+                Dean, Student's Welfare
+              </div>
+            </Card>
+
             <Card size="medium">
               <img alt="team" src="/assets/img/team/rihan.jpg"/>
               <div className="sub">
                 <b>Prof. Rihan K. Suri</b><br/>
                 Placement Officer
+              </div>
+            </Card>
+
+            <Card size="medium">
+              <img alt="team" src="/assets/img/team/gulla.jfif"/>
+              <div className="sub">
+                <b>Dr. Zishan H. Khan</b><br/>
+                Director, CIE
               </div>
             </Card>
           </CardContainer>

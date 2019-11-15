@@ -53,6 +53,27 @@ export class Home extends Component {
           </section>  
         </article>
 
+        <article>
+          <br/><br/>
+          <section className="center">
+            <img src="/assets/jmi.png" alt="" width="150px"/>
+
+            <h2>Jamia Millia Islamia</h2>
+
+            Jamia Millia Islamia made a modest beginning in 1920 at Aligarh, with the resolute determination of its founders.
+            Shaikhul Hind Maulana Mahmud Hasan, Maulana Muhammad Ali Jauhar, Jenab Hakim Ajmal Khan, Dr. Mukhtar Ahmad Ansari, 
+            Jenab Abdul Majeed Khwaja, and Dr. Zakir Hussain to create an institution that would manifest indigenous ethos and 
+            spirit of plurality. <br/><br/>
+            
+            It was conceived as a national institution that would offer progressive education and nationalist 
+            ideals to students from all communities, particularly the Muslims. The emergence of Jamia was supported by Gandhiji 
+            and Tagore who felt that Jamia could shape lives of hundreds and thousands of students on the basis of a shared 
+            culture and worldview. Jamia’s development is marked by sacrifices made by the staff and students and a host of 
+            individuals who contributed through myriad efforts. <br/><br/>
+          </section>  
+          <br/><br/>
+        </article>
+
         <article style={{ maxHeight: '36em', overflow: 'hidden', display: 'flex', flexDirection: 'row' }}>
           <video autoPlay muted style={{ width: '100%', objectFit: 'cover' }}>
             <source src="/assets/promovideo.mp4" type="video/mp4"/>
