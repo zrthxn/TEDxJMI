@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import '../App.css'
 
 import AppContext from '../AppContext'
-import Firestore from '../libs/util/database'
+// import Firestore from '../libs/util/database'
 import { launchPortal } from '../libs/api/payu'
 import { APIService } from '../libs/api/api'
 import { decrypt } from '../libs/util/encryption'
@@ -105,7 +105,7 @@ export class Dashboard extends Component {
             ...BOLT
           }
         })
-        await Firestore.collection('Transactions').doc(this.state.transaction.txnid).update({ status: 'FAILED' })
+        // await Firestore.collection('Transactions').doc(this.state.transaction.txnid).update({ status: 'FAILED' })
         this.context.actions.endAppTransition()
       }
     })
@@ -144,7 +144,7 @@ export class Dashboard extends Component {
         transactionPaymentSuccessful: false
       })
       
-      await Firestore.collection('Transactions').doc(this.state.transaction.txnid).update({ status: 'FAILED' })
+      // await Firestore.collection('Transactions').doc(this.state.transaction.txnid).update({ status: 'FAILED' })
       return Promise.reject()
     }
   }

@@ -6,7 +6,7 @@ import './styles/Register.css'
 import { AppContext } from '../AppContext'
 import { handleChangeById as inputHandler, emailValidation } from '../libs/util/inputHandler'
 import { APIService } from '../libs/api/api'
-import Firestore from '../libs/util/database'
+// import Firestore from '../libs/util/database'
 
 import { Textbox } from '../components/Textbox/Textbox'
 import { Button } from '../components/Button/Button'
